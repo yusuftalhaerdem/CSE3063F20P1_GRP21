@@ -1,3 +1,4 @@
+package src;
 public class LabelAssignment {
     private int instanceID;
     private int[] labelID;

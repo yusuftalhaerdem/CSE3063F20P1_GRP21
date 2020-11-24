@@ -1,3 +1,4 @@
+package src;
 public class Instance {
     private String instance;
     private int instanceID;

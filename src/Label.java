@@ -1,3 +1,4 @@
+package src;
 public class Label {
     private String labelText;
     private int labelID;
