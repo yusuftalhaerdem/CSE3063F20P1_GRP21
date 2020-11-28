@@ -12,21 +12,28 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException, ParseException {
+        LinkedList<Label> labelLinkedList = new LinkedList<Label>();
+        LinkedList<Instance> instanceLinkedList = new LinkedList<Instance>();
 
-        JSONParser jsonParser=new JSONParser();
-        FileReader reader=new FileReader("/book.json");
-        Object obj=jsonParser.parse(reader);
-        JSONObject jsonobj=(JSONObject)obj;
-        Input input = new Input(jsonobj);
+        System.out.println("Enter input file name : ");
+        Scanner scanner = new Scanner(System.in);
+        String inputFileName = scanner.next();
+        Input input = new Input(inputFileName, labelLinkedList, instanceLinkedList);
+
         input.getInputs();
 
+        for(int i=0;i<labelLinkedList.size();i++){
+            System.out.println(labelLinkedList.get(i).getLabelText());
+        }
 
+        for(int i=0;i<instanceLinkedList.size();i++){
+            System.out.println(instanceLinkedList.get(i).getInstanceText());
+        }
+        System.out.println("");
     }
 
 

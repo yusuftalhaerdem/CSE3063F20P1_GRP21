@@ -1,26 +1,51 @@
 package src;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Random;
+
 public class Instance {
-    private String instance;
-    private int instanceID;
 
-    public Instance(int instanceID, String instance) {
-        this.instanceID = instanceID;
-        this.instance= instance;
-    }
+    private String instanceText;
+    private long instanceID;
+    private long datasetID;
+    private long lblPerIns;
+    private String datasetName;
+    private LinkedList linkedList;
 
+    public Instance(){}
 
-    // set methods for attribute
-    public void setInstance(String _instance){
-        this.instance = instance;
+    public String getInstanceText() {
+        return instanceText;
     }
-    //get methods for attributes
-    public String getInstance(){
-        return instance;
+    public void setInstanceText(String instanceText) {
+        this.instanceText = instanceText;
     }
-    public int getInstanceID() {
+    public long getLblPerIns() {
+        return lblPerIns;
+    }
+    public void setLblPerIns(long lblPerIns) {
+        this.lblPerIns = lblPerIns;
+    }
+    public long getDatasetID() { return datasetID; }
+    public void setDatasetID(int datasetID) { this.datasetID = datasetID; }
+    public String getDatasetName() { return datasetName; }
+    public void setDatasetName(String datasetName) { this.datasetName = datasetName; }
+    public long getInstanceID() {
         return instanceID;
     }
     public void setInstanceID(int instanceID) {
         this.instanceID = instanceID;
     }
+
+    public void Create(long instanceID, String instanceText, int datasetID, String datasetName, long lblPerIns){
+
+        this.datasetID = datasetID;
+        this.datasetName = datasetName;
+        this.instanceText = instanceText;
+        this.instanceID = instanceID;
+        this.lblPerIns = lblPerIns;
+
+    }
+
 }

@@ -1,63 +1,78 @@
 package src;
 
+import com.fasterxml.jackson.core.JsonToken;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Input {
 
     private JSONObject jsonObject;
+    private LinkedList labelLinkedList, instanceLinkedList;
+    FileReader reader;
+    Object obj;
+    JSONParser jsonParser;
 
-    Input(JSONObject jsonObject){
-        this.jsonObject=jsonObject;
+    private int datasetId,  lblPerIns;
+    private String datasetName, inputFileName;
+
+    JSONArray instanceJson;
+
+    Input( String inputFileName,LinkedList labelLinkedList, LinkedList instanceLinkedList){
+        this.inputFileName=inputFileName;
+        this.labelLinkedList = labelLinkedList;
+        this.instanceLinkedList = instanceLinkedList;
     }
-
 
     public void getInputs(){
         try{
 
-            JSONParser jsonParser=new JSONParser();
-            FileReader reader=new FileReader("/book.json");
-            Object obj=jsonParser.parse(reader);
-            JSONObject jsonObject=(JSONObject)obj;
+            jsonParser=new JSONParser();
+            reader=new FileReader(inputFileName);
+            obj = jsonParser.parse(reader);
+            jsonObject=(JSONObject)obj;
 
-            int datasetId=(int)(long)jsonObject.get("dataset id");
-            System.out.println("dataset id = " + datasetId);
-            String datasetName=(String)jsonObject.get("dataset name");
-            System.out.println("dataset name = " + datasetName);
-            int lblPerIns=(int)(long)jsonObject.get("maximum number of labels per instance");
-            System.out.println("label per instance = " + lblPerIns);
+            datasetId = (int)(long)jsonObject.get("dataset id");
 
-            JSONArray classLabel=(JSONArray)jsonObject.get("class labels");
-            for (int i=0;i<classLabel.size();i++){
-                JSONObject address=(JSONObject)classLabel.get(i);
+            datasetName = (String)jsonObject.get("dataset name");
 
-                int labelId=(int)(long)address.get("label id");
-                String labelText=(String)address.get("label text");
+            lblPerIns = (int)(long)jsonObject.get("maximum number of labels per instance");
 
-                System.out.println("Label Id -> " + labelId);
-                System.out.println("Label Text -> " + labelText);
-            }
-
-            JSONArray instance=(JSONArray)jsonObject.get("instances");
-            for (int i=0;i<instance.size();i++){
-                JSONObject address=(JSONObject)instance.get(i);
-
-                int labelId=(int)(long)address.get("id");
-                String labelText=(String)address.get("instance");
-
-                System.out.println("Id -> " + labelId);
-                System.out.println("Instance -> " + labelText);
-            }
-
-
+            createLabels();
+            createInstances();
 
         } catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
+    void createLabels(){
+        JSONArray classLabel = (JSONArray)jsonObject.get("class labels");
+        for (int i=0;i<classLabel.size();i++){
+            JSONObject address=(JSONObject)classLabel.get(i);
+
+            Label label = new Label();
+            labelLinkedList.add(label);
+            label.Create((Long) address.get("label id"), (String)address.get("label text"), datasetName, datasetId, lblPerIns);
+
+        }
+    }
+
+    void createInstances(){
+        instanceJson = (JSONArray)jsonObject.get("instances");
+        for (int i=0;i<instanceJson.size();i++){
+            JSONObject address = (JSONObject)instanceJson.get(i);
+
+            Instance instance = new Instance();
+            instanceLinkedList.add(instance);
+            instance.Create((Long) address.get("id"), (String) address.get("instance"), datasetId, datasetName, lblPerIns);
+
+        }
+    }
 
 
 }
