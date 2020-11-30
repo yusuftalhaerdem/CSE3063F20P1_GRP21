@@ -1,40 +1,30 @@
 package src;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.nio.file.Paths;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException, ParseException {
-        LinkedList<Label> labelLinkedList = new LinkedList<Label>();
-        LinkedList<Instance> instanceLinkedList = new LinkedList<Instance>();
+        RandomLabeling randomLabeling;
+        String username;
+        User user = new User();
+        Random rd = new Random();
+        LinkedList<Label> labelLinkedList;
+        LinkedList<Instance> instanceLinkedList;
 
-        System.out.println("Enter input file name : ");
+
+        System.out.println("Please enter Username: ");
         Scanner scanner = new Scanner(System.in);
-        String inputFileName = scanner.next();
-        Input input = new Input(inputFileName, labelLinkedList, instanceLinkedList);
+        username = scanner.next();
+        user.setUserName(username);
+        user.setUserID(rd.nextInt());
 
-        input.getInputs();
 
-        for(int i=0;i<labelLinkedList.size();i++){
-            System.out.println(labelLinkedList.get(i).getLabelText());
-        }
-
-        for(int i=0;i<instanceLinkedList.size();i++){
-            System.out.println(instanceLinkedList.get(i).getInstanceText());
-        }
-        System.out.println("");
+        randomLabeling = new RandomLabeling();
+        System.out.println(randomLabeling.instanceCount);
     }
-
-
 }

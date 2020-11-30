@@ -5,10 +5,10 @@ import java.util.LinkedList;
 public class Label {
 
     private String labelText;
-    private long labelID;
+    private int labelID;
     private String datasetName;
-    private long datasetID;
-    private long lblPerIns;
+    private int datasetID;
+    private int lblPerIns;
     private LinkedList linkedList;
 
     public Label(){}
@@ -22,7 +22,7 @@ public class Label {
     public void setLabelID(int labelID) {
         this.labelID = labelID;
     }
-    public long getLabelID() {
+    public int getLabelID() {
         return labelID;
     }
     public String getDatasetName() {
@@ -31,20 +31,20 @@ public class Label {
     public void setDatasetName(String datasetName) {
         this.datasetName = datasetName;
     }
-    public long getDatasetID() {
+    public int getDatasetID() {
         return datasetID;
     }
-    public void setDatasetID(long datasetID) {
+    public void setDatasetID(int datasetID) {
         this.datasetID = datasetID;
     }
-    public long getLblPerIns() {
+    public int getLblPerIns() {
         return lblPerIns;
     }
-    public void setLblPerIns(long lblPerIns) {
+    public void setLblPerIns(int lblPerIns) {
         this.lblPerIns = lblPerIns;
     }
 
-    public void Create(long labelID, String labelText, String datasetName, long datesetID, long lblPerIns){
+    public void Create(int labelID, String labelText, String datasetName, int datesetID, int lblPerIns){
 
         this.labelID = labelID;
         this.labelText=labelText;
@@ -53,6 +53,4 @@ public class Label {
         this.lblPerIns = lblPerIns;
 
     }
-
-
 }

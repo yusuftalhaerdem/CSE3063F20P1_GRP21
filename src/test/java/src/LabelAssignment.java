@@ -3,8 +3,9 @@ public class LabelAssignment {
     private int instanceID;
     private int[] labelID;
 
+    public LabelAssignment(){}
 
-    LabelAssignment(int instanceID, int[] labelID){
+    public LabelAssignment(int instanceID, int[] labelID){
         this.instanceID=instanceID;
         this.labelID=labelID;
     }

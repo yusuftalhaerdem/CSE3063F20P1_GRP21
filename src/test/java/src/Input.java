@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonToken;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
+import javax.swing.*;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -47,7 +49,6 @@ public class Input {
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     void createLabels(){
@@ -57,7 +58,7 @@ public class Input {
 
             Label label = new Label();
             labelLinkedList.add(label);
-            label.Create((Long) address.get("label id"), (String)address.get("label text"), datasetName, datasetId, lblPerIns);
+            label.Create(((Long)address.get("label id")).intValue(), (String)address.get("label text"), datasetName, datasetId, lblPerIns);
 
         }
     }
@@ -69,10 +70,8 @@ public class Input {
 
             Instance instance = new Instance();
             instanceLinkedList.add(instance);
-            instance.Create((Long) address.get("id"), (String) address.get("instance"), datasetId, datasetName, lblPerIns);
+            instance.Create(((Long)address.get("id")).intValue(), (String)address.get("instance"), datasetId, datasetName, lblPerIns);
 
         }
     }
-
-
 }
