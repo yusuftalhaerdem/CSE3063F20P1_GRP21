@@ -16,8 +16,9 @@ public class Main {
         LinkedList<Label> labelLinkedList;
         LinkedList<Instance> instanceLinkedList;
 
-
+       // System.out.println("If you want to assign random labels, pls type Random");
         System.out.println("Please enter Username: ");
+
         Scanner scanner = new Scanner(System.in);
         username = scanner.next();
         user.setUserName(username);

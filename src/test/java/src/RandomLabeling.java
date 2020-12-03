@@ -2,10 +2,12 @@ package src;
 
 import org.json.simple.parser.ParseException;
 import java.io.IOException;
+import java.util.Collections;
+//import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class RandomLabeling extends LabelAssignment {//needs to extend LabelAssignment
+public class RandomLabeling extends LabelAssignment {
 
     LinkedList<Label> labelLinkedList;
     LinkedList<Instance> instanceLinkedList;
@@ -27,16 +29,22 @@ public class RandomLabeling extends LabelAssignment {//needs to extend LabelAssi
 
 
         for (int i = 0; i < instanceCount; i++) {
-            int assignLabelCount = rd.nextInt(2 * labelPerIns - 1);
+            int assignLabelCount = rd.nextInt(5 * labelPerIns - 1);
             assignLabelCount = (assignLabelCount % labelPerIns) + 1;
+            LinkedList<Integer> RandomCheckList;
+            RandomCheckList = new LinkedList<>();
             for (int j = 0; j < assignLabelCount; j++) {
-                labelID = rd.nextInt((2 * labelCount) - 1);
-                labelID = (labelID % labelCount) + 1;
+                do{
+                    labelID = rd.nextInt((5 * labelCount) - 1);
+                    labelID = (labelID % labelCount) + 1; }
+                while(RandomCheckList.contains(labelID));
+                RandomCheckList.add(labelID);
                 instanceLinkedList.get(i).setLabel(labelID);
             }
+            Collections.sort(instanceLinkedList.get(i).getLabels());
         }
         for(int i = 0; i < instanceCount ; i++){
-            System.out.println(instanceLinkedList.get(i).getInstanceText() + " is labeled as " + instanceLinkedList.get(i).getLabels());
+            System.out.println(instanceLinkedList.get(i).getInstanceText() + " is labeled with labels " + instanceLinkedList.get(i).getLabels());
         }
     }
 }
