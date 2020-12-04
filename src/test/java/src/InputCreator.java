@@ -4,31 +4,42 @@ package src;
 import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
-public class InputCreator {
+public class InputCreator{
+    private static final Logger logger = Logger.getLogger( InputCreator.class.getName());
+    FileHandler fileHandler;
 
     LinkedList<Label> labelLinkedList;
     LinkedList<Instance> instanceLinkedList;
+    Dataset datasetInfo;
 
-    public InputCreator() throws IOException, ParseException {
+    public InputCreator(FileHandler fileHandler) throws IOException{
+        this.fileHandler = fileHandler;
+        logger.addHandler(fileHandler);
+        SimpleFormatter formatter = new SimpleFormatter();
+        fileHandler.setFormatter(formatter);
 
-        instanceLinkedList = new LinkedList<Instance>();
-        labelLinkedList = new LinkedList<Label>();
+        instanceLinkedList = new LinkedList<>();
+        labelLinkedList = new LinkedList<>();
+        datasetInfo = new Dataset(this.fileHandler);
         System.out.println("Enter input file name : ");
         Scanner scanner = new Scanner(System.in);
         String inputFileName = scanner.next();
-        Input input = new Input(inputFileName, labelLinkedList, instanceLinkedList);
+        Input input = new Input(fileHandler,inputFileName, labelLinkedList, instanceLinkedList, datasetInfo);
 
         input.getInputs();
 
-        for (int i = 0; i < labelLinkedList.size(); i++) {
-            System.out.println(labelLinkedList.get(i).getLabelText());
+        for (Label label : labelLinkedList){
+            System.out.println(label.getLabelText());
         }
 
-        for (int i = 0; i < instanceLinkedList.size(); i++) {
-            System.out.println(instanceLinkedList.get(i).getInstanceText());
+        for (Instance instance : instanceLinkedList){
+            System.out.println(instance.getInstanceText());
         }
-        System.out.println("");
+        System.out.println();
     }
 
     public LinkedList<Label> getLabelLinkedList(){
@@ -39,4 +50,7 @@ public class InputCreator {
         return this.instanceLinkedList;
     }
 
+    public Dataset getDatasetInfo() {
+        return this.datasetInfo;
+    }
 }

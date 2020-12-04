@@ -6,27 +6,41 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class Input {
+    private static final Logger logger = Logger.getLogger( Input.class.getName());
+    FileHandler fileHandler;
 
     private JSONObject jsonObject;
     private LinkedList labelLinkedList, instanceLinkedList;
     FileReader reader;
     Object obj;
     JSONParser jsonParser;
+    private Dataset datasetInfo;
 
     private int datasetId,  lblPerIns;
     private String datasetName, inputFileName;
 
     JSONArray instanceJson;
 
-    Input( String inputFileName,LinkedList labelLinkedList, LinkedList instanceLinkedList){
+    Input(FileHandler fileHandler, String inputFileName, LinkedList labelLinkedList, LinkedList instanceLinkedList, Dataset datasetInfo){
+        this.fileHandler = fileHandler;
+        logger.addHandler(fileHandler);
+        SimpleFormatter formatter = new SimpleFormatter();
+        fileHandler.setFormatter(formatter);
+
         this.inputFileName=inputFileName;
         this.labelLinkedList = labelLinkedList;
         this.instanceLinkedList = instanceLinkedList;
+        this.datasetInfo = datasetInfo;
     }
 
     public void getInputs(){
@@ -43,6 +57,10 @@ public class Input {
 
             lblPerIns = (int)(long)jsonObject.get("maximum number of labels per instance");
 
+            datasetInfo.setDatasetID(datasetId);
+            datasetInfo.setDatasetName(datasetName);
+            datasetInfo.setMaxNoOfLabelsPerInstance(lblPerIns);
+
             createLabels();
             createInstances();
 
@@ -51,27 +69,28 @@ public class Input {
         }
     }
 
-    void createLabels(){
+    void createLabels() throws IOException {
         JSONArray classLabel = (JSONArray)jsonObject.get("class labels");
         for (int i=0;i<classLabel.size();i++){
             JSONObject address=(JSONObject)classLabel.get(i);
 
-            Label label = new Label();
+            Label label = new Label(fileHandler);
             labelLinkedList.add(label);
             label.Create(((Long)address.get("label id")).intValue(), (String)address.get("label text"), datasetName, datasetId, lblPerIns);
 
         }
     }
 
-    void createInstances(){
+    void createInstances() throws IOException {
         instanceJson = (JSONArray)jsonObject.get("instances");
         for (int i=0;i<instanceJson.size();i++){
             JSONObject address = (JSONObject)instanceJson.get(i);
 
-            Instance instance = new Instance();
+            Instance instance = new Instance(fileHandler);
             instanceLinkedList.add(instance);
             instance.Create(((Long)address.get("id")).intValue(), (String)address.get("instance"), datasetId, datasetName, lblPerIns);
 
         }
     }
+
 }

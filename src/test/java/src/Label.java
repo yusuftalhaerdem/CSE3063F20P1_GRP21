@@ -1,17 +1,27 @@
 package src;
 
+import java.io.IOException;
 import java.util.LinkedList;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
-public class Label {
+public class Label{
+    private static final Logger logger = Logger.getLogger( Label.class.getName());
+    FileHandler fileHandler;
 
     private String labelText;
     private int labelID;
     private String datasetName;
     private int datasetID;
     private int lblPerIns;
-    private LinkedList linkedList;
 
-    public Label(){}
+    public Label(FileHandler fileHandler) {
+        this.fileHandler = fileHandler;
+        logger.addHandler(fileHandler);
+        SimpleFormatter formatter = new SimpleFormatter();
+        fileHandler.setFormatter(formatter);
+    }
 
     public void setLabelText(String text){
         labelText = text;

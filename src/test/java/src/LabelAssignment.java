@@ -1,11 +1,26 @@
 package src;
+
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 public class LabelAssignment {
+    private static final Logger logger = Logger.getLogger( LabelAssignment.class.getName());
+    FileHandler fileHandler;
+
     private int instanceID;
     private int[] labelID;
 
     public LabelAssignment(){}
 
-    public LabelAssignment(int instanceID, int[] labelID){
+    public LabelAssignment(FileHandler fileHandler, int instanceID, int[] labelID){
+        this.fileHandler = fileHandler;
+
+        logger.addHandler(fileHandler);
+        SimpleFormatter formatter = new SimpleFormatter();
+        fileHandler.setFormatter(formatter);
+
         this.instanceID=instanceID;
         this.labelID=labelID;
     }

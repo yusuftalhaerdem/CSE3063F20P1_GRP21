@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException, ParseException {
-        RandomLabeling randomLabeling;
+        OutputCreator outputCreator;
         String username;
         User user = new User();
         Random rd = new Random();
@@ -25,7 +25,7 @@ public class Main {
         user.setUserID(rd.nextInt());
 
 
-        randomLabeling = new RandomLabeling();
-        System.out.println(randomLabeling.instanceCount);
+        outputCreator = new OutputCreator(user,user.getFileHandler());
+        System.out.println(outputCreator.instanceCount);
     }
 }
