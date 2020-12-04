@@ -92,7 +92,6 @@ public class OutputCreator {
             objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
             file.write(objectMapper.writeValueAsString(objectMapper.readTree(jsonString)));
             file.flush();
-
         } catch (IOException e) {
 
         }
