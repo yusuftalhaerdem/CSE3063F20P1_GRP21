@@ -1,27 +1,33 @@
 package edu.marmara.annotator;
 
-import java.io.IOException;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.util.Scanner;
 
 public class User {
-    private static final Logger logger = Logger.getLogger( User.class.getName());
-    FileHandler fileHandler = new FileHandler("app.log",true);
 
     private int userID;
     private String userName;
-    private String userType;
 
-    public FileHandler getFileHandler() {
-        return fileHandler;
+
+    User() {
+
+        this.userName = askUserName();
+        this.userID = askUserId();
+
     }
 
-    User() throws IOException {
-        logger.addHandler(fileHandler);
-        SimpleFormatter formatter = new SimpleFormatter();
-        fileHandler.setFormatter(formatter);
+    String askUserName(){
+        System.out.println("Enter user name : ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
     }
+
+    int askUserId(){
+        System.out.println("Enter user id : ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
+    }
+
+
 
     // set Methods to attributes
     public void setUserID(int id){
@@ -30,18 +36,12 @@ public class User {
     public void setUserName(String name){
         userName = name;
     }
-    public void setUserType(String type){
-        userType = type;
-    }
     // get methods for attributes
     public int getUserID(){
         return userID;
     }
     public String  getUserName() {
         return userName;
-    }
-    public String getUserType(){
-        return userType;
     }
 
 

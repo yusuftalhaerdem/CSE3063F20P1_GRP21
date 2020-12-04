@@ -5,28 +5,29 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException, ParseException {
-        OutputCreator outputCreator;
-        String username;
+        LinkedList<Label> labelLinkedList = new LinkedList<Label>();
+        LinkedList<Instance> instanceLinkedList = new LinkedList<Instance>();
         User user = new User();
-        Random rd = new Random();
-        LinkedList<Label> labelLinkedList;
-        LinkedList<Instance> instanceLinkedList;
+        String fileName = askInputFileName();
+        Input input = new Input(fileName, labelLinkedList, instanceLinkedList);
+        input.getInputs();
 
-       // System.out.println("If you want to assign random labels, pls type Random");
-        System.out.println("Please enter Username: ");
+        System.out.print("");
 
-        Scanner scanner = new Scanner(System.in);
-        username = scanner.next();
-        user.setUserName(username);
-        user.setUserID(rd.nextInt());
+        RandomLabeling labeling = new RandomLabeling(labelLinkedList, instanceLinkedList, user);
+        labeling.labelRandomly();
 
 
-        outputCreator = new OutputCreator(user,user.getFileHandler());
-        System.out.println(outputCreator.instanceCount);
     }
+
+    private static String askInputFileName(){
+        System.out.println("Enter file name : ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
 }

@@ -1,13 +1,8 @@
 package edu.marmara.annotator;
 
 import java.util.LinkedList;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class Instance {
-    private static final Logger logger = Logger.getLogger( Instance.class.getName());
-    FileHandler fileHandler;
 
     private String instanceText;
     private int instanceID;
@@ -17,11 +12,8 @@ public class Instance {
     private String dateTime;
     private LinkedList<Integer> labels;
 
-    public Instance(FileHandler fileHandler){
-        this.fileHandler = fileHandler;
-        logger.addHandler(fileHandler);
-        SimpleFormatter formatter = new SimpleFormatter();
-        fileHandler.setFormatter(formatter);
+    public Instance(){
+
     }
 
     public String getDateTime() {

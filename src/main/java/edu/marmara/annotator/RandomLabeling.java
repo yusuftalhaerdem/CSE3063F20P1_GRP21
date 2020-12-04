@@ -1,46 +1,31 @@
 package edu.marmara.annotator;
 
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class RandomLabeling extends LabelAssignment {
-    private static final Logger logger = Logger.getLogger( LabelAssignment.class.getName());
-    FileHandler fileHandler;
-
-    LinkedList<Label> labelLinkedList;
-    LinkedList<Instance> instanceLinkedList;
-    Dataset datasetInfo;
+    User user;
+    LinkedList<Label> labelLinkedList = new LinkedList<Label>();
+    LinkedList<Instance> instanceLinkedList = new LinkedList<Instance>();
     int instanceCount, labelCount, labelID;
-    InputCreator inputCreator;
     int labelPerIns;
 
+    RandomLabeling(LinkedList<Label> labelLinkedList, LinkedList<Instance> instanceLinkedList, User user) {
+        this.labelLinkedList = labelLinkedList;
+        this.instanceLinkedList = instanceLinkedList;
+        this.user = user;
+    }
 
-    public RandomLabeling(FileHandler fileHandler) throws IOException, ParseException {
-        this.fileHandler = fileHandler;
-
-        logger.addHandler(fileHandler);
-        SimpleFormatter formatter = new SimpleFormatter();
-        fileHandler.setFormatter(formatter);
-
+    public void labelRandomly() {
         Random rd = new Random();
-        inputCreator = new InputCreator(fileHandler);
-        this.labelLinkedList = inputCreator.getLabelLinkedList();
-        this.instanceLinkedList = inputCreator.getInstanceLinkedList();
-        this.datasetInfo = inputCreator.getDatasetInfo();
-        this.instanceCount = instanceLinkedList.size();
-        this.labelCount = labelLinkedList.size();
 
-        this.labelPerIns = labelLinkedList.get(0).getLblPerIns();
 
+        this.instanceCount = this.instanceLinkedList.size();
+        this.labelCount = this.labelLinkedList.size();
+        this.labelPerIns = this.labelLinkedList.get(0).getLblPerIns();
 
 
         for (int i = 0; i < instanceCount; i++) {
@@ -53,10 +38,11 @@ public class RandomLabeling extends LabelAssignment {
             LinkedList<Integer> RandomCheckList;
             RandomCheckList = new LinkedList<>();
             for (int j = 0; j < assignLabelCount; j++) {
-                do{
+                do {
                     labelID = rd.nextInt((5 * labelCount) - 1);
-                    labelID = (labelID % labelCount) + 1; }
-                while(RandomCheckList.contains(labelID));
+                    labelID = (labelID % labelCount) + 1;
+                }
+                while (RandomCheckList.contains(labelID));
                 RandomCheckList.add(labelID);
                 instanceLinkedList.get(i).setLabel(labelID);
                 instanceLinkedList.get(i).setDateTime(formattedDate);
@@ -64,28 +50,11 @@ public class RandomLabeling extends LabelAssignment {
             Collections.sort(instanceLinkedList.get(i).getLabels());
         }
 
-        for(int i = 0; i < instanceCount ; i++){
+        for (int i = 0; i < instanceCount; i++) {
             System.out.println(instanceLinkedList.get(i).getInstanceText() + " is labeled with labels " + instanceLinkedList.get(i).getLabels());
         }
+
     }
 
-    public LinkedList<Label> getLabelLinkedList() {
-        return labelLinkedList;
-    }
-
-    public LinkedList<Instance> getInstanceLinkedList() {
-        return instanceLinkedList;
-    }
-
-    public Dataset getDatasetInfo() {
-        return datasetInfo;
-    }
-
-    public int getInstanceCount() {
-        return instanceCount;
-    }
-
-    public int getLabelCount() {
-        return labelCount;
-    }
 }
+
