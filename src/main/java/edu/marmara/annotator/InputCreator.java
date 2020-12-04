@@ -1,9 +1,8 @@
-package src;
+package edu.marmara.annotator;
 
-
-import org.json.simple.parser.ParseException;
 import java.io.IOException;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Scanner;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;

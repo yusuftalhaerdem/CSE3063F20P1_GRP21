@@ -1,4 +1,4 @@
-package src;
+package edu.marmara.annotator;
 
 import org.json.simple.parser.ParseException;
 
@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
-//import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.logging.FileHandler;

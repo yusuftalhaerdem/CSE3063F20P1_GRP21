@@ -1,15 +1,14 @@
-package src;
+package edu.marmara.annotator;
 
-import java.util.*;
-import java.io.FileWriter;
-import java.io.IOException;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
-
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 import java.util.logging.FileHandler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
@@ -88,7 +87,10 @@ public class OutputCreator {
         outJson.put("class label assignments",list);
 
         try (FileWriter file = new FileWriter("output2.json")) {
-            file.write(outJson.toJSONString());
+            String jsonString = outJson.toJSONString();
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            file.write(objectMapper.writeValueAsString(objectMapper.readTree(jsonString)));
             file.flush();
 
         } catch (IOException e) {

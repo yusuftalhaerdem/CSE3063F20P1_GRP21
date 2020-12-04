@@ -1,4 +1,4 @@
-package src;
+package edu.marmara.annotator;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;

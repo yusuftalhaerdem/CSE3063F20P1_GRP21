@@ -1,15 +1,11 @@
-package src;
+package edu.marmara.annotator;
 
-import com.fasterxml.jackson.core.JsonToken;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;

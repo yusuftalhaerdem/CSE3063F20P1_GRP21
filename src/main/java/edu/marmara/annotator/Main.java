@@ -1,4 +1,5 @@
-package src;
+package edu.marmara.annotator;
+
 
 import org.json.simple.parser.ParseException;
 
