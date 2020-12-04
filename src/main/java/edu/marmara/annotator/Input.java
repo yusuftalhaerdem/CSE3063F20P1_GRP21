@@ -6,17 +6,18 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 public class Input {
+    private static final Logger logger = Logger.getLogger( Input.class.getName());
 
     private JSONObject jsonObject;
     private LinkedList labelLinkedList, instanceLinkedList;
-    FileReader reader;
-    Object obj;
     private String inputFileName;
 
 
     Input( String inputFileName,LinkedList labelLinkedList, LinkedList instanceLinkedList){
+
         this.inputFileName=inputFileName;
         this.labelLinkedList = labelLinkedList;
         this.instanceLinkedList = instanceLinkedList;
@@ -32,11 +33,10 @@ public class Input {
             JSONObject jsonObject=(JSONObject)obj;
 
             int datasetId=(int)(long)jsonObject.get("dataset id");
-            System.out.println("dataset id = " + datasetId);
+
             String datasetName=(String)jsonObject.get("dataset name");
-            System.out.println("dataset name = " + datasetName);
             int lblPerIns=(int)(long)jsonObject.get("maximum number of labels per instance");
-            System.out.println("label per instance = " + lblPerIns);
+
 
             //this.createLabels(datasetName, datasetId, lblPerIns);
             //this.createInstances(datasetId,datasetName,lblPerIns);
@@ -47,9 +47,6 @@ public class Input {
 
                 int labelId=(int)(long)address.get("label id");
                 String labelText=(String)address.get("label text");
-
-                System.out.println("Label Id -> " + labelId);
-                System.out.println("Label Text -> " + labelText);
 
                 Label label = new Label();
                 label.Create( labelId, labelText, datasetName, datasetId, lblPerIns);
@@ -76,6 +73,7 @@ public class Input {
 
         } catch (Exception e){
             e.printStackTrace();
+            Main.log(logger,e.toString());
         }
     }
 

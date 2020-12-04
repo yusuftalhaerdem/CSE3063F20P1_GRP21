@@ -5,11 +5,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.logging.Logger;
 
 public class RandomLabeling extends LabelAssignment {
+    private static final Logger logger = Logger.getLogger( RandomLabeling.class.getName());
+
     User user;
-    LinkedList<Label> labelLinkedList = new LinkedList<Label>();
-    LinkedList<Instance> instanceLinkedList = new LinkedList<Instance>();
+    LinkedList<Label> labelLinkedList;
+    LinkedList<Instance> instanceLinkedList;
     int instanceCount, labelCount, labelID;
     int labelPerIns;
 
@@ -21,7 +24,6 @@ public class RandomLabeling extends LabelAssignment {
 
     public void labelRandomly() {
         Random rd = new Random();
-
 
         this.instanceCount = this.instanceLinkedList.size();
         this.labelCount = this.labelLinkedList.size();
@@ -49,11 +51,6 @@ public class RandomLabeling extends LabelAssignment {
             }
             Collections.sort(instanceLinkedList.get(i).getLabels());
         }
-
-        for (int i = 0; i < instanceCount; i++) {
-            System.out.println(instanceLinkedList.get(i).getInstanceText() + " is labeled with labels " + instanceLinkedList.get(i).getLabels());
-        }
-
     }
 
 }

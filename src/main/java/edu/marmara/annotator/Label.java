@@ -1,6 +1,9 @@
 package edu.marmara.annotator;
 
+import java.util.logging.Logger;
+
 public class Label {
+    private static final Logger logger = Logger.getLogger( Label.class.getName());
 
     private String labelText;
     private int labelID;
