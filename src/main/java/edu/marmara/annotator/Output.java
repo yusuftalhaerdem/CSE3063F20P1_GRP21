@@ -23,14 +23,14 @@ public class Output {
     int datasetId;
     String datasetName;
     int lblPerIns;
-    User user;
+    LinkedList<User> userLinkedList;
     int labelCount;
     int instanceCount;
 
 
-    public Output(RandomLabeling label, User user){
+    public Output(RandomLabeling label, LinkedList<User> userLinkedList){
         this.label = label;
-        this.user = user;
+        this.userLinkedList = userLinkedList;
 
         this.labelLinkedList = this.label.labelLinkedList;
         this.instanceLinkedList = this.label.instanceLinkedList;
@@ -66,7 +66,7 @@ public class Output {
         JSONArray list1 = new JSONArray();
 
         for (int i=0;i < this.labelCount;i++){
-            Map<Object, Object> elements = new HashMap<>();
+            Map<Object, Object> elements = new LinkedHashMap<>();
             elements.put("label id",this.labelLinkedList.get(i).getLabelID());
             elements.put("label text", this.labelLinkedList.get(i).getLabelText());
             list1.add(elements);
@@ -75,7 +75,7 @@ public class Output {
 
         JSONArray list2 = new JSONArray();
         for(int i=0;i < this.instanceCount; i++){
-            Map<Object, Object> elements = new HashMap<>();
+            Map<Object, Object> elements = new LinkedHashMap<>();
             elements.put("id", this.instanceLinkedList.get(i).getInstanceID());
             elements.put("instance", this.instanceLinkedList.get(i).getInstanceText());
             list2.add(elements);
@@ -84,10 +84,10 @@ public class Output {
 
         JSONArray list3 = new JSONArray();
         for (int i=0; i < this.instanceLinkedList.size();i++){
-            Map<Object, Object> elements = new HashMap<>();
+            Map<Object, Object> elements = new LinkedHashMap<>();
             elements.put("instance id",this.instanceLinkedList.get(i).getInstanceID());
             elements.put("class label ids",this.instanceLinkedList.get(i).getLabels());
-            elements.put("user id",this.user.getUserName());
+            elements.put("user id",this.instanceLinkedList.get(i).getUserId());
             elements.put("datetime",this.instanceLinkedList.get(i).getDateTime());
             list3.add(elements);
 
@@ -95,11 +95,13 @@ public class Output {
         outJson.put("class label assignments",list3);
 
         JSONArray list4 = new JSONArray();
-        Map<Object, Object> elements = new HashMap<>();
-        elements.put("user id",this.user.getUserID());
-        elements.put("user name",this.user.getUserName());
-
-        list4.add(elements);
+        for (int i=0; i<this.userLinkedList.size();i++) {
+            Map<Object, Object> elements = new LinkedHashMap<>();
+            elements.put("user id", this.userLinkedList.get(i).getUserID());
+            elements.put("user name", this.userLinkedList.get(i).getUserName());
+            elements.put("user type", this.userLinkedList.get(i).getUserType());
+            list4.add(elements);
+        }
         outJson.put("users",list4);
 
 

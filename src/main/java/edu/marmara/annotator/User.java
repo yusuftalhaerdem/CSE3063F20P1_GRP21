@@ -15,7 +15,6 @@ public class User {
         this.userID = askUserId();
         this.userType = "Random Labeling";
 
-
     }
 
     String askUserName(){

@@ -10,16 +10,16 @@ import java.util.logging.Logger;
 public class RandomLabeling extends LabelAssignment {
     private static final Logger logger = Logger.getLogger( RandomLabeling.class.getName());
 
-    User user;
+    LinkedList<User> userLinkedList;
     LinkedList<Label> labelLinkedList;
     LinkedList<Instance> instanceLinkedList;
     int instanceCount, labelCount, labelID;
     int labelPerIns;
 
-    RandomLabeling(LinkedList<Label> labelLinkedList, LinkedList<Instance> instanceLinkedList, User user) {
+    RandomLabeling(LinkedList<Label> labelLinkedList, LinkedList<Instance> instanceLinkedList, LinkedList<User> userLinkedList) {
         this.labelLinkedList = labelLinkedList;
         this.instanceLinkedList = instanceLinkedList;
-        this.user = user;
+        this.userLinkedList = userLinkedList;
     }
 
     public void labelRandomly() {
@@ -46,6 +46,8 @@ public class RandomLabeling extends LabelAssignment {
                 }
                 while (RandomCheckList.contains(labelID));
                 RandomCheckList.add(labelID);
+                int userId = this.userLinkedList.get(rd.nextInt(this.userLinkedList.size())).getUserID();
+                instanceLinkedList.get(i).setUserId(userId);
                 instanceLinkedList.get(i).setLabel(labelID);
                 instanceLinkedList.get(i).setDateTime(formattedDate);
             }

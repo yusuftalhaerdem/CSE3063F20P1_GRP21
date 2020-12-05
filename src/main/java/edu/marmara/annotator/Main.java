@@ -23,19 +23,19 @@ public class Main {
         do {
             User user = new User();
             userLinkedList.add(user);
+        }while(askUserToContinue());
 
             Input input = new Input(fileName, labelLinkedList, instanceLinkedList);
             input.getInputs();
 
             System.out.print("");
 
-            RandomLabeling labeling = new RandomLabeling(labelLinkedList, instanceLinkedList, userLinkedList.getLast());
+            RandomLabeling labeling = new RandomLabeling(labelLinkedList, instanceLinkedList, userLinkedList);
             labeling.labelRandomly();
 
-            Output out = new Output(labeling, userLinkedList.getLast());
+            Output out = new Output(labeling, userLinkedList);
             out.writeToFile();
             System.out.print("");
-        }while(askUserToContinue());
 
     }
 

@@ -8,9 +8,18 @@ public class Instance {
     private int instanceID;
     private int datasetID;
     private int lblPerIns;
+    private int userId;
     private String datasetName;
     private String dateTime;
     private LinkedList<Integer> labels;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public Instance(){
 
