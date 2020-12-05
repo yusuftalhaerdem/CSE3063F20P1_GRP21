@@ -11,8 +11,12 @@ public class Label {
     private int datasetID;
     private int lblPerIns;
 
-    public Label() {
-
+    public Label(int labelID, String labelText, String datasetName, int datesetID, int lblPerIns) {
+        this.labelID = labelID;
+        this.labelText = labelText;
+        this.datasetID = datesetID;
+        this.datasetName = datasetName;
+        this.lblPerIns = lblPerIns;
     }
 
     public void setLabelText(String text) {
@@ -55,14 +59,5 @@ public class Label {
         this.lblPerIns = lblPerIns;
     }
 
-    public void Create(int labelID, String labelText, String datasetName, int datesetID, int lblPerIns) {
-
-        this.labelID = labelID;
-        this.labelText = labelText;
-        this.datasetID = datesetID;
-        this.datasetName = datasetName;
-        this.lblPerIns = lblPerIns;
-
-    }
 }
 

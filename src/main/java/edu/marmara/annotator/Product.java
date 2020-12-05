@@ -1,8 +1,10 @@
 package edu.marmara.annotator;
 
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 public class Product {
+    private static final Logger logger = Logger.getLogger(RandomLabeling.class.getName());
 
     private Label label;
     private String userName, userType;
@@ -13,8 +15,38 @@ public class Product {
     private int lblPerIns;
     private String instanceText;
     private int instanceID;
-    private LinkedList<Label> labelList;
+    private LinkedList<Label> labelList = new LinkedList<>();
     private LinkedList<Label> allLabels;
+    private LinkedList<Instance> allInstances;
+
+    public void createProduct(Label label, User user, String dateTime, String datasetName, int datasetID, int lblPerIns, String instanceText,
+                              int instanceID, LinkedList<Label> labelLinkedList, LinkedList<Instance> allInstances) {
+        this.label = label;
+        this.userName = user.getUserName();
+        this.userType = user.getUserType();
+        this.userID = user.getUserID();
+        this.dateTime = dateTime;
+        this.datasetName = datasetName;
+        this.datasetID = datasetID;
+        this.lblPerIns = lblPerIns;
+        this.instanceText = instanceText;
+        this.instanceID = instanceID;
+        this.allInstances = allInstances;
+        this.allLabels = labelLinkedList;
+        this.labelList.add(label);
+        Main.log(logger, ("user id:" + this.userID + " " + this.userName + " tagged instance id:" +
+                this.instanceID + " with class label:" + this.label.getLabelID() + " " + this.label.getLabelText()
+        + " instance: " +"\"" + this.instanceText + "\""));
+
+    }
+
+    public LinkedList<Instance> getAllInstances() {
+        return allInstances;
+    }
+
+    public void setAllInstances(LinkedList<Instance> allInstances) {
+        this.allInstances = allInstances;
+    }
 
     public Label getLabel() {
         return label;
@@ -126,25 +158,6 @@ public class Product {
         this.dateTime = dateTime;
     }
 
-    public void createProduct(Label label, User user, String dateTime, String datasetName, int datasetID, int lblPerIns, String instanceText,
-                              int instanceID, LinkedList<Label> labelLinkedList, LinkedList<Product> productLinkedList) {
-
-        this.allLabels = labelLinkedList;
-        this.labelList = new LinkedList<Label>();
-        labelList = labelLinkedList;
-        this.label = label;
-        this.userName = user.getUserName();
-        this.userType = user.getUserType();
-        this.userID = user.getUserID();
-        this.dateTime = dateTime;
-        this.datasetName = datasetName;
-        this.datasetID = datasetID;
-        this.lblPerIns = lblPerIns;
-        this.instanceText = instanceText;
-        this.instanceID = instanceID;
-        productLinkedList.add(this);
-
-    }
 
 
 }

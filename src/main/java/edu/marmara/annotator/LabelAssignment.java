@@ -1,25 +1,16 @@
 package edu.marmara.annotator;
 
-import java.util.logging.FileHandler;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
-public class LabelAssignment {
+public abstract class LabelAssignment {
     private static final Logger logger = Logger.getLogger( LabelAssignment.class.getName());
-    FileHandler fileHandler;
 
     private int instanceID;
     private int[] labelID;
 
     public LabelAssignment(){}
 
-    public LabelAssignment(FileHandler fileHandler, int instanceID, int[] labelID){
-        this.fileHandler = fileHandler;
-
-        logger.addHandler(fileHandler);
-        SimpleFormatter formatter = new SimpleFormatter();
-        fileHandler.setFormatter(formatter);
-
+    public LabelAssignment(int instanceID, int[] labelID){
         this.instanceID=instanceID;
         this.labelID=labelID;
     }

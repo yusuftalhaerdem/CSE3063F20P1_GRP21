@@ -3,7 +3,6 @@ package edu.marmara.annotator;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
-import java.util.Random;
 import java.util.logging.Logger;
 
 public class RandomLabeling extends LabelAssignment {
@@ -24,7 +23,6 @@ public class RandomLabeling extends LabelAssignment {
     }
 
     public void labelRandomly() {
-        Random rd = new Random();
 
         this.instanceCount = this.instanceLinkedList.size();
         this.labelCount = this.labelLinkedList.size();
@@ -43,49 +41,30 @@ public class RandomLabeling extends LabelAssignment {
             } else {
                 maxPossibleLabelCount = labelPerIns;
             }
-            int assignLabelCount = (int) (Math.ceil(Math.random()) * maxPossibleLabelCount);
-
-            //int assignLabelCount = rd.nextInt(10 * labelPerIns - 1);
-            //assignLabelCount = (assignLabelCount % labelPerIns) + 1;
-
+            int assignLabelCount;
             LinkedList<Integer> LabelCheckList;
-            //LinkedList<Integer> UserCheckList;
             LabelCheckList = new LinkedList<>();
-            //UserCheckList = new LinkedList<>();
-
-            int userId = this.userLinkedList.get(rd.nextInt(this.userLinkedList.size())).getUserID();
 
             for (int k = 0; k < userLinkedList.size(); k++) {
 
+                assignLabelCount = (int) (Math.ceil(Math.random() * maxPossibleLabelCount));
 
                 for (int j = 0; j < assignLabelCount; j++) {
                     do {
                         do {
                             labelID = (int) (Math.floor(Math.random() * labelCount));
-                            //labelID = rd.nextInt((maxPossibleLabelCount * labelCount) - 1);
-                            //labelID = (labelID % labelCount) + 1;
-                            System.out.println("");
                         } while (labelID > (labelCount - 1));
-                    }while (LabelCheckList.contains(labelID));
+                    } while (LabelCheckList.contains(labelID));
                     LabelCheckList.add(labelID);
+                    int userIndex = (int) (Math.floor(Math.random() * userLinkedList.size()));
 
-                    System.out.println(k);
-                    product.createProduct(labelLinkedList.get(labelID), userLinkedList.get(labelID), formattedDate, instanceLinkedList.get(i).getDatasetName(),
+                    product.createProduct(labelLinkedList.get(labelID), userLinkedList.get(userIndex), formattedDate, instanceLinkedList.get(i).getDatasetName(),
                             instanceLinkedList.get(i).getDatasetID(), instanceLinkedList.get(i).getMaxPerLabel(), instanceLinkedList.get(i).getInstanceText(),
-                            instanceLinkedList.get(i).getInstanceID(), labelLinkedList, productLinkedList);
-                    //product.getLabelList().get(j).setLabelID(labelID);
-                    //product.setUser(userLinkedList.get(k));
-                    //product.setDateTime(formattedDate);
-                    // productLinkedList.add(product);
-                    Product product1 = productLinkedList.get(j);
-                    System.out.println(product1.getUserID());
-
+                            instanceLinkedList.get(i).getInstanceID(), labelLinkedList, instanceLinkedList);
+                    productLinkedList.add(product);
                 }
-
-                //Collections.sort(productLinkedList.get(k).getLabels());
             }
         }
     }
 
 }
-

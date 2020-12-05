@@ -9,16 +9,10 @@ public class User {
     private int userID;
     private String userName,userType;
 
-
-    User(int userID) {
-        this.userID=userID;
-    }
-
     User() {
         this.userName = askUserName();
         this.userID = askUserId();
         this.userType = "Random Labeling";
-
     }
 
 
@@ -30,13 +24,18 @@ public class User {
 
     int askUserId(){
         System.out.println("Enter user id : ");
-        Scanner sc = new Scanner(System.in);
-        return sc.nextInt();
+        int id = 0;
+        try {
+            Scanner sc = new Scanner(System.in);
+            id = sc.nextInt();
+            Main.log(logger, String.format("Created %s as %s", this.userName,this.userType));
+        }catch (Exception x){
+            logger.warning("Please provide a valid user id");
+            System.exit(1);
+        }
+        return id;
     }
 
-
-
-    // set Methods to attributes
     public String getUserType() { return userType; }
     public void setUserID(int id){
         userID = id;
@@ -44,7 +43,6 @@ public class User {
     public void setUserName(String name){
         userName = name;
     }
-    // get methods for attributes
     public int getUserID(){
         return userID;
     }

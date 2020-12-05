@@ -36,10 +36,10 @@ public class Main {
 
         System.out.print("");
 
-      /*      Output out = new Output(labeling, userLinkedList);
-            out.writeToFile();
-            System.out.print("");
-*/
+        Output out = new Output(productLinkedList, userLinkedList);
+        out.writeToFile("output3.json");
+        System.out.print("");
+
     }
 
     private static boolean askUserToContinue() {

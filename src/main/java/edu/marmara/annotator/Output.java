@@ -1,13 +1,23 @@
 package edu.marmara.annotator;
 
-import java.util.LinkedList;
+import java.nio.file.Paths;
+import java.util.*;
+
+import java.io.IOException;
 import java.util.logging.Logger;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 
 public class Output {
     private static final Logger logger = Logger.getLogger(Output.class.getName());
 
-    RandomLabeling label;
+    LinkedList<Product> productLinkedList;
     LinkedList<Label> labelLinkedList;
     LinkedList<Instance> instanceLinkedList;
     int datasetId;
@@ -18,28 +28,29 @@ public class Output {
     int instanceCount;
 
 
-    public Output(RandomLabeling label, LinkedList<User> userLinkedList) {
-        this.label = label;
+    public Output(LinkedList<Product> productLinkedList, LinkedList<User> userLinkedList) {
+        this.productLinkedList = productLinkedList;
         this.userLinkedList = userLinkedList;
 
-        this.labelLinkedList = this.label.labelLinkedList;
-        this.instanceLinkedList = this.label.instanceLinkedList;
-        this.labelCount = this.label.labelCount;
-        this.instanceCount = this.label.instanceCount;
-        this.datasetId = this.label.instanceLinkedList.get(0).getDatasetID();
-        this.datasetName = this.label.instanceLinkedList.get(0).getDatasetName();
-        this.lblPerIns = this.label.instanceLinkedList.get(0).getMaxPerLabel();
+        this.labelLinkedList = this.productLinkedList.get(0).getAllLabels();
+        this.instanceLinkedList = this.productLinkedList.get(0).getAllInstances();
+        this.labelCount = this.labelLinkedList.size();
+        this.instanceCount = this.instanceLinkedList.size();
+        this.datasetId = this.productLinkedList.get(0).getDatasetID();
+        this.datasetName = this.productLinkedList.get(0).getDatasetName();
+        this.lblPerIns = this.productLinkedList.get(0).getLblPerIns();
 
     }
 
- /*   @JsonPropertyOrder({"dataset id", "dataset name", "maximum number of labels per instance", "class labels", "instances", "class label assignments", "users"})
-    public void writeToFile() throws IOException {
+
+    @JsonPropertyOrder({"dataset id", "dataset name", "maximum number of labels per instance", "class labels", "instances", "class label assignments", "users"})
+    public void writeToFile(String filename) {
         OutputData outJson = createJsonObject();
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
 
         try {
-            writer.writeValue(Paths.get("output3.json").toFile(), outJson);
+            writer.writeValue(Paths.get(filename).toFile(), outJson);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -74,12 +85,16 @@ public class Output {
         outJson.put("instances", list2);
 
         JSONArray list3 = new JSONArray();
-        for (int i = 0; i < this.instanceLinkedList.size(); i++) {
+        for (int i = 0; i < this.productLinkedList.size(); i++) {
             Map<Object, Object> elements = new LinkedHashMap<>();
-            elements.put("instance id", this.instanceLinkedList.get(i).getInstanceID());
-            elements.put("class label ids", this.instanceLinkedList.get(i).getLabels());
-            elements.put("user id", this.instanceLinkedList.get(i).getUserId());
-            elements.put("datetime", this.instanceLinkedList.get(i).getDateTime());
+            elements.put("instance id", this.productLinkedList.get(i).getInstanceID());
+            ArrayList<Integer> temp = new ArrayList<>();
+            for (int j=0; j< this.productLinkedList.get(i).getLabelList().size(); j++){
+                temp.add(this.productLinkedList.get(i).getLabelList().get(j).getLabelID());
+            }
+            elements.put("class label ids", temp);
+            elements.put("user id", this.productLinkedList.get(i).getUserID());
+            elements.put("datetime", this.productLinkedList.get(i).getDateTime());
             list3.add(elements);
 
         }
@@ -100,5 +115,5 @@ public class Output {
 
         return json;
 
-    }*/
+    }
 }

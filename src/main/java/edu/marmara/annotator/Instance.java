@@ -11,11 +11,16 @@ public class Instance {
     private int maxPerLabel;
     private LinkedList<Integer> labels;
 
+    public Instance(int instanceID, String instanceText, int datasetID, String datasetName, int lblPerIns) {
 
-    public Instance() {
+        this.instanceText = instanceText;
+        this.instanceID = instanceID;
+        this.datasetID = datasetID;
+        this.datasetName = datasetName;
+        this.maxPerLabel = lblPerIns;
+        labels = new LinkedList<>();
 
     }
-
 
     public String getDatasetName() {
         return datasetName;
@@ -70,15 +75,5 @@ public class Instance {
         labels.add(labelID);
     }
 
-    public void Create(int instanceID, String instanceText, int datasetID, String datasetName, int lblPerIns) {
-
-        this.instanceText = instanceText;
-        this.instanceID = instanceID;
-        this.datasetID = datasetID;
-        this.datasetName = datasetName;
-        this.maxPerLabel = lblPerIns;
-        labels = new LinkedList<>();
-
-    }
 
 }
