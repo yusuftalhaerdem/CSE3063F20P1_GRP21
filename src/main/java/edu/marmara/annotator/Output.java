@@ -85,7 +85,7 @@ public class Output {
         outJson.put("instances", list2);
 
         JSONArray list3 = new JSONArray();
-        for (int i = 0; i < this.productLinkedList.size(); i++) {
+        for (int i = 0; i < this.instanceLinkedList.size(); i++) {
             Map<Object, Object> elements = new LinkedHashMap<>();
             elements.put("instance id", this.productLinkedList.get(i).getInstanceID());
             ArrayList<Integer> temp = new ArrayList<>();

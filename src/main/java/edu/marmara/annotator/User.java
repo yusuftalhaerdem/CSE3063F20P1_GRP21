@@ -7,12 +7,12 @@ public class User {
     private static final Logger logger = Logger.getLogger( User.class.getName());
 
     private int userID;
-    private String userName,userType;
+    private String userName;
+    private String userType = "RandomBot";
 
     User() {
         this.userName = askUserName();
         this.userID = askUserId();
-        this.userType = "Random Labeling";
     }
 
 
@@ -28,7 +28,7 @@ public class User {
         try {
             Scanner sc = new Scanner(System.in);
             id = sc.nextInt();
-            Main.log(logger, String.format("Created %s as %s", this.userName,this.userType));
+            Main.log(logger, String.format("User %s created as %s", this.userName,this.userType));
         }catch (Exception x){
             logger.warning("Please provide a valid user id");
             System.exit(1);

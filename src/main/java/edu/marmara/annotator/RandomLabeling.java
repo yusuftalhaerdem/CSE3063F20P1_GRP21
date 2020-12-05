@@ -35,6 +35,7 @@ public class RandomLabeling extends LabelAssignment {
             DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
             String formattedDate = myDateObj.format(myFormatObj);
 
+
             int maxPossibleLabelCount = 0;
             if (labelPerIns > labelLinkedList.size()) {
                 maxPossibleLabelCount = labelLinkedList.size();
@@ -45,24 +46,23 @@ public class RandomLabeling extends LabelAssignment {
             LinkedList<Integer> LabelCheckList;
             LabelCheckList = new LinkedList<>();
 
-            for (int k = 0; k < userLinkedList.size(); k++) {
+            assignLabelCount = (int) (Math.ceil(Math.random() * maxPossibleLabelCount));
 
-                assignLabelCount = (int) (Math.ceil(Math.random() * maxPossibleLabelCount));
-
-                for (int j = 0; j < assignLabelCount; j++) {
+            int userIndex = (int) (Math.floor(Math.random() * userLinkedList.size()));
+            for (int j = 0; j < assignLabelCount; j++) {
+                do {
                     do {
-                        do {
-                            labelID = (int) (Math.floor(Math.random() * labelCount));
-                        } while (labelID > (labelCount - 1));
-                    } while (LabelCheckList.contains(labelID));
-                    LabelCheckList.add(labelID);
-                    int userIndex = (int) (Math.floor(Math.random() * userLinkedList.size()));
+                        labelID = (int) (Math.floor(Math.random() * labelCount));
+                    } while (labelID > (labelCount - 1));
+                } while (LabelCheckList.contains(labelID));
+                LabelCheckList.add(labelID);
 
-                    product.createProduct(labelLinkedList.get(labelID), userLinkedList.get(userIndex), formattedDate, instanceLinkedList.get(i).getDatasetName(),
-                            instanceLinkedList.get(i).getDatasetID(), instanceLinkedList.get(i).getMaxPerLabel(), instanceLinkedList.get(i).getInstanceText(),
-                            instanceLinkedList.get(i).getInstanceID(), labelLinkedList, instanceLinkedList);
-                    productLinkedList.add(product);
-                }
+
+                product.createProduct(labelLinkedList.get(labelID), userLinkedList.get(userIndex), formattedDate, instanceLinkedList.get(i).getDatasetName(),
+                        instanceLinkedList.get(i).getDatasetID(), instanceLinkedList.get(i).getMaxPerLabel(), instanceLinkedList.get(i).getInstanceText(),
+                        instanceLinkedList.get(i).getInstanceID(), labelLinkedList, instanceLinkedList);
+
+                productLinkedList.add(product);
             }
         }
     }
