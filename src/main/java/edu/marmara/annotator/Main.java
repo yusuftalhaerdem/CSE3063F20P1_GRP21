@@ -16,18 +16,39 @@ public class Main {
         fileHandler = new FileHandler("app.log",true);
         LinkedList<Label> labelLinkedList = new LinkedList<Label>();
         LinkedList<Instance> instanceLinkedList = new LinkedList<Instance>();
-        User user = new User();
+        LinkedList<User> userLinkedList = new LinkedList<User>();
+
         String fileName = askInputFileName();
-        Input input = new Input(fileName, labelLinkedList, instanceLinkedList);
-        input.getInputs();
 
-        System.out.print("");
+        do {
+            User user = new User();
+            userLinkedList.add(user);
 
-        RandomLabeling labeling = new RandomLabeling(labelLinkedList, instanceLinkedList, user);
-        labeling.labelRandomly();
+            Input input = new Input(fileName, labelLinkedList, instanceLinkedList);
+            input.getInputs();
 
-        Output out = new Output(labeling, user);
-        out.writeToFile();
+            System.out.print("");
+
+            RandomLabeling labeling = new RandomLabeling(labelLinkedList, instanceLinkedList, userLinkedList.getLast());
+            labeling.labelRandomly();
+
+            Output out = new Output(labeling, userLinkedList.getLast());
+            out.writeToFile();
+            System.out.print("");
+        }while(askUserToContinue());
+
+    }
+
+    private static boolean askUserToContinue(){
+        System.out.println("If you want to exit press 0,if not press number other than 0");
+        Scanner scan = new Scanner(System.in);
+        int num = scan.nextInt();
+        if(num==0){
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
     private static String askInputFileName(){

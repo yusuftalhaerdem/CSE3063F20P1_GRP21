@@ -7,12 +7,14 @@ public class User {
     private static final Logger logger = Logger.getLogger( User.class.getName());
 
     private int userID;
-    private String userName;
+    private String userName,userType;
 
 
     User() {
         this.userName = askUserName();
         this.userID = askUserId();
+        this.userType = "Random Labeling";
+
 
     }
 
@@ -31,6 +33,7 @@ public class User {
 
 
     // set Methods to attributes
+    public String getUserType() { return userType; }
     public void setUserID(int id){
         userID = id;
     }
