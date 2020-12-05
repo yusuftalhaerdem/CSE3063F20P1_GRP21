@@ -37,7 +37,7 @@ public class Main {
         System.out.print("");
 
         Output out = new Output(productLinkedList, userLinkedList);
-        out.writeToFile("output3.json");
+        out.writeToFile("output.json");
         System.out.print("");
 
     }
