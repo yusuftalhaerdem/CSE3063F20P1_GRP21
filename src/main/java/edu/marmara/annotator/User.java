@@ -10,12 +10,17 @@ public class User {
     private String userName,userType;
 
 
+    User(int userID) {
+        this.userID=userID;
+    }
+
     User() {
         this.userName = askUserName();
         this.userID = askUserId();
         this.userType = "Random Labeling";
 
     }
+
 
     String askUserName(){
         System.out.println("Enter user name : ");

@@ -7,47 +7,32 @@ public class Instance {
     private String instanceText;
     private int instanceID;
     private int datasetID;
-    private int lblPerIns;
-    private int userId;
     private String datasetName;
-    private String dateTime;
+    private int maxPerLabel;
     private LinkedList<Integer> labels;
 
-    public int getUserId() {
-        return userId;
-    }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public Instance(){
+    public Instance() {
 
     }
 
-    public String getDateTime() {
-        return dateTime;
+
+    public String getDatasetName() {
+        return datasetName;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setDatasetName(String datasetName) {
+        this.datasetName = datasetName;
     }
 
-    public String getInstanceText() {
-        return instanceText;
+    public int getMaxPerLabel() {
+        return maxPerLabel;
     }
 
-    public void setInstanceText(String instanceText) {
-        this.instanceText = instanceText;
+    public void setMaxPerLabel(int maxPerLabel) {
+        this.maxPerLabel = maxPerLabel;
     }
 
-    public int getLblPerIns() {
-        return lblPerIns;
-    }
-
-    public void setLblPerIns(int lblPerIns) {
-        this.lblPerIns = lblPerIns;
-    }
 
     public int getDatasetID() {
         return datasetID;
@@ -57,12 +42,16 @@ public class Instance {
         this.datasetID = datasetID;
     }
 
-    public String getDatasetName() {
-        return datasetName;
+    public void setLabels(LinkedList<Integer> labels) {
+        this.labels = labels;
     }
 
-    public void setDatasetName(String datasetName) {
-        this.datasetName = datasetName;
+    public String getInstanceText() {
+        return instanceText;
+    }
+
+    public void setInstanceText(String instanceText) {
+        this.instanceText = instanceText;
     }
 
     public int getInstanceID() {
@@ -81,14 +70,13 @@ public class Instance {
         labels.add(labelID);
     }
 
-
     public void Create(int instanceID, String instanceText, int datasetID, String datasetName, int lblPerIns) {
 
-        this.datasetID = datasetID;
-        this.datasetName = datasetName;
         this.instanceText = instanceText;
         this.instanceID = instanceID;
-        this.lblPerIns = lblPerIns;
+        this.datasetID = datasetID;
+        this.datasetName = datasetName;
+        this.maxPerLabel = lblPerIns;
         labels = new LinkedList<>();
 
     }

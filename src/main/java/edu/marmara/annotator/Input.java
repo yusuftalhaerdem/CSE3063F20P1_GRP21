@@ -12,7 +12,8 @@ public class Input {
     private static final Logger logger = Logger.getLogger( Input.class.getName());
 
     private JSONObject jsonObject;
-    private LinkedList labelLinkedList, instanceLinkedList;
+    private LinkedList<Label> labelLinkedList;
+    private LinkedList<Instance> instanceLinkedList;
     private String inputFileName;
 
 

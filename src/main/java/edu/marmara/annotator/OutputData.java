@@ -3,7 +3,7 @@ package edu.marmara.annotator;
 import org.json.simple.JSONArray;
 
 
-public class outputData {
+public class OutputData {
 
     private int datasetId;
     private String datasetName;
@@ -13,7 +13,7 @@ public class outputData {
     private JSONArray labelAssignments;
     private JSONArray users;
 
-    public outputData(int datasetId, String datasetName, int lblPerIns, JSONArray classLabels,
+    public OutputData(int datasetId, String datasetName, int lblPerIns, JSONArray classLabels,
                       JSONArray instances, JSONArray labelAssignments, JSONArray users){
 
         this.datasetId = datasetId;
@@ -53,6 +53,6 @@ public class outputData {
         return users;
     }
 
-    public outputData(){
+    public OutputData(){
     }
 }
