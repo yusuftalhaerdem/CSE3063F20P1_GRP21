@@ -41,11 +41,10 @@ public class Output {
         this.lblPerIns = this.productLinkedList.get(0).getLblPerIns();
 
     }
-
-
+    // This is writes json data to file
     @JsonPropertyOrder({"dataset id", "dataset name", "maximum number of labels per instance", "class labels", "instances", "class label assignments", "users"})
     public void writeToFile(String filename) {
-        OutputData outJson = createJsonObject();
+        OutputData outJson = createOutputDataObject();
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
 
@@ -56,8 +55,8 @@ public class Output {
             e.printStackTrace();
         }
     }
-
-    public OutputData createJsonObject() {
+    // Output data type is used for ordered print to file if it is not used json file will be unordered
+    public OutputData createOutputDataObject() {
 
         JSONObject outJson = new JSONObject();
         outJson.put("dataset id", this.datasetId);

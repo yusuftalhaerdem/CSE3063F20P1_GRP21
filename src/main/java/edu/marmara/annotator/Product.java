@@ -7,7 +7,8 @@ public class Product {
     private static final Logger logger = Logger.getLogger(RandomLabeling.class.getName());
 
     private Label label;
-    private String userName, userType;
+    private String userName;
+    private String userType;
     private int userID;
     private String dateTime;
     private String datasetName;

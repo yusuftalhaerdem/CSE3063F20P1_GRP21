@@ -38,7 +38,6 @@ public class Instance {
         this.maxPerLabel = maxPerLabel;
     }
 
-
     public int getDatasetID() {
         return datasetID;
     }

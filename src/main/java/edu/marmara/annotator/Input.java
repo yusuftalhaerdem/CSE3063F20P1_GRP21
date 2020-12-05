@@ -23,7 +23,7 @@ public class Input {
         this.instanceLinkedList = instanceLinkedList;
     }
 
-
+    // This method is reads json file and creates objects accordingly
     public void getInputs(){
         try{
 
@@ -32,7 +32,7 @@ public class Input {
             Object obj=jsonParser.parse(reader);
             JSONObject jsonObject=(JSONObject)obj;
 
-            int datasetId=(int)(long)jsonObject.get("dataset id");
+            int datasetID=(int)(long)jsonObject.get("dataset id");
 
             String datasetName=(String)jsonObject.get("dataset name");
             int lblPerIns=(int)(long)jsonObject.get("maximum number of labels per instance");
@@ -41,10 +41,10 @@ public class Input {
             for (int i=0;i<classLabel.size();i++){
                 JSONObject address=(JSONObject)classLabel.get(i);
 
-                int labelId=(int)(long)address.get("label id");
+                int labelID=(int)(long)address.get("label id");
                 String labelText=(String)address.get("label text");
 
-                Label label = new Label(labelId, labelText, datasetName, datasetId, lblPerIns);
+                Label label = new Label(labelID, labelText, datasetName, datasetID, lblPerIns);
                 labelLinkedList.add(label);
             }
 
@@ -52,10 +52,10 @@ public class Input {
             for (int i=0;i<instances.size();i++){
                 JSONObject address=(JSONObject)instances.get(i);
 
-                int instanceId=(int)(long)address.get("id");
+                int instanceID=(int)(long)address.get("id");
                 String instanceText=(String)address.get("instance");
 
-                Instance instance = new Instance(instanceId, instanceText, datasetId, datasetName, lblPerIns);
+                Instance instance = new Instance(instanceID, instanceText, datasetID, datasetName, lblPerIns);
                 instanceLinkedList.add(instance);
             }
 

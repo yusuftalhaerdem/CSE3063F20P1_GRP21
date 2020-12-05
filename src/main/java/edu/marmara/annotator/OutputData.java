@@ -2,7 +2,9 @@ package edu.marmara.annotator;
 
 import org.json.simple.JSONArray;
 
-
+/* if this class is not used we will write to json
+file using JSONObject and it is unordered so we use this class for ordered json file.
+*/
 public class OutputData {
 
     private int datasetId;
