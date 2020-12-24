@@ -5,64 +5,236 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
-import java.util.LinkedList;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 public class Input {
-    private static final Logger logger = Logger.getLogger( Input.class.getName());
 
-    private LinkedList<Label> labelLinkedList;
-    private LinkedList<Instance> instanceLinkedList;
-    private String inputFileName;
+    private ArrayList<Dataset> datasetArrayList;
+    private ArrayList<User> userArrayList;
+    private ArrayList<Label> labelArrayList;
+    private ArrayList<Instance> instanceArrayList;
+    private ArrayList<Labeling> labelingArrayList;
+    private String filePath;
+    private String datasetPath;
+    private String datasetName;
+    private int datasetId;
 
-
-    Input( String inputFileName,LinkedList labelLinkedList, LinkedList instanceLinkedList){
-
-        this.inputFileName=inputFileName;
-        this.labelLinkedList = labelLinkedList;
-        this.instanceLinkedList = instanceLinkedList;
+    public Input(ArrayList<Dataset> datasetArrayList, ArrayList<User> userArrayList, ArrayList<Label> labelArrayList, ArrayList<Instance> instanceArrayList, ArrayList<Labeling> labelingArrayList) {
+        this.datasetArrayList = datasetArrayList;
+        this.userArrayList = userArrayList;
+        this.filePath = "config.json";
+        this.instanceArrayList = instanceArrayList;
+        this.labelArrayList = labelArrayList;
+        this.labelingArrayList = labelingArrayList;
     }
 
-    // This method is reads json file and creates objects accordingly
-    public void getInputs(){
-        try{
+    public Input() {
+    }
 
-            JSONParser jsonParser=new JSONParser();
-            FileReader reader=new FileReader(inputFileName);
-            Object obj=jsonParser.parse(reader);
-            JSONObject jsonObject=(JSONObject)obj;
+    public int getInputs() {
+        Log log = Log.getInstance();
 
-            int datasetID=(int)(long)jsonObject.get("dataset id");
+        int current_dataset_id = -1;
+        try {
+            JSONParser parser = new JSONParser();
+            filePath = "config.json";
+            FileReader fileReader = new FileReader(filePath);
+            Object obj = parser.parse(fileReader);
+            JSONObject jsonObject = (JSONObject) obj;
 
-            String datasetName=(String)jsonObject.get("dataset name");
-            int lblPerIns=(int)(long)jsonObject.get("maximum number of labels per instance");
+            current_dataset_id = ((Long)jsonObject.get("current dataset")).intValue();
 
-            JSONArray classLabel=(JSONArray)jsonObject.get("class labels");
-            for (int i=0;i<classLabel.size();i++){
-                JSONObject address=(JSONObject)classLabel.get(i);
+            // config dosyasından user değerleri alınan for döngüsü
+            JSONArray users = (JSONArray) jsonObject.get("users");
+            for (int i = 0; i < users.size(); i++) {
+                JSONObject address = (JSONObject) users.get(i);
 
-                int labelID=(int)(long)address.get("label id");
-                String labelText=(String)address.get("label text");
+                String userName = (String) address.get("user name");
+                int userId = ((Long)address.get("user id")).intValue();
+                double checkProbability = (double) address.get("consistency check probability");
 
-                Label label = new Label(labelID, labelText, datasetName, datasetID, lblPerIns);
-                labelLinkedList.add(label);
+                JSONArray assigned = (JSONArray) address.get("assigned databases");
+                ArrayList<Integer> assignedArray = new ArrayList<>();
+                for (int j = 0; j < assigned.size(); j++) {
+                    assignedArray.add(((Long) assigned.get(j)).intValue());
+                }
+
+                User user = new User(userId, userName, "", assignedArray, checkProbability);
+                userArrayList.add(user);
             }
 
-            JSONArray instances=(JSONArray)jsonObject.get("instances");
-            for (int i=0;i<instances.size();i++){
-                JSONObject address=(JSONObject)instances.get(i);
+            // config dosyasından dataset değerleri alınan for döngüsü
+            JSONArray datasets = (JSONArray) jsonObject.get("datasets");
+            for (int i = 0; i < datasets.size(); i++) {
+                JSONObject address = (JSONObject) datasets.get(i);
 
-                int instanceID=(int)(long)address.get("id");
-                String instanceText=(String)address.get("instance");
+                datasetPath = (String) address.get("path");
+                datasetId = ((Long) address.get("dataset id")).intValue();
+                datasetName = (String) address.get("dataset name");
+                ArrayList<User> assignedUsers = new ArrayList<>();
 
-                Instance instance = new Instance(instanceID, instanceText, datasetID, datasetName, lblPerIns);
-                instanceLinkedList.add(instance);
+                JSONArray assigned = (JSONArray) address.get("assigned users");
+                for (int j = 0; j < assigned.size(); j++) {
+                    for(User user : userArrayList){
+                        if(user.getUserID() == ((Long)assigned.get(j)).intValue()){
+                            assignedUsers.add(user);
+                        }
+                    }
+                }
+
+                Dataset dataset = new Dataset(datasetId, datasetName, datasetPath, assignedUsers);
+                datasetArrayList.add(dataset);
+
+
             }
 
-        } catch (Exception e){
-            logger.warning("Please provide a valid filepath");
+            for (int i = 0; i < this.datasetArrayList.size(); i++) {
+                try {
+                    String path = datasetArrayList.get(i).getDatasetPath();
+                    FileReader reader = new FileReader(path);
+                    Object o = parser.parse(reader);
+                    JSONObject jo = (JSONObject) o;
+                    int labelPerIns = ((Long) jo.get("maximum number of labels per instance")).intValue();
+
+                    System.out.println("Dataset Id = " + datasetArrayList.get(i).getDatasetID()
+                            + "\nDataset Name = " + datasetArrayList.get(i).getDatasetName()
+                            + "\nDataset Assign Users = " + datasetArrayList.get(i).getAssignedUsersArrayList());
+
+                    JSONArray labels = (JSONArray) jo.get("class labels");
+                    for (int p = 0; p < labels.size(); p++) {
+                        JSONObject adress = (JSONObject) labels.get(p);
+                        String labelText = (String) adress.get("label text");
+                        int labelId = ((Long) adress.get("label id")).intValue();
+                        Label label = new Label(labelId, labelText, datasetArrayList.get(i).getDatasetName(), datasetArrayList.get(i).getDatasetID(), labelPerIns);
+                        labelArrayList.add(label);
+
+                        System.out.println("label Id = " + labelId + " | " + labelText);
+                    }
+
+                    JSONArray instances = (JSONArray) jo.get("instances");
+                    for (int j = 0; j < instances.size(); j++) {
+                        JSONObject adress = (JSONObject) instances.get(j);
+                        String instanceText = (String) adress.get("instance");
+                        int instanceId = ((Long) adress.get("id")).intValue();
+                        Instance instance = new Instance(instanceId, instanceText, datasetArrayList.get(i).getDatasetID(), datasetArrayList.get(i).getDatasetName(), labelPerIns);
+                        instanceArrayList.add(instance);
+
+                        System.out.println("Instance Id = " + instanceId + " | " + instanceText);
+                    }
+                    System.out.println("\n");
+
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
+            //output okuduğumuz try-catch
+            try (FileReader reader = new FileReader("output.json")) {
+
+                Object object = parser.parse(reader);
+                JSONObject jo = (JSONObject) object;
+
+                if (!jo.isEmpty()) {
+                    JSONArray dataset_json_array = (JSONArray)jo.get("Datasets");
+                    for (int i=0; i<dataset_json_array.size(); i++){
+                        JSONObject adres = (JSONObject)dataset_json_array.get(i);
+                        int dataset_id =  ((Long) adres.get("datasetId")).intValue();
+
+                        JSONArray labelassigment = (JSONArray) adres.get("labelAssignments");
+                        for (int j = 0; j < labelassigment.size(); j++) {
+                            JSONObject adress = (JSONObject) labelassigment.get(j);
+
+                            int instanceId = ((Long) adress.get("instance id")).intValue();
+
+                            ArrayList<Integer> labelId = new ArrayList<>();
+                            JSONArray label_Id = (JSONArray) adress.get("class label ids");
+                            for (int k = 0; k < label_Id.size(); k++) {
+
+                                Long temp = (Long) label_Id.get(k);
+                                labelId.add(temp.intValue());
+                            }
+                            int userId = ((Long) adress.get("user id")).intValue();
+                            String dateTime = (String) adress.get("datetime");
+
+                            Labeling labeling = new Labeling(findDataset(dataset_id), findInstance(instanceId), translateLabelArray(labelId), findUser(userId), dateTime);
+
+                            labelingArrayList.add(labeling);
+                            log.log(String.format("user id:%s %s tagged instance id:%s with class label %s instance:\"%s\"",
+                                    labeling.getUser().getUserID(), labeling.getUser().getUserType(), labeling.getInstance().getInstanceID(),
+                                    labeling.getLabelArrayList(), labeling.getInstance().getInstanceText()));
+                        }
+                    }
+                } else {
+
+                    System.out.println("This output.json file is empty..");
+                }
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+            //logger.warning("Please provide a valid filepath");
             System.exit(1);
         }
+
+
+        assignInstanceAndLabelsIntoDatasets();
+
+        return current_dataset_id;
+    }
+    private void assignInstanceAndLabelsIntoDatasets() {
+        for (int di = 0; datasetArrayList.size() > di; di++) { //teker teker datasetleri geziyor
+
+            for (int i = 0; labelArrayList.size() > i; i++) //teker teker labellerı geziyo
+                if (labelArrayList.get(i).getDatasetID() == datasetArrayList.get(di).getDatasetID())
+                    datasetArrayList.get(di).getLabelArrayList().add(labelArrayList.get(i));
+
+            for (int i = 0; instanceArrayList.size() > i; i++) //teker teker instanceları geioyr
+                if (instanceArrayList.get(i).getDatasetID() == datasetArrayList.get(di).getDatasetID())
+                    datasetArrayList.get(di).getInstanceArrayList().add(instanceArrayList.get(i));
+
+        }
+    }
+
+    private ArrayList<Label> translateLabelArray(ArrayList<Integer> labels) {
+        ArrayList<Label> labelArrayList = new ArrayList<>();
+        for (int i = 0; labels.size() > i; i++)
+            labelArrayList.add(findLabel(labels.get(i)));
+
+        return labelArrayList;
+    }
+
+    private User findUser(int userID) {
+        for (int i = 0; i < userArrayList.size(); i++)
+            if (userArrayList.get(i).getUserID() == userID)
+                return userArrayList.get(i);
+
+        return new User();
+    }
+
+    private Label findLabel(int labelID) {
+        for (int i = 0; i < labelArrayList.size(); i++)
+            if (labelArrayList.get(i).getLabelID() == labelID)
+                return labelArrayList.get(i);
+
+        return new Label();
+    }
+
+    private Instance findInstance(int instanceID) {
+        for (int i = 0; i < instanceArrayList.size(); i++)
+            if (instanceArrayList.get(i).getInstanceID() == instanceID)
+                return instanceArrayList.get(i);
+
+        return new Instance();
+    }
+
+    private Dataset findDataset(int datasetID) {
+        for (int i = 0; i < datasetArrayList.size(); i++)
+            if (datasetArrayList.get(i).getDatasetID() == datasetID)
+                return datasetArrayList.get(i);
+        return new Dataset();
     }
 
 }

@@ -1,22 +1,23 @@
 package edu.marmara.annotator;
 
-import java.util.logging.Logger;
-
 public class Label {
-    private static final Logger logger = Logger.getLogger( Label.class.getName());
 
     private String labelText;
     private int labelID;
     private String datasetName;
     private int datasetID;
     private int lblPerIns;
+    private int numberOfTimes;
 
-    public Label(int labelID, String labelText, String datasetName, int datesetID, int lblPerIns) {
+    Label(int labelID, String labelText, String datasetName, int datesetID, int lblPerIns) {
         this.labelID = labelID;
         this.labelText = labelText;
         this.datasetID = datesetID;
         this.datasetName = datasetName;
         this.lblPerIns = lblPerIns;
+    }
+
+    Label() {
     }
 
     public void setLabelText(String text) {
@@ -59,5 +60,12 @@ public class Label {
         this.lblPerIns = lblPerIns;
     }
 
+    public int getNumberOfTimes() {
+        return numberOfTimes;
+    }
+
+    public void setNumberOfTimes(int numberOfTimes) {
+        this.numberOfTimes = numberOfTimes;
+    }
 }
 

@@ -1,0 +1,24 @@
+{
+  "dataset id":3,
+  "dataset name":"Comments",
+  "maximum number of labels per instance":1,
+  "class labels":[
+    {"label id":1,"label text":"perfect"},
+    {"label id":2,"label text":"good"},
+    {"label id":3,"label text":"not bad"},
+    {"label id":3,"label text":"awful"}
+  ],
+  "instances":[
+    {"id":1, "instance":"ürünü çok sevdim"},
+    {"id":2, "instance":"fiyat performans ürünü olarak almıştım fakat beklentilerimi karşılamadığını söylemeliyim"},
+    {"id":3, "instance":"iletişim sorunları yaşadık satıcıyla"},
+    {"id":4, "instance":"birkaç küçük sorun hariç gayet güzel"},
+    {"id":5, "instance":"şimdilik memnun kaldım umarım kararım değişmez"},
+    {"id":6, "instance":"durduğu yerde sessiz moduna geçmesi başta fazla giden bataryasının ayda kapasitesinin ciddi anlamda düşmesi dışında fiyatı düşünüldüğünde iyi"},
+    {"id":7, "instance":"kapağında gözüktüğü gibi değil"},
+    {"id":8, "instance":"şarjı hemen bitiriyor"},
+    {"id":9, "instance":"renkli ışıkları pek hoşuma gitmedi"},
+    {"id":10, "instance":"kullanışlı fiyata alınabilecek güzel düsünmeden alabilirsiniz"},
+    {"id":11, "instance":"çok beğendim herkese öneriyorum"}
+  ]
+}

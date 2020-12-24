@@ -1,70 +1,37 @@
 package edu.marmara.annotator;
 
-
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Scanner;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.util.ArrayList;
 
 public class Main {
-    static FileHandler fileHandler;
+    public static void main(String[] args) throws InterruptedException {
+        Log log = Log.getInstance();
+        log.log("Program is starting");
 
-    public static void main(String[] args) throws IOException, ParseException {
-        fileHandler = new FileHandler("app.log", true);
-        LinkedList<Label> labelLinkedList = new LinkedList<Label>();
-        LinkedList<Instance> instanceLinkedList = new LinkedList<Instance>();
-        LinkedList<User> userLinkedList = new LinkedList<User>();
-        LinkedList<Product> productLinkedList = new LinkedList<Product>();
-        String fileName = askInputFileName();
+        ArrayList<User> userArrayList = new ArrayList<>();
+        ArrayList<Dataset> datasetArrayList = new ArrayList<>();
 
-        do {
-            User user = new User();
-            userLinkedList.add(user);
-        } while (askUserToContinue());
+        ArrayList<Label> labelArrayList = new ArrayList<>();
+        ArrayList<Instance> instanceArrayList = new ArrayList<>();
 
-        Input input = new Input(fileName, labelLinkedList, instanceLinkedList);
-        input.getInputs();
+        ArrayList<Labeling> labelingArrayList = new ArrayList<>();
+        ArrayList<User> lastUsers = new ArrayList<>();
+        ArrayList<Instance> lastInstance = new ArrayList<>();
 
-        System.out.print("");
+        //hasancan input alıyor ama yanlış biraz bakacaz şuna konuşcaz mümkünse bugün
+        Input input = new Input(datasetArrayList, userArrayList, labelArrayList, instanceArrayList, labelingArrayList);
+        int currentDataset = input.getInputs();
 
-        RandomLabeling labeling = new RandomLabeling(labelLinkedList, instanceLinkedList, userLinkedList, productLinkedList);
-        labeling.labelRandomly();
-
-        System.out.print("");
-
-        Output out = new Output(productLinkedList, userLinkedList);
-        out.writeToFile("output.json");
-        System.out.print("");
-
-    }
-
-    private static boolean askUserToContinue() {
-        System.out.println("If you want to exit press 0,if not press number other than 0");
-        Scanner scan = new Scanner(System.in);
-        int num = scan.nextInt();
-        if (num == 0) {
-            return false;
-        } else {
-            return true;
+        //bunun böyle çıkmaması gerekiyor
+        System.out.println("---printing the labeling objects------------------------------------------------------------");
+        for (int i = 0; i < labelingArrayList.size(); i++) {
+            System.out.println(labelingArrayList.get(i).toString());
         }
 
+        Dataset dataset = datasetArrayList.get(currentDataset - 1);//hata alıyon mu bak hasancan öyle bişeyler diyordu
+        RandomLabeling rl = new RandomLabeling(dataset, userArrayList, labelingArrayList, datasetArrayList);
+        rl.retriveData();
+        rl.labelByUser();
     }
 
-    private static String askInputFileName() {
-        System.out.println("Enter file name : ");
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
-    }
 
-    public static void log(Logger logger, String log) {
-
-        logger.addHandler(fileHandler);
-        SimpleFormatter formatter = new SimpleFormatter();
-        fileHandler.setFormatter(formatter);
-        logger.info(log);
-    }
 }

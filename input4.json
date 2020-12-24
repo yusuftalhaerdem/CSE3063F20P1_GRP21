@@ -1,0 +1,23 @@
+{
+  "dataset id":4,
+  "dataset name":"Hastane",
+  "maximum number of labels per instance":3,
+  "class labels":[
+    {"label id":1,"label text":"happy"},
+    {"label id":2,"label text":"sad"},
+    {"label id":3,"label text":"insane"},
+    {"label id":3,"label text":"null"},
+    {"label id":3,"label text":"lovely"}
+  ],
+  "instances":[
+    {"id":1, "instance":"hasta yaşamla ilişiğini kesmiş"},
+    {"id":2, "instance":"ara sıra kendini kaybediyor"},
+    {"id":3, "instance":"birkaç yıla öleceğinin farkında"},
+    {"id":4, "instance":"birkaç küçük olay hariç gayet güzel"},
+    {"id":5, "instance":"durumu günden güne kötüye gidiyor"},
+    {"id":6, "instance":"kendini kaybedecek diye korkuyoruz"},
+    {"id":7, "instance":"kendinden nefret etmesi dışında ciddi bir sorun yok"},
+    {"id":8, "instance":"denek hakkında yeterli bilgiye sahip değilim"},
+    {"id":9, "instance":"renkli ışıklar pek hoşuma gitmedi"}
+  ]
+}
