@@ -54,9 +54,9 @@ public class UserMetrics{
     public void calculateLabeledInstances(ArrayList<Dataset> datasetArrayList){//Total number of instances labeled
         int labeledInstances=0;
         for(int i=0;i<datasetArrayList.size();i++){
-            ArrayList<Labeling> labelingArrayList =datasetArrayList.get(i).getLabellingArrayList();
-            for(int j = 0; j< labelingArrayList.size(); j++){
-                if(labelingArrayList.get(j).getUser().getUserID()==userID)
+            ArrayList<Labelling> labellingArrayList =datasetArrayList.get(i).getLabellingArrayList();
+            for(int j = 0; j< labellingArrayList.size(); j++){
+                if(labellingArrayList.get(j).getUser().getUserID()==userID)
                     labeledInstances++;
             }
         }
@@ -65,21 +65,21 @@ public class UserMetrics{
     public void calculateUnqLabeledInstances(ArrayList<Dataset> datasetArrayList){//Total number of unique instances labeled
         int unqLabeledInstances=0;
         for(int i=0;i<datasetArrayList.size();i++){
-            ArrayList<Labeling> labelingArrayList =datasetArrayList.get(i).getLabellingArrayList();
+            ArrayList<Labelling> labellingArrayList =datasetArrayList.get(i).getLabellingArrayList();
             ArrayList<Instance> instanceArrayList=datasetArrayList.get(i).getInstanceArrayList();
             for(int j=0;j<instanceArrayList.size();j++){//aramak üzere bir instance seçiyor
                 Instance instanceToSearch= instanceArrayList.get(j);
                 boolean found=false;
-                for(int k = 0; k< labelingArrayList.size(); k++){//labelinglere bakacak ki var mı
-                    if(labelingArrayList.get(k).getInstance()==instanceToSearch){//instancea bakıyor aradığımız mı
-                        if(labelingArrayList.get(k).getUser().getUserID()==userID){
+                for(int k = 0; k< labellingArrayList.size(); k++){//labelinglere bakacak ki var mı
+                    if(labellingArrayList.get(k).getInstance()==instanceToSearch){//instancea bakıyor aradığımız mı
+                        if(labellingArrayList.get(k).getUser().getUserID()==userID){
                             found=true;
                         }
                         else{
                             break;
                         }
                     }
-                    if(found&&k== labelingArrayList.size()-1)
+                    if(found&&k== labellingArrayList.size()-1)
                         unqLabeledInstances++;
                 }
             }
@@ -96,14 +96,14 @@ public class UserMetrics{
 
             for (int k = 0; k < dataset.getInstanceArrayList().size(); k++) {//bir instance seçiyor araştırmak üzere
                 for(int j=0;j<dataset.getLabellingArrayList().size();j++) {//labellanmalara bakıyor bulmak için
-                    Labeling labeling = dataset.getLabellingArrayList().get(j);
-                    if(labeling.getUser().getUserID()==userID){//bizim userın atayıp atamadığını buluyor
+                    Labelling labelling = dataset.getLabellingArrayList().get(j);
+                    if(labelling.getUser().getUserID()==userID){//bizim userın atayıp atamadığını buluyor
                         totalLabeledInstances++;
-                        Label previousLabel= labeling.getLabelArrayList().get(0);
-                        for(int l = 1; l< labeling.getLabelArrayList().size(); l++){
-                            if(previousLabel== labeling.getLabelArrayList().get(l)){
+                        Label previousLabel= labelling.getLabelArrayList().get(0);
+                        for(int l = 1; l< labelling.getLabelArrayList().size(); l++){
+                            if(previousLabel== labelling.getLabelArrayList().get(l)){
 
-                            }else if(l== labeling.getLabelArrayList().size()-1){
+                            }else if(l== labelling.getLabelArrayList().size()-1){
                                 totalFound++;
                             }else{
                                 continue;

@@ -29,7 +29,7 @@ public class Output {
         String datasetName;
         ArrayList<Label> labelArrayList;
         ArrayList<Instance> instanceArrayList;
-        ArrayList<Labeling> assignedLabels;
+        ArrayList<Labelling> assignedLabels;
         ArrayList<User> assignedUsers;
         int lblPerIns;
 
@@ -60,16 +60,16 @@ public class Output {
             }
 
             ArrayList<Object> list3 = new ArrayList<>();
-            for (Labeling labeling : assignedLabels) {
+            for (Labelling labelling : assignedLabels) {
                 Map<Object, Object> elements = new LinkedHashMap<>();
-                elements.put("instance id", labeling.getInstance().getInstanceID());
+                elements.put("instance id", labelling.getInstance().getInstanceID());
                 ArrayList<Integer> temp = new ArrayList<>();
-                for (Label label : labeling.getLabelArrayList()) {
+                for (Label label : labelling.getLabelArrayList()) {
                     temp.add(label.getLabelID());
                 }
                 elements.put("class label ids", temp);
-                elements.put("user id", labeling.getUser().getUserID());
-                elements.put("datetime", labeling.getDateTime());
+                elements.put("user id", labelling.getUser().getUserID());
+                elements.put("datetime", labelling.getDateTime());
                 list3.add(elements);
             }
             ArrayList<Object> list4 = new ArrayList<>();

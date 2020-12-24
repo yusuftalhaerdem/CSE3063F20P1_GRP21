@@ -31,9 +31,9 @@ public class DatasetMetrics{
     private void calculateCompletenessPercentage(Dataset dataset) {
         int count = 0;
         ArrayList<Integer> temp = new ArrayList<>();
-        for (Labeling labeling : dataset.getLabellingArrayList()){
-            if(!temp.contains(labeling.getInstance().getInstanceID())){
-                temp.add(labeling.getInstance().getInstanceID());
+        for (Labelling labelling : dataset.getLabellingArrayList()){
+            if(!temp.contains(labelling.getInstance().getInstanceID())){
+                temp.add(labelling.getInstance().getInstanceID());
             }
         }
         count = temp.size();
@@ -46,11 +46,11 @@ public class DatasetMetrics{
         int labeledInstances = dataset.getLabellingArrayList().size();
         Map<String,Double> distributionMap;
         Map<String,Double> temp = new LinkedHashMap<>();
-        for(Labeling labeling : dataset.getLabellingArrayList()){
-            Label finalLabel = labeling.getFinalLabel();
+        for(Labelling labelling : dataset.getLabellingArrayList()){
+            Label finalLabel = labelling.getFinalLabel();
             if (!temp.containsKey(finalLabel.getLabelText())){
-                for(Labeling labeling1 : dataset.getLabellingArrayList()){
-                    if(labeling1.getFinalLabel() == finalLabel){
+                for(Labelling labelling1 : dataset.getLabellingArrayList()){
+                    if(labelling1.getFinalLabel() == finalLabel){
                         if(temp.containsKey(finalLabel.getLabelText())){
                             temp.put(finalLabel.getLabelText(),temp.get(finalLabel.getLabelText()) + 1.0);
                         }else {
@@ -69,9 +69,9 @@ public class DatasetMetrics{
         Map<String,ArrayList<Integer>> map = new LinkedHashMap<>();
         for (Label label : dataset.getLabelArrayList()){
             ArrayList<Integer> instances = new ArrayList<>();
-            for(Labeling labeling : dataset.getLabellingArrayList()){
-                if(labeling.getLabelArrayList().contains(label) && !instances.contains(labeling.getInstance().getInstanceID())){
-                    instances.add(labeling.getInstance().getInstanceID());
+            for(Labelling labelling : dataset.getLabellingArrayList()){
+                if(labelling.getLabelArrayList().contains(label) && !instances.contains(labelling.getInstance().getInstanceID())){
+                    instances.add(labelling.getInstance().getInstanceID());
                 }
             }
             map.put(label.getLabelText(),instances);
@@ -85,12 +85,12 @@ public class DatasetMetrics{
     private void calculateUserCompletenessPercentage(Dataset dataset) {
         Map<String,Double> map = new LinkedHashMap<>();
         double labeledInstances = dataset.getLabellingArrayList().size();
-        for(Labeling labeling : dataset.getLabellingArrayList()){
+        for(Labelling labelling : dataset.getLabellingArrayList()){
             ArrayList<Integer> instanceIDs = new ArrayList<>();
-            User currentUser = labeling.getUser();
-            for(Labeling labeling1 : dataset.getLabellingArrayList()){
-                if(labeling1.getUser() == currentUser){
-                    instanceIDs.add(labeling.getInstance().getInstanceID());
+            User currentUser = labelling.getUser();
+            for(Labelling labelling1 : dataset.getLabellingArrayList()){
+                if(labelling1.getUser() == currentUser){
+                    instanceIDs.add(labelling.getInstance().getInstanceID());
                 }
             }
             double percentage = labeledInstances == 0 ? 0 : ((double) instanceIDs.size()) / labeledInstances;

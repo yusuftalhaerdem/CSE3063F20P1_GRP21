@@ -9,7 +9,7 @@ public class Dataset {
     private String datasetPath;
     private ArrayList<Instance> instanceArrayList = new ArrayList<>();
     private ArrayList<Label> labelArrayList = new ArrayList<>();
-    private ArrayList<Labeling> labelingArrayList = new ArrayList<>();
+    private ArrayList<Labelling> labellingArrayList = new ArrayList<>();
     private ArrayList<User> assignedUsersArrayList = new ArrayList<>();
     private DatasetMetrics evaluationMatrix = new DatasetMetrics();
     private int labelPerInstance;
@@ -22,12 +22,12 @@ public class Dataset {
         this.assignedUsersArrayList = assignedUsersArrayList;
     }
 
-    public ArrayList<Labeling> getLabellingArrayList() {
-        return labelingArrayList;
+    public ArrayList<Labelling> getLabellingArrayList() {
+        return labellingArrayList;
     }
 
-    public void setLabellingArrayList(ArrayList<Labeling> labelingArrayList) {
-        this.labelingArrayList = labelingArrayList;
+    public void setLabellingArrayList(ArrayList<Labelling> labellingArrayList) {
+        this.labellingArrayList = labellingArrayList;
     }
 
     public ArrayList<Instance> getInstanceArrayList() {

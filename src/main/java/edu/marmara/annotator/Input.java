@@ -13,19 +13,19 @@ public class Input {
     private ArrayList<User> userArrayList;
     private ArrayList<Label> labelArrayList;
     private ArrayList<Instance> instanceArrayList;
-    private ArrayList<Labeling> labelingArrayList;
+    private ArrayList<Labelling> labellingArrayList;
     private String filePath;
     private String datasetPath;
     private String datasetName;
     private int datasetId;
 
-    public Input(ArrayList<Dataset> datasetArrayList, ArrayList<User> userArrayList, ArrayList<Label> labelArrayList, ArrayList<Instance> instanceArrayList, ArrayList<Labeling> labelingArrayList) {
+    public Input(ArrayList<Dataset> datasetArrayList, ArrayList<User> userArrayList, ArrayList<Label> labelArrayList, ArrayList<Instance> instanceArrayList, ArrayList<Labelling> labellingArrayList) {
         this.datasetArrayList = datasetArrayList;
         this.userArrayList = userArrayList;
         this.filePath = "config.json";
         this.instanceArrayList = instanceArrayList;
         this.labelArrayList = labelArrayList;
-        this.labelingArrayList = labelingArrayList;
+        this.labellingArrayList = labellingArrayList;
     }
 
     public Input() {
@@ -156,12 +156,12 @@ public class Input {
                             int userId = ((Long) adress.get("user id")).intValue();
                             String dateTime = (String) adress.get("datetime");
 
-                            Labeling labeling = new Labeling(findDataset(dataset_id), findInstance(instanceId), translateLabelArray(labelId), findUser(userId), dateTime);
+                            Labelling labelling = new Labelling(findDataset(dataset_id), findInstance(instanceId), translateLabelArray(labelId), findUser(userId), dateTime);
 
-                            labelingArrayList.add(labeling);
+                            labellingArrayList.add(labelling);
                             log.log(String.format("user id:%s %s tagged instance id:%s with class label %s instance:\"%s\"",
-                                    labeling.getUser().getUserID(), labeling.getUser().getUserType(), labeling.getInstance().getInstanceID(),
-                                    labeling.getLabelArrayList(), labeling.getInstance().getInstanceText()));
+                                    labelling.getUser().getUserID(), labelling.getUser().getUserType(), labelling.getInstance().getInstanceID(),
+                                    labelling.getLabelArrayList(), labelling.getInstance().getInstanceText()));
                         }
                     }
                 } else {

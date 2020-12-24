@@ -2,7 +2,7 @@ package edu.marmara.annotator;
 
 import java.util.ArrayList;
 
-class Labeling {
+class Labelling {
 
     private int datasetID;
     private Instance instance;
@@ -13,7 +13,7 @@ class Labeling {
     private double timeSpent;
 
 
-    Labeling(Dataset dataset, Instance instance, ArrayList<Label> labelArrayList, User user, String dateTime, double timeSpent, Label finalLabel) {
+    Labelling(Dataset dataset, Instance instance, ArrayList<Label> labelArrayList, User user, String dateTime, double timeSpent, Label finalLabel) {
         this.datasetID = dataset.getDatasetID();
         this.instance = instance;
         this.labelArrayList = labelArrayList;
@@ -23,7 +23,7 @@ class Labeling {
         this.finalLabel = finalLabel;
     }
 
-    Labeling(Dataset dataset, Instance instance, ArrayList<Label> labelArrayList, User user, String dateTime) {
+    Labelling(Dataset dataset, Instance instance, ArrayList<Label> labelArrayList, User user, String dateTime) {
         this.datasetID = dataset.getDatasetID();
         this.instance = instance;
         this.labelArrayList = labelArrayList;
@@ -31,7 +31,7 @@ class Labeling {
         this.dateTime = dateTime;
     }
 
-    public Labeling() {
+    public Labelling() {
     }
 
     public int getDataset() {

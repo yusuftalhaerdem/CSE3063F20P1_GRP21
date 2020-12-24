@@ -7,17 +7,17 @@ public class RandomLabeling{
     private ArrayList<User> userArrayList;
     private ArrayList<Label> labelArrayList;
     private ArrayList<Instance> instanceArrayList;
-    private ArrayList<Labeling> labelingArrayList;
+    private ArrayList<Labelling> labellingArrayList;
     private ArrayList<Dataset> datasetArrayList;
     private Dataset currentDataset;
 
-    RandomLabeling(Dataset dataset, ArrayList<User> userArrayList, ArrayList<Labeling> labelingArrayList, ArrayList<Dataset> datasetArrayList) {
+    RandomLabeling(Dataset dataset, ArrayList<User> userArrayList, ArrayList<Labelling> labellingArrayList, ArrayList<Dataset> datasetArrayList) {
 
         this.currentDataset = dataset;
         this.instanceArrayList = dataset.getInstanceArrayList();
         this.labelArrayList = dataset.getLabelArrayList();
         this.userArrayList = userArrayList;
-        this.labelingArrayList = dataset.getLabellingArrayList();    ///bunlar muhtemelen başlatılmamış olacak inputa söyle halletsin
+        this.labellingArrayList = dataset.getLabellingArrayList();    ///bunlar muhtemelen başlatılmamış olacak inputa söyle halletsin
         this.datasetArrayList = datasetArrayList;//not sure if needed but it will be needed probably for output things.
 
         ArrayList<User> userAssignedToDataset = new ArrayList<>();
@@ -82,10 +82,10 @@ public class RandomLabeling{
                 // METRICLERI SADECE BURDA AYARLADIM ALT TARAFA DAHA BAKMADIM
                 Thread.sleep(500);
                 double timeSpentInLabeling = (System.currentTimeMillis() - start) / 1000F; //calculates the time elapsed from start of labeling-----not sure-----
-                Labeling labeling = new Labeling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", timeSpentInLabeling, findFinalLabel(labelsToAssign));
-                labelingArrayList.add(labeling);
+                Labelling labelling = new Labelling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", timeSpentInLabeling, findFinalLabel(labelsToAssign));
+                labellingArrayList.add(labelling);
                 currentDataset.getEvaluationMatrix().calculateAll(datasetArrayList);
-                labeling.getInstance().getEvaluationMatrix().calculateAll(datasetArrayList);
+                labelling.getInstance().getEvaluationMatrix().calculateAll(datasetArrayList);
                 chosenUser.getEvaluationMatrix().calculateAll(datasetArrayList);
                 out.outputDataset("output.json", datasetArrayList);
                 out.outputMetrics("metrics.json", datasetArrayList, userArrayList);
@@ -117,10 +117,10 @@ public class RandomLabeling{
                         // labelling it
                         double timeSpentInLabeling = (System.currentTimeMillis() - start) / 1000F; //calculates the time elapsed from start of labeling---- not sure2----
                         //fix it with more than one labelling and same users shouldnt label same instance again
-                        Labeling labeling = new Labeling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", timeSpentInLabeling, findFinalLabel(labelsToAssign));
-                        labelingArrayList.add(labeling);
+                        Labelling labelling = new Labelling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", timeSpentInLabeling, findFinalLabel(labelsToAssign));
+                        labellingArrayList.add(labelling);
                         currentDataset.getEvaluationMatrix().calculateAll(datasetArrayList);
-                        labeling.getInstance().getEvaluationMatrix().calculateAll(datasetArrayList);
+                        labelling.getInstance().getEvaluationMatrix().calculateAll(datasetArrayList);
                         chosenUser.getEvaluationMatrix().calculateAll(datasetArrayList);
                         out.outputDataset("output.json", datasetArrayList);
                         out.outputMetrics("metrics.json", datasetArrayList, userArrayList);

@@ -22,37 +22,37 @@ public class InstanceMetrics{
     public void calculateAll(ArrayList<Dataset> datasetArrayList){
 
         for (Dataset dataset : datasetArrayList){
-            ArrayList<Labeling> labelingArrayList = dataset.getLabellingArrayList();
-            calculateTotalNumberOfLabels(labelingArrayList);
-            calculateUniqueNumberOfLabels(labelingArrayList);
-            calculateUniqueUsers(labelingArrayList);
-            calculateLabelPercentage(labelingArrayList);
-            calculateMostFrequent(labelingArrayList);
-            calculateEntropy(labelingArrayList);
+            ArrayList<Labelling> labellingArrayList = dataset.getLabellingArrayList();
+            calculateTotalNumberOfLabels(labellingArrayList);
+            calculateUniqueNumberOfLabels(labellingArrayList);
+            calculateUniqueUsers(labellingArrayList);
+            calculateLabelPercentage(labellingArrayList);
+            calculateMostFrequent(labellingArrayList);
+            calculateEntropy(labellingArrayList);
         }
 
     }
 
-    private void calculateTotalNumberOfLabels(ArrayList<Labeling> labelingArrayList) {
-        for(Labeling labeling : labelingArrayList){
-            Instance currentInstance = labeling.getInstance();
+    private void calculateTotalNumberOfLabels(ArrayList<Labelling> labellingArrayList) {
+        for(Labelling labelling : labellingArrayList){
+            Instance currentInstance = labelling.getInstance();
             int totalLabels = 0;
-            for(Labeling labeling1 : labelingArrayList){
-                if(currentInstance == labeling1.getInstance()){
-                    totalLabels += labeling1.getLabelArrayList().size();
+            for(Labelling labelling1 : labellingArrayList){
+                if(currentInstance == labelling1.getInstance()){
+                    totalLabels += labelling1.getLabelArrayList().size();
                 }
             }
             currentInstance.getEvaluationMatrix().setTotalNumberOfLabels(totalLabels);
         }
     }
 
-    private void calculateUniqueNumberOfLabels(ArrayList<Labeling> labelingArrayList) {
-        for(Labeling labeling : labelingArrayList){
-            Instance currentInstance = labeling.getInstance();
+    private void calculateUniqueNumberOfLabels(ArrayList<Labelling> labellingArrayList) {
+        for(Labelling labelling : labellingArrayList){
+            Instance currentInstance = labelling.getInstance();
             ArrayList<Label> allLabels = new ArrayList<>();
-            for(Labeling labeling1 : labelingArrayList){
-                if(currentInstance == labeling1.getInstance()){
-                    allLabels.addAll(labeling1.getLabelArrayList());
+            for(Labelling labelling1 : labellingArrayList){
+                if(currentInstance == labelling1.getInstance()){
+                    allLabels.addAll(labelling1.getLabelArrayList());
                 }
             }
             HashSet<Label> setLabels = new HashSet<>(allLabels);
@@ -60,27 +60,27 @@ public class InstanceMetrics{
         }
     }
 
-    private void calculateUniqueUsers(ArrayList<Labeling> labelingArrayList) {
-        for(Labeling labeling : labelingArrayList){
-            Instance currentInstance = labeling.getInstance();
+    private void calculateUniqueUsers(ArrayList<Labelling> labellingArrayList) {
+        for(Labelling labelling : labellingArrayList){
+            Instance currentInstance = labelling.getInstance();
             ArrayList<User> uniqueUser = new ArrayList<>();
-            for(Labeling labeling1 : labelingArrayList){
-                if(currentInstance == labeling1.getInstance() && !uniqueUser.contains(labeling1.getUser())){
-                    uniqueUser.add(labeling1.getUser());
+            for(Labelling labelling1 : labellingArrayList){
+                if(currentInstance == labelling1.getInstance() && !uniqueUser.contains(labelling1.getUser())){
+                    uniqueUser.add(labelling1.getUser());
                 }
             }
             currentInstance.getEvaluationMatrix().setUniqueUsers(uniqueUser.size());
         }
     }
 
-    private void calculateMostFrequent(ArrayList<Labeling> labelingArrayList) {
+    private void calculateMostFrequent(ArrayList<Labelling> labellingArrayList) {
         int allLabels = this.getTotalNumberOfLabels();
-        for (Labeling labeling : labelingArrayList) {
-            Instance currentInstance = labeling.getInstance();
+        for (Labelling labelling : labellingArrayList) {
+            Instance currentInstance = labelling.getInstance();
             Map<String, Double> temp = new LinkedHashMap<>();
-            for (Labeling labeling1 : labelingArrayList) {
-                for (Label label : labeling1.getLabelArrayList()) {
-                    if (currentInstance == labeling1.getInstance()) {
+            for (Labelling labelling1 : labellingArrayList) {
+                for (Label label : labelling1.getLabelArrayList()) {
+                    if (currentInstance == labelling1.getInstance()) {
                         if (temp.containsKey(label.getLabelText())) {
                             temp.put(label.getLabelText(), (temp.get(label.getLabelText()) + 1));
                         } else {
@@ -104,20 +104,20 @@ public class InstanceMetrics{
         }
     }
 
-    private void calculateLabelPercentage(ArrayList<Labeling> labelingArrayList) {
-        for(Labeling labeling : labelingArrayList){
+    private void calculateLabelPercentage(ArrayList<Labelling> labellingArrayList) {
+        for(Labelling labelling : labellingArrayList){
             Map<String ,Double> labelFreq;
-            Instance currentInstance = labeling.getInstance();
+            Instance currentInstance = labelling.getInstance();
             double labelNumber = 0;
-            for(Labeling labeling1 : labelingArrayList){
-                if(currentInstance == labeling1.getInstance()){
-                    labelNumber += labeling1.getLabelArrayList().size();
+            for(Labelling labelling1 : labellingArrayList){
+                if(currentInstance == labelling1.getInstance()){
+                    labelNumber += labelling1.getLabelArrayList().size();
                 }
             }
             Map<String,Double> temp = new LinkedHashMap<>();
-            for(Labeling labeling1 : labelingArrayList){
-                for(Label label : labeling1.getLabelArrayList()){
-                    if(currentInstance == labeling1.getInstance()){
+            for(Labelling labelling1 : labellingArrayList){
+                for(Label label : labelling1.getLabelArrayList()){
+                    if(currentInstance == labelling1.getInstance()){
                         if(temp.containsKey(label.getLabelText())){
                             temp.put(label.getLabelText(), (temp.get(label.getLabelText()) +1));
                         }else {
@@ -133,9 +133,9 @@ public class InstanceMetrics{
         }
     }
 
-    private void calculateEntropy(ArrayList<Labeling> labelingArrayList) {
-        for(Labeling labeling : labelingArrayList){
-            Instance currentInstance = labeling.getInstance();
+    private void calculateEntropy(ArrayList<Labelling> labellingArrayList) {
+        for(Labelling labelling : labellingArrayList){
+            Instance currentInstance = labelling.getInstance();
             int uniqueLabels = currentInstance.getEvaluationMatrix().getUniqueNumberOfLabels();
             Map<String,Double> labelPercentage = currentInstance.getEvaluationMatrix().getLabelPercentage();
             double entropy = 0;
