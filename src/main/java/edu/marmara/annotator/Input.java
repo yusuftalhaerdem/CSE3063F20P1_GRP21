@@ -51,6 +51,7 @@ public class Input {
 
                 String userName = (String) address.get("user name");
                 int userId = ((Long)address.get("user id")).intValue();
+                String userType = (String) address.get("user type");
                 double checkProbability = (double) address.get("consistency check probability");
 
                 JSONArray assigned = (JSONArray) address.get("assigned databases");
@@ -59,7 +60,7 @@ public class Input {
                     assignedArray.add(((Long) assigned.get(j)).intValue());
                 }
 
-                User user = new User(userId, userName, "", assignedArray, checkProbability);
+                User user = new User(userId, userName, userType, assignedArray, checkProbability);
                 userArrayList.add(user);
             }
 

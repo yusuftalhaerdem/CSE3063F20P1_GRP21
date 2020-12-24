@@ -1,7 +1,5 @@
 package edu.marmara.annotator;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 import java.util.ArrayList;
 
 public class OutputDataset {

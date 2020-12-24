@@ -6,7 +6,7 @@ public class User {
 
     private int userID;
     private String userName;
-    private String userType = "RandomBot";
+    private String userType;
     private ArrayList<Integer> assignedDataset;
     private double consistencyCheckProbability;
     private UserMetrics evaluationMatrix = new UserMetrics();

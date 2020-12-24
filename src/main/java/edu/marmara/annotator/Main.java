@@ -29,7 +29,7 @@ public class Main {
 
         Dataset dataset = datasetArrayList.get(currentDataset - 1);//hata alıyon mu bak hasancan öyle bişeyler diyordu
         RandomLabeling rl = new RandomLabeling(dataset, userArrayList, labellingArrayList, datasetArrayList);
-        rl.retriveData();
+        rl.retrieveData();
         rl.labelByUser();
     }
 

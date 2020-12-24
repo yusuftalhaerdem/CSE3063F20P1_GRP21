@@ -35,7 +35,7 @@ public class RandomLabeling{
 
     }
 
-    public void retriveData() {  //this will do some things in randomlabeling
+    public void retrieveData() {  //this will do some things in randomlabeling
 
     }
 

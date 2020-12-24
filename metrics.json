@@ -69,79 +69,64 @@
     }
   }, {
     "datasetId" : 5,
-    "completenessPercentage" : 0.02427637721755369,
+    "completenessPercentage" : 0.008403361344537815,
     "distribution" : {
-      "Araç Lastiği" : 0.038461538461538464,
-      "Televizyon" : 0.07692307692307693,
-      "Atlama İpi" : 0.038461538461538464,
-      "Fotoğraf Makinesi" : 0.038461538461538464,
-      "Beyaz Eşya" : 0.038461538461538464,
-      "Sweatshirt" : 0.038461538461538464,
-      "Havlu" : 0.038461538461538464,
-      "Halı Kilim" : 0.038461538461538464,
-      "Olta" : 0.038461538461538464,
-      "Tencere Seti" : 0.07692307692307693,
-      "Cüzdan" : 0.07692307692307693,
-      "Ketıl" : 0.07692307692307693,
-      "Kulaklık" : 0.038461538461538464,
-      "Çiçek" : 0.038461538461538464,
-      "Modem" : 0.038461538461538464,
-      "Bıçak" : 0.038461538461538464,
-      "Sırt Çantası" : 0.038461538461538464,
-      "Termos" : 0.038461538461538464,
-      "Gözlük" : 0.038461538461538464,
-      "Avize" : 0.038461538461538464,
-      "Makyaj Malzemesi" : 0.038461538461538464,
-      "Telefon" : 0.038461538461538464
+      "Gömlek" : 0.1111111111111111,
+      "Televizyon" : 0.1111111111111111,
+      "Plates Topu pompası" : 0.2222222222222222,
+      "Fotoğraf Makinesi" : 0.1111111111111111,
+      "Bıçak" : 0.2222222222222222,
+      "Cüzdan" : 0.1111111111111111,
+      "Kontrol kalemi" : 0.1111111111111111
     },
     "uniqueInsNumber" : {
-      "Telefon" : [ 195, 235, 983, 224, 733, 498, 748, 977, 368, 835 ],
-      "Bilgisayar" : [ 195, 235, 774, 983, 666, 52, 267, 394 ],
-      "Avize" : [ 227, 899, 973, 257, 425, 498, 748, 977 ],
-      "Kontrol kalemi" : [ 195, 235, 774, 666, 664, 52, 973, 267, 394, 498, 340, 748, 835 ],
-      "Serpme Ağ" : [ 115, 195, 235, 774, 52, 377, 394, 733, 835 ],
-      "Olta" : [ 195, 235, 899, 52, 257, 394, 368 ],
-      "Ketıl" : [ 115, 195, 235, 774, 983, 666, 899, 973, 733, 425, 340, 977, 368, 835 ],
-      "Termos" : [ 195, 235, 774, 224, 666, 52, 377, 267, 226, 257, 733, 368, 835 ],
-      "Cüzdan" : [ 115, 235, 52, 77, 394, 977, 368, 835 ],
-      "Bıçak" : [ 115, 235, 774, 224, 77, 267, 257, 394, 425, 498, 977, 368, 835 ],
-      "Nevresim Takımı" : [ 115, 195, 666, 899, 267, 394, 733, 498, 977 ],
-      "Halı Kilim" : [ 115, 235, 666, 899, 664, 52, 77, 267, 257, 733, 425, 748, 977, 368 ],
-      "Battaniye Yorgan" : [ 227, 195, 774, 983, 666, 973, 394, 748, 368, 835 ],
-      "Perde" : [ 227, 235, 224, 666, 664, 973, 394, 733, 425, 498, 977, 368, 835 ],
-      "Modem" : [ 195, 235, 774, 224, 664, 377, 267, 226, 257, 394, 733, 425, 498 ],
-      "Televizyon" : [ 115, 227, 664, 377, 498, 977 ],
-      "Saat" : [ 195, 235, 774, 983, 899, 52, 394, 340, 748, 835 ],
-      "Kulaklık" : [ 115, 227, 235, 983, 666, 52, 973, 377, 77, 257, 498, 977, 835 ],
-      "Çaydanlık Semaver" : [ 115, 195, 235, 774, 983, 899, 664, 257, 733, 425, 340, 835 ],
-      "Çatal Bıçak Takımı" : [ 115, 235, 666, 899, 664, 377, 257, 394, 425, 977, 835 ],
-      "Fener" : [ 115, 227, 195, 235, 983, 224, 899, 664, 52, 973, 394, 425, 977, 368 ],
-      "Kamp Sandalyesi" : [ 115, 195, 235, 774, 983, 666, 899, 52, 973, 77, 733, 498, 340, 977, 835 ],
-      "Masa Sandalye Takımı" : [ 115, 235, 774, 666, 664, 52, 226, 257, 394, 425, 748, 835 ],
-      "Araç Lastiği" : [ 115, 227, 235, 983, 899, 52, 267, 257, 394, 498 ],
-      "Gözlük" : [ 115, 195, 983, 666, 899, 52, 257, 394, 425, 498, 340, 748, 368, 835 ],
-      "Beyaz Eşya" : [ 115, 774, 983, 224, 899, 664, 973, 257, 394, 425, 340, 977, 835 ],
-      "Ceket Trençkot" : [ 115, 195, 983, 666, 899, 664, 52, 973, 267, 226, 394, 498, 748, 977, 368, 835 ],
-      "Çiçek" : [ 195, 774, 224, 52, 973, 267, 226, 257, 394, 425, 977 ],
-      "Havlu" : [ 115, 227, 235, 774, 224, 666, 899, 664, 52, 973, 77, 226, 394, 748, 977 ],
-      "Ayakkabı" : [ 666, 973, 267, 394, 425, 977, 368 ],
-      "Fotoğraf Makinesi" : [ 235, 774, 983, 224, 666, 899, 664, 394, 733, 977 ],
-      "Tencere Seti" : [ 115, 195, 235, 983, 664, 52, 377, 267, 425, 977, 368 ],
-      "Yazılım Programı" : [ 115, 227, 195, 235, 666, 664, 377, 394, 733, 425, 498, 340, 748, 977, 835 ],
-      "Makyaj Malzemesi" : [ 115, 195, 235, 774, 983, 666, 257, 394, 733, 340, 748, 977, 368, 835 ],
-      "Plates Topu pompası" : [ 115, 195, 774, 983, 666, 664, 973, 425, 977, 368, 835 ],
-      "Sweatshirt" : [ 115, 195, 983, 52, 257, 425, 498, 835 ],
-      "Gömlek" : [ 115, 235, 257, 425, 748, 977, 368, 835 ],
-      "Pantolon" : [ 115, 195, 235, 983, 666, 899, 52, 267, 226, 257, 394, 733, 498, 340, 368 ],
-      "Sırt Çantası" : [ 115, 227, 195, 774, 224, 52, 973, 394, 733, 748 ],
-      "Atlama İpi" : [ 115, 227, 195, 774, 666, 899, 664, 973, 77, 394, 733, 425, 748, 977, 368, 835 ],
-      "Deterjan" : [ 115, 195, 664, 973, 394, 425, 498, 368, 835 ],
-      "Parfüm" : [ 195, 235, 899, 257, 394, 498, 748, 368, 835 ]
+      "Telefon" : [ 416, 615, 241 ],
+      "Bilgisayar" : [ 368, 416, 615, 719, 1066 ],
+      "Avize" : [ 261, 615 ],
+      "Kontrol kalemi" : [ 368, 615, 241 ],
+      "Serpme Ağ" : [ 368, 416, 615, 719, 1066 ],
+      "Olta" : [ 416, 261, 817 ],
+      "Ketıl" : [ 416, 615 ],
+      "Termos" : [ 368, 615, 719 ],
+      "Cüzdan" : [ 368, 862, 615, 817, 1066, 241 ],
+      "Bıçak" : [ 368, 416, 261, 615, 817, 241 ],
+      "Nevresim Takımı" : [ 416, 261, 862 ],
+      "Halı Kilim" : [ 1066 ],
+      "Battaniye Yorgan" : [ 368, 416, 719, 817 ],
+      "Perde" : [ 368, 416 ],
+      "Modem" : [ 368, 416, 615 ],
+      "Televizyon" : [ 416, 719, 817 ],
+      "Saat" : [ 368, 241 ],
+      "Kulaklık" : [ 368, 416, 261, 615, 719, 817 ],
+      "Çaydanlık Semaver" : [ 416, 719 ],
+      "Çatal Bıçak Takımı" : [ 416 ],
+      "Fener" : [ 368, 416, 719 ],
+      "Kamp Sandalyesi" : [ 719 ],
+      "Masa Sandalye Takımı" : [ 416, 261, 615, 817, 241 ],
+      "Araç Lastiği" : [ 368, 261, 1066 ],
+      "Gözlük" : [ 368, 862, 719 ],
+      "Beyaz Eşya" : [ 862, 719 ],
+      "Ceket Trençkot" : [ 416, 719 ],
+      "Çiçek" : [ 719, 1066 ],
+      "Havlu" : [ 368, 615, 817, 1066 ],
+      "Ayakkabı" : [ 416, 615, 817 ],
+      "Fotoğraf Makinesi" : [ 368, 862, 615, 719 ],
+      "Tencere Seti" : [ 719 ],
+      "Yazılım Programı" : [ 368, 416, 719 ],
+      "Makyaj Malzemesi" : [ 615, 1066 ],
+      "Plates Topu pompası" : [ 368, 261, 862, 615, 719, 817 ],
+      "Sweatshirt" : [ 615, 719, 817 ],
+      "Gömlek" : [ 368, 416, 1066 ],
+      "Pantolon" : [ 368 ],
+      "Sırt Çantası" : [ 416, 862, 615, 241 ],
+      "Atlama İpi" : [ 368, 416 ],
+      "Deterjan" : [ 368, 615 ],
+      "Parfüm" : [ 615 ]
     },
     "numOfUsers" : 2,
     "userCompletenessPercentage" : {
-      "X" : 0.5769230769230769,
-      "you" : 0.4230769230769231
+      "X" : 0.6666666666666666,
+      "you" : 0.3333333333333333
     },
     "userConsistencyPercentage" : {
       "you" : null,
@@ -947,36 +932,12 @@
   }, {
     "instanceID" : 52,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 25,
-    "uniqueNumberOfLabels" : 21,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Pantolon" : 0.08,
-      "Halı Kilim" : 0.04,
-      "Saat" : 0.04,
-      "Fener" : 0.08,
-      "Cüzdan" : 0.12,
-      "Sweatshirt" : 0.04,
-      "Tencere Seti" : 0.04,
-      "Olta" : 0.04,
-      "Araç Lastiği" : 0.04,
-      "Termos" : 0.04,
-      "Kamp Sandalyesi" : 0.04,
-      "Ceket Trençkot" : 0.04,
-      "Çiçek" : 0.04,
-      "Serpme Ağ" : 0.04,
-      "Masa Sandalye Takımı" : 0.04,
-      "Kontrol kalemi" : 0.04,
-      "Gözlük" : 0.04,
-      "Havlu" : 0.04,
-      "Bilgisayar" : 0.04,
-      "Kulaklık" : 0.04,
-      "Sırt Çantası" : 0.04
-    },
-    "entropy" : 0.9775387970416405,
-    "mostFrequent" : {
-      "Cüzdan" : 0.07142857142857142
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 53,
     "datasetID" : 5,
@@ -1196,22 +1157,12 @@
   }, {
     "instanceID" : 77,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 7,
-    "uniqueNumberOfLabels" : 7,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Kulaklık" : 0.14285714285714285,
-      "Atlama İpi" : 0.14285714285714285,
-      "Cüzdan" : 0.14285714285714285,
-      "Halı Kilim" : 0.14285714285714285,
-      "Havlu" : 0.14285714285714285,
-      "Bıçak" : 0.14285714285714285,
-      "Kamp Sandalyesi" : 0.14285714285714285
-    },
-    "entropy" : 1.0000000000000002,
-    "mostFrequent" : {
-      "Kulaklık" : 0.023809523809523808
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 78,
     "datasetID" : 5,
@@ -1548,43 +1499,12 @@
   }, {
     "instanceID" : 115,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 37,
-    "uniqueNumberOfLabels" : 28,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Gömlek" : 0.02702702702702703,
-      "Sweatshirt" : 0.05405405405405406,
-      "Atlama İpi" : 0.02702702702702703,
-      "Ketıl" : 0.02702702702702703,
-      "Tencere Seti" : 0.08108108108108109,
-      "Yazılım Programı" : 0.02702702702702703,
-      "Çaydanlık Semaver" : 0.02702702702702703,
-      "Beyaz Eşya" : 0.02702702702702703,
-      "Deterjan" : 0.02702702702702703,
-      "Sırt Çantası" : 0.02702702702702703,
-      "Masa Sandalye Takımı" : 0.02702702702702703,
-      "Fener" : 0.02702702702702703,
-      "Havlu" : 0.02702702702702703,
-      "Ceket Trençkot" : 0.02702702702702703,
-      "Nevresim Takımı" : 0.05405405405405406,
-      "Araç Lastiği" : 0.10810810810810811,
-      "Televizyon" : 0.02702702702702703,
-      "Plates Topu pompası" : 0.02702702702702703,
-      "Bıçak" : 0.02702702702702703,
-      "Serpme Ağ" : 0.02702702702702703,
-      "Kamp Sandalyesi" : 0.05405405405405406,
-      "Cüzdan" : 0.05405405405405406,
-      "Halı Kilim" : 0.02702702702702703,
-      "Pantolon" : 0.02702702702702703,
-      "Makyaj Malzemesi" : 0.02702702702702703,
-      "Gözlük" : 0.02702702702702703,
-      "Çatal Bıçak Takımı" : 0.02702702702702703,
-      "Kulaklık" : 0.02702702702702703
-    },
-    "entropy" : 0.9669580331662839,
-    "mostFrequent" : {
-      "Araç Lastiği" : 0.09523809523809523
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 116,
     "datasetID" : 5,
@@ -2299,42 +2219,12 @@
   }, {
     "instanceID" : 195,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 41,
-    "uniqueNumberOfLabels" : 27,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Sweatshirt" : 0.024390243902439025,
-      "Termos" : 0.024390243902439025,
-      "Yazılım Programı" : 0.04878048780487805,
-      "Makyaj Malzemesi" : 0.024390243902439025,
-      "Atlama İpi" : 0.07317073170731707,
-      "Sırt Çantası" : 0.04878048780487805,
-      "Deterjan" : 0.07317073170731707,
-      "Plates Topu pompası" : 0.024390243902439025,
-      "Ceket Trençkot" : 0.024390243902439025,
-      "Serpme Ağ" : 0.04878048780487805,
-      "Parfüm" : 0.04878048780487805,
-      "Ketıl" : 0.04878048780487805,
-      "Telefon" : 0.04878048780487805,
-      "Gözlük" : 0.07317073170731707,
-      "Saat" : 0.024390243902439025,
-      "Modem" : 0.024390243902439025,
-      "Battaniye Yorgan" : 0.04878048780487805,
-      "Nevresim Takımı" : 0.024390243902439025,
-      "Kontrol kalemi" : 0.04878048780487805,
-      "Bilgisayar" : 0.024390243902439025,
-      "Olta" : 0.024390243902439025,
-      "Fener" : 0.024390243902439025,
-      "Çaydanlık Semaver" : 0.024390243902439025,
-      "Pantolon" : 0.024390243902439025,
-      "Tencere Seti" : 0.024390243902439025,
-      "Çiçek" : 0.024390243902439025,
-      "Kamp Sandalyesi" : 0.024390243902439025
-    },
-    "entropy" : 0.9715034272331284,
-    "mostFrequent" : {
-      "Atlama İpi" : 0.07142857142857142
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 196,
     "datasetID" : 5,
@@ -2590,26 +2480,12 @@
   }, {
     "instanceID" : 224,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 12,
-    "uniqueNumberOfLabels" : 11,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Bıçak" : 0.08333333333333333,
-      "Modem" : 0.08333333333333333,
-      "Çiçek" : 0.08333333333333333,
-      "Sırt Çantası" : 0.08333333333333333,
-      "Havlu" : 0.16666666666666666,
-      "Telefon" : 0.08333333333333333,
-      "Perde" : 0.08333333333333333,
-      "Fotoğraf Makinesi" : 0.08333333333333333,
-      "Fener" : 0.08333333333333333,
-      "Termos" : 0.08333333333333333,
-      "Beyaz Eşya" : 0.08333333333333333
-    },
-    "entropy" : 0.9881090915741203,
-    "mostFrequent" : {
-      "Havlu" : 0.047619047619047616
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 225,
     "datasetID" : 5,
@@ -2622,45 +2498,21 @@
   }, {
     "instanceID" : 226,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 7,
-    "uniqueNumberOfLabels" : 7,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Modem" : 0.14285714285714285,
-      "Çiçek" : 0.14285714285714285,
-      "Pantolon" : 0.14285714285714285,
-      "Havlu" : 0.14285714285714285,
-      "Termos" : 0.14285714285714285,
-      "Ceket Trençkot" : 0.14285714285714285,
-      "Masa Sandalye Takımı" : 0.14285714285714285
-    },
-    "entropy" : 1.0000000000000002,
-    "mostFrequent" : {
-      "Modem" : 0.023809523809523808
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 227,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 11,
-    "uniqueNumberOfLabels" : 11,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Televizyon" : 0.09090909090909091,
-      "Kulaklık" : 0.09090909090909091,
-      "Fener" : 0.09090909090909091,
-      "Atlama İpi" : 0.09090909090909091,
-      "Perde" : 0.09090909090909091,
-      "Sırt Çantası" : 0.09090909090909091,
-      "Avize" : 0.09090909090909091,
-      "Havlu" : 0.09090909090909091,
-      "Yazılım Programı" : 0.09090909090909091,
-      "Battaniye Yorgan" : 0.09090909090909091,
-      "Araç Lastiği" : 0.09090909090909091
-    },
-    "entropy" : 1.0000000000000002,
-    "mostFrequent" : {
-      "Televizyon" : 0.023809523809523808
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 228,
     "datasetID" : 5,
@@ -2727,43 +2579,12 @@
   }, {
     "instanceID" : 235,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 40,
-    "uniqueNumberOfLabels" : 28,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Ketıl" : 0.025,
-      "Fotoğraf Makinesi" : 0.05,
-      "Perde" : 0.05,
-      "Bilgisayar" : 0.05,
-      "Tencere Seti" : 0.025,
-      "Araç Lastiği" : 0.025,
-      "Kontrol kalemi" : 0.05,
-      "Havlu" : 0.05,
-      "Olta" : 0.025,
-      "Parfüm" : 0.05,
-      "Çaydanlık Semaver" : 0.05,
-      "Makyaj Malzemesi" : 0.05,
-      "Cüzdan" : 0.025,
-      "Yazılım Programı" : 0.025,
-      "Gömlek" : 0.05,
-      "Telefon" : 0.025,
-      "Termos" : 0.025,
-      "Masa Sandalye Takımı" : 0.025,
-      "Saat" : 0.05,
-      "Pantolon" : 0.025,
-      "Serpme Ağ" : 0.025,
-      "Fener" : 0.025,
-      "Bıçak" : 0.05,
-      "Çatal Bıçak Takımı" : 0.05,
-      "Kamp Sandalyesi" : 0.025,
-      "Modem" : 0.025,
-      "Halı Kilim" : 0.025,
-      "Kulaklık" : 0.025
-    },
-    "entropy" : 0.982229972915401,
-    "mostFrequent" : {
-      "Fotoğraf Makinesi" : 0.047619047619047616
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 236,
     "datasetID" : 5,
@@ -2812,12 +2633,22 @@
   }, {
     "instanceID" : 241,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 0,
-    "uniqueNumberOfLabels" : 0,
-    "uniqueUsers" : 0,
-    "labelPercentage" : null,
-    "entropy" : 0.0,
-    "mostFrequent" : null
+    "totalNumberOfLabels" : 7,
+    "uniqueNumberOfLabels" : 7,
+    "uniqueUsers" : 1,
+    "labelPercentage" : {
+      "Kontrol kalemi" : 0.14285714285714285,
+      "Masa Sandalye Takımı" : 0.14285714285714285,
+      "Cüzdan" : 0.14285714285714285,
+      "Sırt Çantası" : 0.14285714285714285,
+      "Telefon" : 0.14285714285714285,
+      "Bıçak" : 0.14285714285714285,
+      "Saat" : 0.14285714285714285
+    },
+    "entropy" : 1.0000000000000002,
+    "mostFrequent" : {
+      "Kontrol kalemi" : 0.14285714285714285
+    }
   }, {
     "instanceID" : 242,
     "datasetID" : 5,
@@ -2956,34 +2787,12 @@
   }, {
     "instanceID" : 257,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 26,
-    "uniqueNumberOfLabels" : 19,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Olta" : 0.038461538461538464,
-      "Halı Kilim" : 0.038461538461538464,
-      "Bıçak" : 0.07692307692307693,
-      "Kulaklık" : 0.07692307692307693,
-      "Çaydanlık Semaver" : 0.038461538461538464,
-      "Parfüm" : 0.07692307692307693,
-      "Termos" : 0.07692307692307693,
-      "Masa Sandalye Takımı" : 0.038461538461538464,
-      "Beyaz Eşya" : 0.038461538461538464,
-      "Modem" : 0.038461538461538464,
-      "Araç Lastiği" : 0.038461538461538464,
-      "Çiçek" : 0.07692307692307693,
-      "Çatal Bıçak Takımı" : 0.038461538461538464,
-      "Gömlek" : 0.07692307692307693,
-      "Sweatshirt" : 0.07692307692307693,
-      "Makyaj Malzemesi" : 0.038461538461538464,
-      "Gözlük" : 0.038461538461538464,
-      "Avize" : 0.038461538461538464,
-      "Pantolon" : 0.038461538461538464
-    },
-    "entropy" : 0.9797667607340228,
-    "mostFrequent" : {
-      "Bıçak" : 0.047619047619047616
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 258,
     "datasetID" : 5,
@@ -3014,12 +2823,23 @@
   }, {
     "instanceID" : 261,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 0,
-    "uniqueNumberOfLabels" : 0,
-    "uniqueUsers" : 0,
-    "labelPercentage" : null,
-    "entropy" : 0.0,
-    "mostFrequent" : null
+    "totalNumberOfLabels" : 8,
+    "uniqueNumberOfLabels" : 8,
+    "uniqueUsers" : 1,
+    "labelPercentage" : {
+      "Plates Topu pompası" : 0.125,
+      "Avize" : 0.125,
+      "Kulaklık" : 0.125,
+      "Nevresim Takımı" : 0.125,
+      "Araç Lastiği" : 0.125,
+      "Olta" : 0.125,
+      "Masa Sandalye Takımı" : 0.125,
+      "Bıçak" : 0.125
+    },
+    "entropy" : 1.0,
+    "mostFrequent" : {
+      "Plates Topu pompası" : 0.14285714285714285
+    }
   }, {
     "instanceID" : 262,
     "datasetID" : 5,
@@ -3068,28 +2888,12 @@
   }, {
     "instanceID" : 267,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 23,
-    "uniqueNumberOfLabels" : 13,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Kontrol kalemi" : 0.08695652173913043,
-      "Çiçek" : 0.17391304347826086,
-      "Ayakkabı" : 0.08695652173913043,
-      "Araç Lastiği" : 0.043478260869565216,
-      "Nevresim Takımı" : 0.08695652173913043,
-      "Bilgisayar" : 0.13043478260869565,
-      "Termos" : 0.043478260869565216,
-      "Bıçak" : 0.043478260869565216,
-      "Ceket Trençkot" : 0.08695652173913043,
-      "Halı Kilim" : 0.08695652173913043,
-      "Pantolon" : 0.043478260869565216,
-      "Modem" : 0.043478260869565216,
-      "Tencere Seti" : 0.043478260869565216
-    },
-    "entropy" : 0.9550808256257035,
-    "mostFrequent" : {
-      "Çiçek" : 0.09523809523809523
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 268,
     "datasetID" : 5,
@@ -3741,25 +3545,12 @@
   }, {
     "instanceID" : 340,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 13,
-    "uniqueNumberOfLabels" : 10,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Kamp Sandalyesi" : 0.07692307692307693,
-      "Gözlük" : 0.15384615384615385,
-      "Saat" : 0.07692307692307693,
-      "Makyaj Malzemesi" : 0.15384615384615385,
-      "Pantolon" : 0.15384615384615385,
-      "Ketıl" : 0.07692307692307693,
-      "Beyaz Eşya" : 0.07692307692307693,
-      "Çaydanlık Semaver" : 0.07692307692307693,
-      "Yazılım Programı" : 0.07692307692307693,
-      "Kontrol kalemi" : 0.07692307692307693
-    },
-    "entropy" : 0.9750064312311533,
-    "mostFrequent" : {
-      "Gözlük" : 0.047619047619047616
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 341,
     "datasetID" : 5,
@@ -4006,35 +3797,36 @@
   }, {
     "instanceID" : 368,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 32,
-    "uniqueNumberOfLabels" : 21,
+    "totalNumberOfLabels" : 27,
+    "uniqueNumberOfLabels" : 22,
     "uniqueUsers" : 1,
     "labelPercentage" : {
-      "Perde" : 0.0625,
-      "Atlama İpi" : 0.0625,
-      "Battaniye Yorgan" : 0.03125,
-      "Tencere Seti" : 0.0625,
-      "Cüzdan" : 0.125,
-      "Makyaj Malzemesi" : 0.03125,
-      "Plates Topu pompası" : 0.0625,
-      "Termos" : 0.03125,
-      "Ayakkabı" : 0.03125,
-      "Gözlük" : 0.0625,
-      "Pantolon" : 0.0625,
-      "Ceket Trençkot" : 0.0625,
-      "Bıçak" : 0.03125,
-      "Fener" : 0.03125,
-      "Parfüm" : 0.03125,
-      "Olta" : 0.03125,
-      "Ketıl" : 0.03125,
-      "Gömlek" : 0.03125,
-      "Halı Kilim" : 0.03125,
-      "Telefon" : 0.0625,
-      "Deterjan" : 0.03125
+      "Gömlek" : 0.07407407407407407,
+      "Kontrol kalemi" : 0.07407407407407407,
+      "Fener" : 0.037037037037037035,
+      "Serpme Ağ" : 0.07407407407407407,
+      "Perde" : 0.07407407407407407,
+      "Kulaklık" : 0.037037037037037035,
+      "Plates Topu pompası" : 0.037037037037037035,
+      "Havlu" : 0.037037037037037035,
+      "Araç Lastiği" : 0.037037037037037035,
+      "Bıçak" : 0.037037037037037035,
+      "Saat" : 0.037037037037037035,
+      "Gözlük" : 0.037037037037037035,
+      "Termos" : 0.037037037037037035,
+      "Atlama İpi" : 0.037037037037037035,
+      "Cüzdan" : 0.037037037037037035,
+      "Yazılım Programı" : 0.037037037037037035,
+      "Bilgisayar" : 0.037037037037037035,
+      "Deterjan" : 0.07407407407407407,
+      "Modem" : 0.037037037037037035,
+      "Battaniye Yorgan" : 0.037037037037037035,
+      "Pantolon" : 0.037037037037037035,
+      "Fotoğraf Makinesi" : 0.037037037037037035
     },
-    "entropy" : 0.96759855696205,
+    "entropy" : 0.9832008889807591,
     "mostFrequent" : {
-      "Cüzdan" : 0.09523809523809523
+      "Gömlek" : 0.2857142857142857
     }
   }, {
     "instanceID" : 369,
@@ -4111,23 +3903,12 @@
   }, {
     "instanceID" : 377,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 8,
-    "uniqueNumberOfLabels" : 8,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Tencere Seti" : 0.125,
-      "Termos" : 0.125,
-      "Televizyon" : 0.125,
-      "Serpme Ağ" : 0.125,
-      "Çatal Bıçak Takımı" : 0.125,
-      "Kulaklık" : 0.125,
-      "Modem" : 0.125,
-      "Yazılım Programı" : 0.125
-    },
-    "entropy" : 1.0,
-    "mostFrequent" : {
-      "Tencere Seti" : 0.023809523809523808
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 378,
     "datasetID" : 5,
@@ -4275,44 +4056,12 @@
   }, {
     "instanceID" : 394,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 42,
-    "uniqueNumberOfLabels" : 29,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Havlu" : 0.047619047619047616,
-      "Battaniye Yorgan" : 0.023809523809523808,
-      "Beyaz Eşya" : 0.023809523809523808,
-      "Olta" : 0.023809523809523808,
-      "Pantolon" : 0.023809523809523808,
-      "Sırt Çantası" : 0.07142857142857142,
-      "Yazılım Programı" : 0.047619047619047616,
-      "Bıçak" : 0.023809523809523808,
-      "Masa Sandalye Takımı" : 0.023809523809523808,
-      "Çiçek" : 0.047619047619047616,
-      "Atlama İpi" : 0.07142857142857142,
-      "Fener" : 0.047619047619047616,
-      "Makyaj Malzemesi" : 0.047619047619047616,
-      "Serpme Ağ" : 0.023809523809523808,
-      "Parfüm" : 0.023809523809523808,
-      "Nevresim Takımı" : 0.047619047619047616,
-      "Ayakkabı" : 0.023809523809523808,
-      "Saat" : 0.023809523809523808,
-      "Gözlük" : 0.07142857142857142,
-      "Araç Lastiği" : 0.023809523809523808,
-      "Kontrol kalemi" : 0.023809523809523808,
-      "Fotoğraf Makinesi" : 0.023809523809523808,
-      "Modem" : 0.047619047619047616,
-      "Bilgisayar" : 0.023809523809523808,
-      "Çatal Bıçak Takımı" : 0.023809523809523808,
-      "Perde" : 0.023809523809523808,
-      "Ceket Trençkot" : 0.023809523809523808,
-      "Deterjan" : 0.023809523809523808,
-      "Cüzdan" : 0.023809523809523808
-    },
-    "entropy" : 0.9714630980639288,
-    "mostFrequent" : {
-      "Sırt Çantası" : 0.07142857142857142
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 395,
     "datasetID" : 5,
@@ -4505,12 +4254,37 @@
   }, {
     "instanceID" : 416,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 0,
-    "uniqueNumberOfLabels" : 0,
-    "uniqueUsers" : 0,
-    "labelPercentage" : null,
-    "entropy" : 0.0,
-    "mostFrequent" : null
+    "totalNumberOfLabels" : 28,
+    "uniqueNumberOfLabels" : 22,
+    "uniqueUsers" : 1,
+    "labelPercentage" : {
+      "Fener" : 0.03571428571428571,
+      "Perde" : 0.03571428571428571,
+      "Sırt Çantası" : 0.03571428571428571,
+      "Çatal Bıçak Takımı" : 0.03571428571428571,
+      "Televizyon" : 0.07142857142857142,
+      "Bıçak" : 0.03571428571428571,
+      "Masa Sandalye Takımı" : 0.07142857142857142,
+      "Serpme Ağ" : 0.03571428571428571,
+      "Telefon" : 0.07142857142857142,
+      "Atlama İpi" : 0.03571428571428571,
+      "Yazılım Programı" : 0.03571428571428571,
+      "Ceket Trençkot" : 0.03571428571428571,
+      "Kulaklık" : 0.07142857142857142,
+      "Olta" : 0.03571428571428571,
+      "Modem" : 0.07142857142857142,
+      "Gömlek" : 0.03571428571428571,
+      "Çaydanlık Semaver" : 0.03571428571428571,
+      "Ayakkabı" : 0.03571428571428571,
+      "Battaniye Yorgan" : 0.07142857142857142,
+      "Bilgisayar" : 0.03571428571428571,
+      "Nevresim Takımı" : 0.03571428571428571,
+      "Ketıl" : 0.03571428571428571
+    },
+    "entropy" : 0.9819151560001349,
+    "mostFrequent" : {
+      "Televizyon" : 0.2857142857142857
+    }
   }, {
     "instanceID" : 417,
     "datasetID" : 5,
@@ -4586,36 +4360,12 @@
   }, {
     "instanceID" : 425,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 28,
-    "uniqueNumberOfLabels" : 21,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Ayakkabı" : 0.07142857142857142,
-      "Tencere Seti" : 0.03571428571428571,
-      "Atlama İpi" : 0.03571428571428571,
-      "Gözlük" : 0.03571428571428571,
-      "Modem" : 0.07142857142857142,
-      "Çiçek" : 0.03571428571428571,
-      "Çatal Bıçak Takımı" : 0.03571428571428571,
-      "Yazılım Programı" : 0.07142857142857142,
-      "Bıçak" : 0.03571428571428571,
-      "Ketıl" : 0.10714285714285714,
-      "Avize" : 0.03571428571428571,
-      "Deterjan" : 0.07142857142857142,
-      "Plates Topu pompası" : 0.07142857142857142,
-      "Perde" : 0.03571428571428571,
-      "Çaydanlık Semaver" : 0.03571428571428571,
-      "Halı Kilim" : 0.03571428571428571,
-      "Beyaz Eşya" : 0.03571428571428571,
-      "Fener" : 0.03571428571428571,
-      "Gömlek" : 0.03571428571428571,
-      "Masa Sandalye Takımı" : 0.03571428571428571,
-      "Sweatshirt" : 0.03571428571428571
-    },
-    "entropy" : 0.974518515425336,
-    "mostFrequent" : {
-      "Ketıl" : 0.07142857142857142
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 426,
     "datasetID" : 5,
@@ -5267,33 +5017,12 @@
   }, {
     "instanceID" : 498,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 20,
-    "uniqueNumberOfLabels" : 18,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Pantolon" : 0.05,
-      "Televizyon" : 0.15,
-      "Ceket Trençkot" : 0.05,
-      "Kamp Sandalyesi" : 0.05,
-      "Deterjan" : 0.05,
-      "Sweatshirt" : 0.05,
-      "Bıçak" : 0.05,
-      "Gözlük" : 0.05,
-      "Kulaklık" : 0.05,
-      "Modem" : 0.05,
-      "Araç Lastiği" : 0.05,
-      "Avize" : 0.05,
-      "Parfüm" : 0.05,
-      "Nevresim Takımı" : 0.05,
-      "Telefon" : 0.05,
-      "Perde" : 0.05,
-      "Yazılım Programı" : 0.05,
-      "Kontrol kalemi" : 0.05
-    },
-    "entropy" : 0.9794381717576539,
-    "mostFrequent" : {
-      "Televizyon" : 0.07142857142857142
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 499,
     "datasetID" : 5,
@@ -6341,12 +6070,36 @@
   }, {
     "instanceID" : 615,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 0,
-    "uniqueNumberOfLabels" : 0,
-    "uniqueUsers" : 0,
-    "labelPercentage" : null,
-    "entropy" : 0.0,
-    "mostFrequent" : null
+    "totalNumberOfLabels" : 25,
+    "uniqueNumberOfLabels" : 21,
+    "uniqueUsers" : 1,
+    "labelPercentage" : {
+      "Telefon" : 0.04,
+      "Bıçak" : 0.08,
+      "Makyaj Malzemesi" : 0.04,
+      "Kulaklık" : 0.04,
+      "Bilgisayar" : 0.04,
+      "Kontrol kalemi" : 0.04,
+      "Avize" : 0.08,
+      "Fotoğraf Makinesi" : 0.04,
+      "Ayakkabı" : 0.04,
+      "Plates Topu pompası" : 0.08,
+      "Masa Sandalye Takımı" : 0.04,
+      "Havlu" : 0.04,
+      "Ketıl" : 0.04,
+      "Deterjan" : 0.04,
+      "Sırt Çantası" : 0.04,
+      "Modem" : 0.04,
+      "Parfüm" : 0.08,
+      "Serpme Ağ" : 0.04,
+      "Cüzdan" : 0.04,
+      "Termos" : 0.04,
+      "Sweatshirt" : 0.04
+    },
+    "entropy" : 0.9844134140558715,
+    "mostFrequent" : {
+      "Bıçak" : 0.2857142857142857
+    }
   }, {
     "instanceID" : 616,
     "datasetID" : 5,
@@ -6782,33 +6535,12 @@
   }, {
     "instanceID" : 664,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 21,
-    "uniqueNumberOfLabels" : 18,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Perde" : 0.047619047619047616,
-      "Yazılım Programı" : 0.047619047619047616,
-      "Modem" : 0.047619047619047616,
-      "Televizyon" : 0.047619047619047616,
-      "Tencere Seti" : 0.09523809523809523,
-      "Çatal Bıçak Takımı" : 0.09523809523809523,
-      "Beyaz Eşya" : 0.047619047619047616,
-      "Masa Sandalye Takımı" : 0.047619047619047616,
-      "Atlama İpi" : 0.047619047619047616,
-      "Plates Topu pompası" : 0.09523809523809523,
-      "Halı Kilim" : 0.047619047619047616,
-      "Çaydanlık Semaver" : 0.047619047619047616,
-      "Deterjan" : 0.047619047619047616,
-      "Havlu" : 0.047619047619047616,
-      "Fener" : 0.047619047619047616,
-      "Kontrol kalemi" : 0.047619047619047616,
-      "Fotoğraf Makinesi" : 0.047619047619047616,
-      "Ceket Trençkot" : 0.047619047619047616
-    },
-    "entropy" : 0.9848146275158576,
-    "mostFrequent" : {
-      "Tencere Seti" : 0.047619047619047616
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 665,
     "datasetID" : 5,
@@ -6821,37 +6553,12 @@
   }, {
     "instanceID" : 666,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 35,
-    "uniqueNumberOfLabels" : 22,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Kulaklık" : 0.05714285714285714,
-      "Makyaj Malzemesi" : 0.05714285714285714,
-      "Ceket Trençkot" : 0.02857142857142857,
-      "Gözlük" : 0.05714285714285714,
-      "Pantolon" : 0.05714285714285714,
-      "Çatal Bıçak Takımı" : 0.05714285714285714,
-      "Perde" : 0.05714285714285714,
-      "Ketıl" : 0.02857142857142857,
-      "Kamp Sandalyesi" : 0.02857142857142857,
-      "Halı Kilim" : 0.08571428571428572,
-      "Kontrol kalemi" : 0.02857142857142857,
-      "Ayakkabı" : 0.05714285714285714,
-      "Nevresim Takımı" : 0.08571428571428572,
-      "Bilgisayar" : 0.02857142857142857,
-      "Termos" : 0.02857142857142857,
-      "Fotoğraf Makinesi" : 0.05714285714285714,
-      "Havlu" : 0.05714285714285714,
-      "Plates Topu pompası" : 0.02857142857142857,
-      "Battaniye Yorgan" : 0.02857142857142857,
-      "Masa Sandalye Takımı" : 0.02857142857142857,
-      "Atlama İpi" : 0.02857142857142857,
-      "Yazılım Programı" : 0.02857142857142857
-    },
-    "entropy" : 0.9739558349187061,
-    "mostFrequent" : {
-      "Halı Kilim" : 0.07142857142857142
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 667,
     "datasetID" : 5,
@@ -7323,12 +7030,33 @@
   }, {
     "instanceID" : 719,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 0,
-    "uniqueNumberOfLabels" : 0,
-    "uniqueUsers" : 0,
-    "labelPercentage" : null,
-    "entropy" : 0.0,
-    "mostFrequent" : null
+    "totalNumberOfLabels" : 27,
+    "uniqueNumberOfLabels" : 18,
+    "uniqueUsers" : 1,
+    "labelPercentage" : {
+      "Plates Topu pompası" : 0.1111111111111111,
+      "Beyaz Eşya" : 0.07407407407407407,
+      "Tencere Seti" : 0.037037037037037035,
+      "Fotoğraf Makinesi" : 0.07407407407407407,
+      "Sweatshirt" : 0.037037037037037035,
+      "Çiçek" : 0.07407407407407407,
+      "Kulaklık" : 0.037037037037037035,
+      "Bilgisayar" : 0.037037037037037035,
+      "Televizyon" : 0.07407407407407407,
+      "Ceket Trençkot" : 0.037037037037037035,
+      "Çaydanlık Semaver" : 0.037037037037037035,
+      "Kamp Sandalyesi" : 0.1111111111111111,
+      "Gözlük" : 0.07407407407407407,
+      "Yazılım Programı" : 0.037037037037037035,
+      "Termos" : 0.037037037037037035,
+      "Serpme Ağ" : 0.037037037037037035,
+      "Battaniye Yorgan" : 0.037037037037037035,
+      "Fener" : 0.037037037037037035
+    },
+    "entropy" : 0.966996586593102,
+    "mostFrequent" : {
+      "Plates Topu pompası" : 0.42857142857142855
+    }
   }, {
     "instanceID" : 720,
     "datasetID" : 5,
@@ -7449,31 +7177,12 @@
   }, {
     "instanceID" : 733,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 23,
-    "uniqueNumberOfLabels" : 16,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Fotoğraf Makinesi" : 0.08695652173913043,
-      "Çaydanlık Semaver" : 0.043478260869565216,
-      "Yazılım Programı" : 0.043478260869565216,
-      "Ketıl" : 0.043478260869565216,
-      "Serpme Ağ" : 0.043478260869565216,
-      "Modem" : 0.08695652173913043,
-      "Telefon" : 0.043478260869565216,
-      "Makyaj Malzemesi" : 0.043478260869565216,
-      "Sırt Çantası" : 0.043478260869565216,
-      "Termos" : 0.13043478260869565,
-      "Nevresim Takımı" : 0.08695652173913043,
-      "Perde" : 0.08695652173913043,
-      "Kamp Sandalyesi" : 0.043478260869565216,
-      "Halı Kilim" : 0.08695652173913043,
-      "Atlama İpi" : 0.043478260869565216,
-      "Pantolon" : 0.043478260869565216
-    },
-    "entropy" : 0.9705112770342158,
-    "mostFrequent" : {
-      "Termos" : 0.07142857142857142
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 734,
     "datasetID" : 5,
@@ -7603,31 +7312,12 @@
   }, {
     "instanceID" : 748,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 21,
-    "uniqueNumberOfLabels" : 16,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Makyaj Malzemesi" : 0.047619047619047616,
-      "Havlu" : 0.047619047619047616,
-      "Atlama İpi" : 0.047619047619047616,
-      "Battaniye Yorgan" : 0.047619047619047616,
-      "Parfüm" : 0.047619047619047616,
-      "Halı Kilim" : 0.047619047619047616,
-      "Kontrol kalemi" : 0.09523809523809523,
-      "Sırt Çantası" : 0.047619047619047616,
-      "Gömlek" : 0.047619047619047616,
-      "Gözlük" : 0.047619047619047616,
-      "Telefon" : 0.09523809523809523,
-      "Masa Sandalye Takımı" : 0.047619047619047616,
-      "Avize" : 0.19047619047619047,
-      "Saat" : 0.047619047619047616,
-      "Yazılım Programı" : 0.047619047619047616,
-      "Ceket Trençkot" : 0.047619047619047616
-    },
-    "entropy" : 0.9552222128375472,
-    "mostFrequent" : {
-      "Avize" : 0.09523809523809523
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 749,
     "datasetID" : 5,
@@ -7856,35 +7546,12 @@
   }, {
     "instanceID" : 774,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 27,
-    "uniqueNumberOfLabels" : 20,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Fotoğraf Makinesi" : 0.037037037037037035,
-      "Saat" : 0.037037037037037035,
-      "Beyaz Eşya" : 0.07407407407407407,
-      "Bilgisayar" : 0.037037037037037035,
-      "Bıçak" : 0.037037037037037035,
-      "Kamp Sandalyesi" : 0.037037037037037035,
-      "Havlu" : 0.07407407407407407,
-      "Ketıl" : 0.07407407407407407,
-      "Plates Topu pompası" : 0.07407407407407407,
-      "Battaniye Yorgan" : 0.07407407407407407,
-      "Serpme Ağ" : 0.07407407407407407,
-      "Masa Sandalye Takımı" : 0.07407407407407407,
-      "Termos" : 0.037037037037037035,
-      "Makyaj Malzemesi" : 0.037037037037037035,
-      "Kontrol kalemi" : 0.037037037037037035,
-      "Atlama İpi" : 0.037037037037037035,
-      "Çaydanlık Semaver" : 0.037037037037037035,
-      "Modem" : 0.037037037037037035,
-      "Çiçek" : 0.037037037037037035,
-      "Sırt Çantası" : 0.037037037037037035
-    },
-    "entropy" : 0.9802034857211933,
-    "mostFrequent" : {
-      "Beyaz Eşya" : 0.047619047619047616
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 775,
     "datasetID" : 5,
@@ -8266,12 +7933,26 @@
   }, {
     "instanceID" : 817,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 0,
-    "uniqueNumberOfLabels" : 0,
-    "uniqueUsers" : 0,
-    "labelPercentage" : null,
-    "entropy" : 0.0,
-    "mostFrequent" : null
+    "totalNumberOfLabels" : 11,
+    "uniqueNumberOfLabels" : 11,
+    "uniqueUsers" : 1,
+    "labelPercentage" : {
+      "Bıçak" : 0.09090909090909091,
+      "Olta" : 0.09090909090909091,
+      "Kulaklık" : 0.09090909090909091,
+      "Televizyon" : 0.09090909090909091,
+      "Havlu" : 0.09090909090909091,
+      "Ayakkabı" : 0.09090909090909091,
+      "Cüzdan" : 0.09090909090909091,
+      "Sweatshirt" : 0.09090909090909091,
+      "Plates Topu pompası" : 0.09090909090909091,
+      "Battaniye Yorgan" : 0.09090909090909091,
+      "Masa Sandalye Takımı" : 0.09090909090909091
+    },
+    "entropy" : 1.0000000000000002,
+    "mostFrequent" : {
+      "Bıçak" : 0.14285714285714285
+    }
   }, {
     "instanceID" : 818,
     "datasetID" : 5,
@@ -8428,41 +8109,12 @@
   }, {
     "instanceID" : 835,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 42,
-    "uniqueNumberOfLabels" : 26,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Yazılım Programı" : 0.07142857142857142,
-      "Ceket Trençkot" : 0.047619047619047616,
-      "Perde" : 0.047619047619047616,
-      "Gömlek" : 0.047619047619047616,
-      "Kontrol kalemi" : 0.047619047619047616,
-      "Telefon" : 0.09523809523809523,
-      "Kamp Sandalyesi" : 0.023809523809523808,
-      "Sweatshirt" : 0.07142857142857142,
-      "Saat" : 0.023809523809523808,
-      "Atlama İpi" : 0.047619047619047616,
-      "Plates Topu pompası" : 0.023809523809523808,
-      "Masa Sandalye Takımı" : 0.023809523809523808,
-      "Ketıl" : 0.023809523809523808,
-      "Makyaj Malzemesi" : 0.023809523809523808,
-      "Bıçak" : 0.047619047619047616,
-      "Çaydanlık Semaver" : 0.023809523809523808,
-      "Gözlük" : 0.023809523809523808,
-      "Deterjan" : 0.023809523809523808,
-      "Serpme Ağ" : 0.023809523809523808,
-      "Çatal Bıçak Takımı" : 0.047619047619047616,
-      "Beyaz Eşya" : 0.023809523809523808,
-      "Battaniye Yorgan" : 0.023809523809523808,
-      "Parfüm" : 0.023809523809523808,
-      "Termos" : 0.047619047619047616,
-      "Kulaklık" : 0.047619047619047616,
-      "Cüzdan" : 0.023809523809523808
-    },
-    "entropy" : 0.9673236679951654,
-    "mostFrequent" : {
-      "Telefon" : 0.09523809523809523
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 836,
     "datasetID" : 5,
@@ -8700,12 +8352,22 @@
   }, {
     "instanceID" : 862,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 0,
-    "uniqueNumberOfLabels" : 0,
-    "uniqueUsers" : 0,
-    "labelPercentage" : null,
-    "entropy" : 0.0,
-    "mostFrequent" : null
+    "totalNumberOfLabels" : 8,
+    "uniqueNumberOfLabels" : 7,
+    "uniqueUsers" : 1,
+    "labelPercentage" : {
+      "Plates Topu pompası" : 0.125,
+      "Sırt Çantası" : 0.125,
+      "Nevresim Takımı" : 0.125,
+      "Beyaz Eşya" : 0.125,
+      "Gözlük" : 0.125,
+      "Fotoğraf Makinesi" : 0.25,
+      "Cüzdan" : 0.125
+    },
+    "entropy" : 0.9795697645470609,
+    "mostFrequent" : {
+      "Fotoğraf Makinesi" : 0.2857142857142857
+    }
   }, {
     "instanceID" : 863,
     "datasetID" : 5,
@@ -9033,34 +8695,12 @@
   }, {
     "instanceID" : 899,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 25,
-    "uniqueNumberOfLabels" : 19,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Atlama İpi" : 0.04,
-      "Olta" : 0.08,
-      "Beyaz Eşya" : 0.08,
-      "Parfüm" : 0.08,
-      "Çaydanlık Semaver" : 0.04,
-      "Fotoğraf Makinesi" : 0.04,
-      "Havlu" : 0.04,
-      "Saat" : 0.04,
-      "Araç Lastiği" : 0.08,
-      "Kamp Sandalyesi" : 0.04,
-      "Fener" : 0.08,
-      "Pantolon" : 0.04,
-      "Çatal Bıçak Takımı" : 0.08,
-      "Nevresim Takımı" : 0.04,
-      "Gözlük" : 0.04,
-      "Ketıl" : 0.04,
-      "Avize" : 0.04,
-      "Ceket Trençkot" : 0.04,
-      "Halı Kilim" : 0.04
-    },
-    "entropy" : 0.9802088610498187,
-    "mostFrequent" : {
-      "Olta" : 0.047619047619047616
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 900,
     "datasetID" : 5,
@@ -9721,32 +9361,12 @@
   }, {
     "instanceID" : 973,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 22,
-    "uniqueNumberOfLabels" : 17,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Deterjan" : 0.045454545454545456,
-      "Atlama İpi" : 0.09090909090909091,
-      "Kulaklık" : 0.045454545454545456,
-      "Plates Topu pompası" : 0.09090909090909091,
-      "Sırt Çantası" : 0.045454545454545456,
-      "Ceket Trençkot" : 0.045454545454545456,
-      "Beyaz Eşya" : 0.045454545454545456,
-      "Çiçek" : 0.09090909090909091,
-      "Perde" : 0.045454545454545456,
-      "Kamp Sandalyesi" : 0.045454545454545456,
-      "Ketıl" : 0.13636363636363635,
-      "Kontrol kalemi" : 0.045454545454545456,
-      "Havlu" : 0.045454545454545456,
-      "Battaniye Yorgan" : 0.045454545454545456,
-      "Avize" : 0.045454545454545456,
-      "Ayakkabı" : 0.045454545454545456,
-      "Fener" : 0.045454545454545456
-    },
-    "entropy" : 0.971402860410372,
-    "mostFrequent" : {
-      "Ketıl" : 0.07142857142857142
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 974,
     "datasetID" : 5,
@@ -9777,40 +9397,12 @@
   }, {
     "instanceID" : 977,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 42,
-    "uniqueNumberOfLabels" : 25,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Yazılım Programı" : 0.047619047619047616,
-      "Ketıl" : 0.023809523809523808,
-      "Tencere Seti" : 0.047619047619047616,
-      "Makyaj Malzemesi" : 0.07142857142857142,
-      "Kulaklık" : 0.047619047619047616,
-      "Havlu" : 0.023809523809523808,
-      "Ayakkabı" : 0.023809523809523808,
-      "Çiçek" : 0.047619047619047616,
-      "Avize" : 0.047619047619047616,
-      "Bıçak" : 0.07142857142857142,
-      "Gömlek" : 0.047619047619047616,
-      "Televizyon" : 0.023809523809523808,
-      "Halı Kilim" : 0.07142857142857142,
-      "Çatal Bıçak Takımı" : 0.047619047619047616,
-      "Fener" : 0.047619047619047616,
-      "Plates Topu pompası" : 0.07142857142857142,
-      "Cüzdan" : 0.023809523809523808,
-      "Perde" : 0.023809523809523808,
-      "Ceket Trençkot" : 0.023809523809523808,
-      "Kamp Sandalyesi" : 0.047619047619047616,
-      "Fotoğraf Makinesi" : 0.023809523809523808,
-      "Nevresim Takımı" : 0.023809523809523808,
-      "Atlama İpi" : 0.023809523809523808,
-      "Beyaz Eşya" : 0.023809523809523808,
-      "Telefon" : 0.023809523809523808
-    },
-    "entropy" : 0.9713693493270479,
-    "mostFrequent" : {
-      "Makyaj Malzemesi" : 0.07142857142857142
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 978,
     "datasetID" : 5,
@@ -9859,34 +9451,12 @@
   }, {
     "instanceID" : 983,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 30,
-    "uniqueNumberOfLabels" : 19,
-    "uniqueUsers" : 1,
-    "labelPercentage" : {
-      "Fotoğraf Makinesi" : 0.03333333333333333,
-      "Çaydanlık Semaver" : 0.03333333333333333,
-      "Telefon" : 0.06666666666666667,
-      "Fener" : 0.03333333333333333,
-      "Araç Lastiği" : 0.1,
-      "Gözlük" : 0.06666666666666667,
-      "Sweatshirt" : 0.13333333333333333,
-      "Ketıl" : 0.03333333333333333,
-      "Beyaz Eşya" : 0.03333333333333333,
-      "Kulaklık" : 0.06666666666666667,
-      "Ceket Trençkot" : 0.06666666666666667,
-      "Plates Topu pompası" : 0.06666666666666667,
-      "Makyaj Malzemesi" : 0.03333333333333333,
-      "Pantolon" : 0.06666666666666667,
-      "Tencere Seti" : 0.03333333333333333,
-      "Saat" : 0.03333333333333333,
-      "Battaniye Yorgan" : 0.03333333333333333,
-      "Kamp Sandalyesi" : 0.03333333333333333,
-      "Bilgisayar" : 0.03333333333333333
-    },
-    "entropy" : 0.9608750775412553,
-    "mostFrequent" : {
-      "Sweatshirt" : 0.09523809523809523
-    }
+    "totalNumberOfLabels" : 0,
+    "uniqueNumberOfLabels" : 0,
+    "uniqueUsers" : 0,
+    "labelPercentage" : null,
+    "entropy" : 0.0,
+    "mostFrequent" : null
   }, {
     "instanceID" : 984,
     "datasetID" : 5,
@@ -10628,12 +10198,24 @@
   }, {
     "instanceID" : 1066,
     "datasetID" : 5,
-    "totalNumberOfLabels" : 0,
-    "uniqueNumberOfLabels" : 0,
-    "uniqueUsers" : 0,
-    "labelPercentage" : null,
-    "entropy" : 0.0,
-    "mostFrequent" : null
+    "totalNumberOfLabels" : 9,
+    "uniqueNumberOfLabels" : 9,
+    "uniqueUsers" : 1,
+    "labelPercentage" : {
+      "Cüzdan" : 0.1111111111111111,
+      "Araç Lastiği" : 0.1111111111111111,
+      "Halı Kilim" : 0.1111111111111111,
+      "Bilgisayar" : 0.1111111111111111,
+      "Çiçek" : 0.1111111111111111,
+      "Makyaj Malzemesi" : 0.1111111111111111,
+      "Havlu" : 0.1111111111111111,
+      "Gömlek" : 0.1111111111111111,
+      "Serpme Ağ" : 0.1111111111111111
+    },
+    "entropy" : 1.0000000000000002,
+    "mostFrequent" : {
+      "Cüzdan" : 0.14285714285714285
+    }
   }, {
     "instanceID" : 1067,
     "datasetID" : 5,
@@ -10686,28 +10268,28 @@
     "datasetCompletenessPercentage" : {
       "1" : " %100",
       "4" : " %100",
-      "5" : " %97",
+      "5" : " %99",
       "6" : " %0",
       "7" : " %0"
     },
-    "labeledInstances" : 11,
-    "unqLabeledInstances" : 11,
+    "labeledInstances" : 3,
+    "unqLabeledInstances" : 3,
     "consistencyPercentage" : "%100.0",
-    "avgTime" : 0.5089090845801614,
-    "std" : 0.003918597712219244
+    "avgTime" : 0.5080000162124634,
+    "std" : 0.002943929629272661
   }, {
     "userID" : 6,
     "numOfDatasets" : 4,
     "datasetCompletenessPercentage" : {
       "4" : " %100",
-      "5" : " %97",
+      "5" : " %99",
       "6" : " %0",
       "7" : " %0"
     },
-    "labeledInstances" : 15,
-    "unqLabeledInstances" : 15,
-    "consistencyPercentage" : "%100.0",
-    "avgTime" : 0.5082000017166137,
-    "std" : 0.004166531761047337
+    "labeledInstances" : 6,
+    "unqLabeledInstances" : 6,
+    "consistencyPercentage" : "%83.33333333333334",
+    "avgTime" : 0.5056666731834412,
+    "std" : 0.003448024675101906
   } ]
 }
