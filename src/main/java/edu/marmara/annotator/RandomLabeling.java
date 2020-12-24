@@ -1,5 +1,7 @@
 package edu.marmara.annotator;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class RandomLabeling{
@@ -82,7 +84,10 @@ public class RandomLabeling{
                 // METRICLERI SADECE BURDA AYARLADIM ALT TARAFA DAHA BAKMADIM
                 Thread.sleep(500);
                 double timeSpentInLabeling = (System.currentTimeMillis() - start) / 1000F; //calculates the time elapsed from start of labeling-----not sure-----
+                String timeString= String.valueOf(LocalTime.now());
+                timeString= timeString.substring(0,8);
                 Labelling labelling = new Labelling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", timeSpentInLabeling, findFinalLabel(labelsToAssign));
+                labelling.setDateTime(LocalDate.now()+", "+timeString);
                 labellingArrayList.add(labelling);
                 currentDataset.getEvaluationMatrix().calculateAll(datasetArrayList);
                 labelling.getInstance().getEvaluationMatrix().calculateAll(datasetArrayList);
@@ -117,7 +122,10 @@ public class RandomLabeling{
                         // labelling it
                         double timeSpentInLabeling = (System.currentTimeMillis() - start) / 1000F; //calculates the time elapsed from start of labeling---- not sure2----
                         //fix it with more than one labelling and same users shouldnt label same instance again
+                        String timeString= String.valueOf(LocalTime.now());
+                        timeString= timeString.substring(0,8);
                         Labelling labelling = new Labelling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", timeSpentInLabeling, findFinalLabel(labelsToAssign));
+                        labelling.setDateTime(LocalDate.now()+", "+timeString);
                         labellingArrayList.add(labelling);
                         currentDataset.getEvaluationMatrix().calculateAll(datasetArrayList);
                         labelling.getInstance().getEvaluationMatrix().calculateAll(datasetArrayList);
@@ -178,5 +186,4 @@ public class RandomLabeling{
     }
 
 }
-
 
