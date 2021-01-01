@@ -23,8 +23,9 @@ public class Output {
             e.printStackTrace();
         }
     }
+
     @JsonPropertyOrder({"datasetId", "datasetName", "lblPerIns", "classLabels", "instances", "labelAssignments", "users"})
-    public void outputDataset(String filename, ArrayList<Dataset> datasetArrayList){
+    public void outputDataset(String filename, ArrayList<Dataset> datasetArrayList) {
         int datasetId;
         String datasetName;
         ArrayList<Label> labelArrayList;
@@ -35,7 +36,7 @@ public class Output {
 
         ArrayList<OutputDataset> outJson = new ArrayList<>();
         for (Dataset currentDataset : datasetArrayList) {
-            datasetId =  currentDataset.getDatasetID();
+            datasetId = currentDataset.getDatasetID();
             datasetName = currentDataset.getDatasetName();
             labelArrayList = currentDataset.getLabelArrayList();
             instanceArrayList = currentDataset.getInstanceArrayList();
@@ -73,7 +74,7 @@ public class Output {
                 list3.add(elements);
             }
             ArrayList<Object> list4 = new ArrayList<>();
-            for (User user: assignedUsers) {
+            for (User user : assignedUsers) {
                 Map<Object, Object> elements = new LinkedHashMap<>();
                 elements.put("user id", user.getUserID());
                 elements.put("user name", user.getUserName());
@@ -85,35 +86,112 @@ public class Output {
             outJson.add(json);
         }
         JSONObject out = new JSONObject();
-        out.put("Datasets",outJson);
+        out.put("Datasets", outJson);
 
-        writeToFile(out,filename);
+        writeToFile(out, filename);
     }
 
+    @JsonPropertyOrder({"datasetMetrics", "instanceMetrics", "userMetrics"})
     public void outputMetrics(String fileName, ArrayList<Dataset> datasetArrayList, ArrayList<User> userArrayList) {
 
-        ArrayList<DatasetMetrics> datasetMetrics = new ArrayList<>();
-        for(Dataset dataset : datasetArrayList){
+        ArrayList<Object> datasets = new ArrayList<>();
+        for (Dataset dataset : datasetArrayList) {
+            Map<String, Object> datasetMetrics = new LinkedHashMap<>();
             DatasetMetrics metrics = dataset.getEvaluationMatrix();
-            datasetMetrics.add(metrics);
+            datasetMetrics.put("Dataset id", dataset.getDatasetID());
+            datasetMetrics.put("Completeness percentage", metrics.getCompletenessPercentage() * 100.0);
+
+            ArrayList<Object> list1 = new ArrayList<>();
+            Map<Object, Object> temp = new LinkedHashMap<>();
+            for (Label label : metrics.getDistribution().keySet()) {
+                temp.put(label.getLabelText(), ("%" + metrics.getDistribution().get(label) * 100.0));
+            }
+            list1.add(temp);
+            datasetMetrics.put("Label distributions", list1);
+
+            ArrayList<Object> list2 = new ArrayList<>();
+            temp = new LinkedHashMap<>();
+            for (Label label : metrics.getUniqueInsNumber().keySet()) {
+                temp.put(label.getLabelText(), metrics.getUniqueInsNumber().get(label));
+            }
+            list2.add(temp);
+            datasetMetrics.put("Number of unique instances", list2);
+
+            datasetMetrics.put("Number of Users", metrics.getNumOfUsers());
+
+            ArrayList<Object> list3 = new ArrayList<>();
+            temp = new LinkedHashMap<>();
+            for (User user : metrics.getUserCompletenessPercentage().keySet()) {
+                temp.put(user.getUserName(), metrics.getUserCompletenessPercentage().get(user));
+            }
+            list3.add(temp);
+            datasetMetrics.put("User completeness Percentage", list3);
+
+            ArrayList<Object> list4 = new ArrayList<>();
+            temp = new LinkedHashMap<>();
+            for (User user : metrics.getUserConsistencyPercentage().keySet()) {
+                temp.put(user.getUserName(), metrics.getUserConsistencyPercentage().get(user));
+            }
+            list4.add(temp);
+            datasetMetrics.put("User consistency percentage", list4);
+
+            datasets.add(datasetMetrics);
         }
 
-        ArrayList<InstanceMetrics> instanceMetrics = new ArrayList<>();
-        for(Dataset dataset: datasetArrayList){
-            ArrayList<Instance> instances = dataset.getInstanceArrayList();
-            for(Instance instance: instances){
+        ArrayList<Object> instances = new ArrayList<>();
+        for (Dataset dataset : datasetArrayList) {
+            ArrayList<Instance> instanceArrayList = dataset.getInstanceArrayList();
+            for (Instance instance : instanceArrayList) {
+                Map<String, Object> instanceMetrics = new LinkedHashMap<>();
                 InstanceMetrics metrics = instance.getEvaluationMatrix();
-                instanceMetrics.add(metrics);
+                instanceMetrics.put("Instance id", instance.getInstanceID());
+                instanceMetrics.put("Dataset id", instance.getDatasetID());
+                instanceMetrics.put("Total number of assignments", metrics.getTotalNumberOfLabels());
+                instanceMetrics.put("Number of unique labels", metrics.getUniqueNumberOfLabels());
+                instanceMetrics.put("Number of unique users", metrics.getUniqueUsers());
+
+                ArrayList<Object> list = new ArrayList<>();
+                Map<Object, Object> temp = new LinkedHashMap<>();
+                for (Label label : metrics.getLabelPercentage().keySet()) {
+                    temp.put(label.getLabelText(), metrics.getLabelPercentage().get(label));
+                }
+                list.add(temp);
+                instanceMetrics.put("Most frequent label", temp);
+                instanceMetrics.put("Class labels", metrics.getLabelPercentage().entrySet());
+                instanceMetrics.put("Entropy", metrics.getEntropy());
+
+                instances.add(instanceMetrics);
             }
         }
 
-        ArrayList<UserMetrics> userMetrics = new ArrayList<>();
-        for(User user: userArrayList){
+        ArrayList<Object> users = new ArrayList<>();
+        for (User user : userArrayList) {
             UserMetrics metrics = user.getEvaluationMatrix();
-            userMetrics.add(metrics);
-        }
-        OutputMetrics out = new OutputMetrics(datasetMetrics, instanceMetrics, userMetrics);
+            Map<String, Object> userMetrics = new LinkedHashMap<>();
+            userMetrics.put("User id", user.getUserID());
+            userMetrics.put("User Name", user.getUserName());
+            userMetrics.put("Number of datasets", metrics.getNumOfDatasets());
 
-        writeToFile(out, fileName);
+            ArrayList<Object> list = new ArrayList<>();
+            Map<Object, Object> temp = new LinkedHashMap<>();
+            for (Dataset dataset : metrics.getDatasetCompletenessPercentage().keySet()) {
+                temp.put(dataset.getDatasetID(), ("%" + metrics.getDatasetCompletenessPercentage().get(dataset) * 100.0));
+            }
+            list.add(temp);
+            userMetrics.put("Dataset completeness percentages", list);
+
+            userMetrics.put("Total labeled instances", metrics.getLabeledInstances());
+            userMetrics.put("Total unique labeled instances", metrics.getUnqLabeledInstances());
+            userMetrics.put("Consistency percentage", ("%" + metrics.getConsistencyPercentage() * 100.0));
+            userMetrics.put("Average time spend in labeling", metrics.getAvgTime());
+            userMetrics.put("Std of time spent in labeling", metrics.getStd());
+
+            users.add(userMetrics);
+        }
+
+
+        OutputMetrics metrics = new OutputMetrics(datasets, instances, users);
+        writeToFile(metrics, fileName);
     }
+
 }

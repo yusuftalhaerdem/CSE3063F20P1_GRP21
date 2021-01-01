@@ -10,8 +10,8 @@ public class InstanceMetrics{
     private int totalNumberOfLabels;
     private int uniqueNumberOfLabels;
     private int uniqueUsers;
-    private Map<Label,Double> labelPercentage;
-    private Map<Label,Double> MostFrequent;
+    private Map<Label,Double> labelPercentage = new LinkedHashMap<>();
+    private Map<Label,Double> MostFrequentLbl = new LinkedHashMap<>();
     private double entropy;
 
 
@@ -169,11 +169,11 @@ public class InstanceMetrics{
     }
 
     public Map<Label, Double> getMostFrequent() {
-        return MostFrequent;
+        return MostFrequentLbl;
     }
 
-    public void setMostFrequent(Map<Label, Double> MostFrequent) {
-        this.MostFrequent = MostFrequent;
+    public void setMostFrequent(Map<Label, Double> MostFrequentLbl) {
+        this.MostFrequentLbl = MostFrequentLbl;
     }
 
     public Map<Label, Double> getLabelPercentage() {
