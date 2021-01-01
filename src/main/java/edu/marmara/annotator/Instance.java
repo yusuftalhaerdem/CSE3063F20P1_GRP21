@@ -28,8 +28,6 @@ public class Instance {
         this.datasetName = datasetName;
         this.maxLabelPerInstance = lblPerIns;
         labels = new ArrayList<>();
-        this.getEvaluationMatrix().setInstanceID(this.instanceID);
-        this.getEvaluationMatrix().setDatasetID(this.datasetID);
 
     }
 

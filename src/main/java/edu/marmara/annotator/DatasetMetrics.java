@@ -6,19 +6,17 @@ import java.util.Map;
 
 public class DatasetMetrics{
 
-    private int datasetId;
     private double completenessPercentage;
-    private Map<String, Double> distribution;
-    private Map<String,ArrayList<Integer>> uniqueInsNumber;
+    private Map<Label,Double> distribution;
+    private Map<Label,ArrayList<Integer>> uniqueInsNumber;
     private int numOfUsers;
-    private Map<String,Double> userCompletenessPercentage;
-    private Map<String,String> userConsistencyPercentage;
+    private Map<User,Double> userCompletenessPercentage;
+    private Map<User,Double> userConsistencyPercentage;
 
     DatasetMetrics(){}
 
     public void calculateAll(ArrayList<Dataset> datasetArrayList){
         for (Dataset dataset : datasetArrayList){
-            dataset.getEvaluationMatrix().setDatasetId(dataset.getDatasetID());
             calculateCompletenessPercentage(dataset);
             calculateDistribution(dataset);
             calculateUniqueInsNumber(dataset);
@@ -44,17 +42,17 @@ public class DatasetMetrics{
 
     private void calculateDistribution(Dataset dataset) {
         int labeledInstances = dataset.getLabellingArrayList().size();
-        Map<String,Double> distributionMap;
-        Map<String,Double> temp = new LinkedHashMap<>();
+        Map<Label,Double> distributionMap;
+        Map<Label,Double> temp = new LinkedHashMap<>();
         for(Labelling labelling : dataset.getLabellingArrayList()){
             Label finalLabel = labelling.getFinalLabel();
-            if (!temp.containsKey(finalLabel.getLabelText())){
+            if (!temp.containsKey(finalLabel)){
                 for(Labelling labelling1 : dataset.getLabellingArrayList()){
                     if(labelling1.getFinalLabel() == finalLabel){
-                        if(temp.containsKey(finalLabel.getLabelText())){
-                            temp.put(finalLabel.getLabelText(),temp.get(finalLabel.getLabelText()) + 1.0);
+                        if(temp.containsKey(finalLabel)){
+                            temp.put(finalLabel,temp.get(finalLabel) + 1.0);
                         }else {
-                            temp.put(finalLabel.getLabelText(),1.0);
+                            temp.put(finalLabel,1.0);
                         }
                     }
                 }
@@ -66,7 +64,7 @@ public class DatasetMetrics{
         dataset.getEvaluationMatrix().setDistribution(distributionMap);
     }
     private void calculateUniqueInsNumber(Dataset dataset) {
-        Map<String,ArrayList<Integer>> map = new LinkedHashMap<>();
+        Map<Label,ArrayList<Integer>> map = new LinkedHashMap<>();
         for (Label label : dataset.getLabelArrayList()){
             ArrayList<Integer> instances = new ArrayList<>();
             for(Labelling labelling : dataset.getLabellingArrayList()){
@@ -74,7 +72,7 @@ public class DatasetMetrics{
                     instances.add(labelling.getInstance().getInstanceID());
                 }
             }
-            map.put(label.getLabelText(),instances);
+            map.put(label,instances);
         }
         dataset.getEvaluationMatrix().setUniqueInsNumber(map);
     }
@@ -83,7 +81,7 @@ public class DatasetMetrics{
         dataset.getEvaluationMatrix().setNumOfUsers(numOfUsers);
     }
     private void calculateUserCompletenessPercentage(Dataset dataset) {
-        Map<String,Double> map = new LinkedHashMap<>();
+        Map<User,Double> map = new LinkedHashMap<>();
         double labeledInstances = dataset.getLabellingArrayList().size();
         for(Labelling labelling : dataset.getLabellingArrayList()){
             ArrayList<Integer> instanceIDs = new ArrayList<>();
@@ -94,28 +92,20 @@ public class DatasetMetrics{
                 }
             }
             double percentage = labeledInstances == 0 ? 0 : ((double) instanceIDs.size()) / labeledInstances;
-            map.put(currentUser.getUserName(),percentage);
+            map.put(currentUser,percentage);
         }
         dataset.getEvaluationMatrix().setUserCompletenessPercentage(map);
     }
 
     private void calculateUserConsistencyPercentage(Dataset dataset) {
-        Map<String,String> userConsistencyPercentage = new LinkedHashMap<>();
+        Map<User,Double> userConsistencyPercentage = new LinkedHashMap<>();
         for(User user : dataset.getAssignedUsersArrayList()){
-            Map<Integer,String> temp = user.getEvaluationMatrix().getDatasetCompletenessPercentage();
+            Map<Dataset, Double> temp = user.getEvaluationMatrix().getDatasetCompletenessPercentage();
             if (temp != null){
-                userConsistencyPercentage.put(user.getUserName(),temp.get(user.getUserID()));
+                userConsistencyPercentage.put(user,temp.get(user.getUserID()));
                 dataset.getEvaluationMatrix().setUserConsistencyPercentage(userConsistencyPercentage);
             }
         }
-    }
-
-    public int getDatasetId() {
-        return datasetId;
-    }
-
-    public void setDatasetId(int datasetId) {
-        this.datasetId = datasetId;
     }
 
     public double getCompletenessPercentage() {
@@ -126,19 +116,19 @@ public class DatasetMetrics{
         this.completenessPercentage = completenessPercentage;
     }
 
-    public Map<String, Double> getDistribution() {
+    public Map<Label, Double> getDistribution() {
         return distribution;
     }
 
-    public void setDistribution(Map<String, Double> distribution) {
+    public void setDistribution(Map<Label, Double> distribution) {
         this.distribution = distribution;
     }
 
-    public Map<String,ArrayList<Integer>>  getUniqueInsNumber() {
+    public Map<Label, ArrayList<Integer>>  getUniqueInsNumber() {
         return uniqueInsNumber;
     }
 
-    public void setUniqueInsNumber(Map<String,ArrayList<Integer>>  uniqueInsNumber) {
+    public void setUniqueInsNumber(Map<Label, ArrayList<Integer>> uniqueInsNumber) {
         this.uniqueInsNumber = uniqueInsNumber;
     }
 
@@ -150,19 +140,19 @@ public class DatasetMetrics{
         this.numOfUsers = numOfUsers;
     }
 
-    public Map<String, Double> getUserCompletenessPercentage() {
+    public Map<User, Double> getUserCompletenessPercentage() {
         return userCompletenessPercentage;
     }
 
-    public void setUserCompletenessPercentage(Map<String, Double> userCompletenessPercentage) {
+    public void setUserCompletenessPercentage(Map<User, Double> userCompletenessPercentage) {
         this.userCompletenessPercentage = userCompletenessPercentage;
     }
 
-    public Map<String,String> getUserConsistencyPercentage() {
+    public Map<User, Double> getUserConsistencyPercentage() {
         return userConsistencyPercentage;
     }
 
-    public void setUserConsistencyPercentage(Map<String,String> userConsistencyPercentage) {
+    public void setUserConsistencyPercentage(Map<User, Double> userConsistencyPercentage) {
         this.userConsistencyPercentage = userConsistencyPercentage;
     }
 }

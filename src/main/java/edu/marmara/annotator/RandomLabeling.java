@@ -81,7 +81,6 @@ public class RandomLabeling{
 
                 //create labeling with user-label-instance remove instance from instancesWithoutLabel
                 //fix it with more than one labelling and same users shouldnt label same instance again
-                // METRICLERI SADECE BURDA AYARLADIM ALT TARAFA DAHA BAKMADIM
                 Thread.sleep(500);
                 double timeSpentInLabeling = (System.currentTimeMillis() - start) / 1000F; //calculates the time elapsed from start of labeling-----not sure-----
                 String timeString= String.valueOf(LocalTime.now());

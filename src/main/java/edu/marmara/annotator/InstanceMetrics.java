@@ -7,13 +7,11 @@ import java.util.Map;
 
 public class InstanceMetrics{
 
-    private int instanceID;
-    private int datasetID;
     private int totalNumberOfLabels;
     private int uniqueNumberOfLabels;
     private int uniqueUsers;
-    private Map<String,Double> labelPercentage;
-    private Map<String,Double> MostFrequent;
+    private Map<Label,Double> labelPercentage;
+    private Map<Label,Double> MostFrequent;
     private double entropy;
 
 
@@ -77,27 +75,27 @@ public class InstanceMetrics{
         int allLabels = this.getTotalNumberOfLabels();
         for (Labelling labelling : labellingArrayList) {
             Instance currentInstance = labelling.getInstance();
-            Map<String, Double> temp = new LinkedHashMap<>();
+            Map<Label, Double> temp = new LinkedHashMap<>();
             for (Labelling labelling1 : labellingArrayList) {
                 for (Label label : labelling1.getLabelArrayList()) {
                     if (currentInstance == labelling1.getInstance()) {
-                        if (temp.containsKey(label.getLabelText())) {
-                            temp.put(label.getLabelText(), (temp.get(label.getLabelText()) + 1));
+                        if (temp.containsKey(label)) {
+                            temp.put(label, (temp.get(label) + 1));
                         } else {
-                            temp.put(label.getLabelText(), 1.0);
+                            temp.put(label, 1.0);
                         }
                     }
                 }
             }
-            Map.Entry <String,Double> entryWithMaxValue  = null;
-            for(Map.Entry<String,Double> currentEntry : temp.entrySet()){
+            Map.Entry <Label,Double> entryWithMaxValue  = null;
+            for(Map.Entry<Label,Double> currentEntry : temp.entrySet()){
                 if(entryWithMaxValue  == null || currentEntry.getValue()
                         .compareTo(entryWithMaxValue.getValue())
                         > 0){
                     entryWithMaxValue = currentEntry;
                 }
             }
-            Map<String,Double> max = new LinkedHashMap<>();
+            Map<Label,Double> max = new LinkedHashMap<>();
             assert entryWithMaxValue != null;
             max.put(entryWithMaxValue.getKey(),entryWithMaxValue.getValue()/allLabels);
             currentInstance.getEvaluationMatrix().setMostFrequent(max);
@@ -106,7 +104,7 @@ public class InstanceMetrics{
 
     private void calculateLabelPercentage(ArrayList<Labelling> labellingArrayList) {
         for(Labelling labelling : labellingArrayList){
-            Map<String ,Double> labelFreq;
+            Map<Label ,Double> labelFreq;
             Instance currentInstance = labelling.getInstance();
             double labelNumber = 0;
             for(Labelling labelling1 : labellingArrayList){
@@ -114,14 +112,14 @@ public class InstanceMetrics{
                     labelNumber += labelling1.getLabelArrayList().size();
                 }
             }
-            Map<String,Double> temp = new LinkedHashMap<>();
+            Map<Label,Double> temp = new LinkedHashMap<>();
             for(Labelling labelling1 : labellingArrayList){
                 for(Label label : labelling1.getLabelArrayList()){
                     if(currentInstance == labelling1.getInstance()){
-                        if(temp.containsKey(label.getLabelText())){
-                            temp.put(label.getLabelText(), (temp.get(label.getLabelText()) +1));
+                        if(temp.containsKey(label)){
+                            temp.put(label, (temp.get(label) +1));
                         }else {
-                            temp.put(label.getLabelText(),1.0);
+                            temp.put(label,1.0);
                         }
                     }
                 }
@@ -137,29 +135,13 @@ public class InstanceMetrics{
         for(Labelling labelling : labellingArrayList){
             Instance currentInstance = labelling.getInstance();
             int uniqueLabels = currentInstance.getEvaluationMatrix().getUniqueNumberOfLabels();
-            Map<String,Double> labelPercentage = currentInstance.getEvaluationMatrix().getLabelPercentage();
+            Map<Label,Double> labelPercentage = currentInstance.getEvaluationMatrix().getLabelPercentage();
             double entropy = 0;
-            for(String key : labelPercentage.keySet()){
+            for(Label key : labelPercentage.keySet()){
                 entropy += -labelPercentage.get(key)*(Math.log(labelPercentage.get(key)) / Math.log(uniqueLabels));
             }
             currentInstance.getEvaluationMatrix().setEntropy(((Double)entropy).isNaN() ? 0.0 : entropy);
         }
-    }
-
-    public int getInstanceID() {
-        return instanceID;
-    }
-
-    public void setInstanceID(int instanceID) {
-        this.instanceID = instanceID;
-    }
-
-    public int getDatasetID() {
-        return datasetID;
-    }
-
-    public void setDatasetID(int datasetID) {
-        this.datasetID = datasetID;
     }
 
     public int getTotalNumberOfLabels() {
@@ -186,19 +168,19 @@ public class InstanceMetrics{
         this.uniqueUsers = uniqueUsers;
     }
 
-    public Map<String, Double> getMostFrequent() {
+    public Map<Label, Double> getMostFrequent() {
         return MostFrequent;
     }
 
-    public void setMostFrequent(Map<String, Double> MostFrequent) {
+    public void setMostFrequent(Map<Label, Double> MostFrequent) {
         this.MostFrequent = MostFrequent;
     }
 
-    public Map<String, Double> getLabelPercentage() {
+    public Map<Label, Double> getLabelPercentage() {
         return labelPercentage;
     }
 
-    public void setLabelPercentage(Map<String, Double> labelPercentage) {
+    public void setLabelPercentage(Map<Label, Double> labelPercentage) {
         this.labelPercentage = labelPercentage;
     }
 

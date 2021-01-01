@@ -20,7 +20,6 @@ public class User {
         this.userType = userType;
         this.assignedDataset = assignedDataset;
         this.consistencyCheckProbability = consistencyCheckProbability;
-        this.evaluationMatrix.setUserID(this.getUserID());
 
         log.log(String.format("User %s created as %s.", this.userName, this.userType));
     }

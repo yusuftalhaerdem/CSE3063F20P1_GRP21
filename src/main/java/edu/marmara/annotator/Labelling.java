@@ -31,9 +31,6 @@ class Labelling {
         this.dateTime = dateTime;
     }
 
-    public Labelling() {
-    }
-
     public int getDataset() {
         return datasetID;
     }

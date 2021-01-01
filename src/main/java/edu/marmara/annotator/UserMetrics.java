@@ -4,154 +4,152 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class UserMetrics{
+public class UserMetrics {
 
-    private int userID;/////create setter and getters in Matrix class maybe
+    private ArrayList<User> allUsers;
     private int numOfDatasets;
-    private Map<Integer ,String> datasetCompletenessPercentage;
+    private Map<Dataset, Double> datasetCompletenessPercentage;
     private int labeledInstances;
     private int unqLabeledInstances;
-    private String consistencyPercentage;
+    private double consistencyPercentage;
     private double avgTime;
     private double std;
 
-    UserMetrics(){}
+    UserMetrics() {
+    }
 
-    public void calculateAll(ArrayList<Dataset> datasetArrayList){
+    public void calculateAll(ArrayList<Dataset> datasetArrayList) {
+        allUsers = allUsers(datasetArrayList);
+
         calculateNumOfDatasets(datasetArrayList);
         calculateDatasetCompletenessPercentage(datasetArrayList);
         calculateLabeledInstances(datasetArrayList);
         calculateUnqLabeledInstances(datasetArrayList);
-        calculateConsistencyPercentage(datasetArrayList);//eksik hala sanırım
+        calculateConsistencyPercentage(datasetArrayList);
         calculateAvgTime(datasetArrayList);
         calculateStd(datasetArrayList);
     }
 
-    public void calculateNumOfDatasets(ArrayList<Dataset> datasetArrayList){//Number of datasets assigned
-        int numOfDatasets=0;
-        for(int i=0;i<datasetArrayList.size();i++){
-            ArrayList<User> idArrayList=datasetArrayList.get(i).getAssignedUsersArrayList();
-            for(int j=0;j<idArrayList.size();j++)
-                if(idArrayList.get(j).getUserID()==this.userID)
+    public void calculateNumOfDatasets(ArrayList<Dataset> datasetArrayList) {//Number of datasets assigne
+        for (User user : this.allUsers) {
+            int numOfDatasets = 0;
+            for (Dataset dataset : datasetArrayList) {
+                ArrayList<User> assignedUsers = dataset.getAssignedUsersArrayList();
+                if (assignedUsers.contains(user))
                     numOfDatasets++;
-        }
-        this.setNumOfDatasets(numOfDatasets);
-    }
-
-    public void calculateDatasetCompletenessPercentage(ArrayList<Dataset> datasetArrayList){//List of all datasets with their completeness percentage
-        Map<Integer ,String> datasetCompletenessPercentage = new LinkedHashMap<>();
-        for(int i=0;i<datasetArrayList.size();i++){
-            ArrayList<User> idArrayList=datasetArrayList.get(i).getAssignedUsersArrayList();
-            for(int j=0;j<idArrayList.size();j++)
-                if(idArrayList.get(j).getUserID()==userID){
-                    int percentage = (int) ((1 - datasetArrayList.get(i).getEvaluationMatrix().getCompletenessPercentage()) * 100);
-                    datasetCompletenessPercentage.put(datasetArrayList.get(i).getDatasetID(),(" %" + percentage));
-                }
-        }
-        this.setDatasetCompletenessPercentage(datasetCompletenessPercentage);
-    }
-
-    public void calculateLabeledInstances(ArrayList<Dataset> datasetArrayList){//Total number of instances labeled
-        int labeledInstances=0;
-        for(int i=0;i<datasetArrayList.size();i++){
-            ArrayList<Labelling> labellingArrayList =datasetArrayList.get(i).getLabellingArrayList();
-            for(int j = 0; j< labellingArrayList.size(); j++){
-                if(labellingArrayList.get(j).getUser().getUserID()==userID)
-                    labeledInstances++;
             }
+            user.getEvaluationMatrix().setNumOfDatasets(numOfDatasets);
         }
-        this.setLabeledInstances(labeledInstances);
     }
-    public void calculateUnqLabeledInstances(ArrayList<Dataset> datasetArrayList){//Total number of unique instances labeled
-        int unqLabeledInstances=0;
-        for(int i=0;i<datasetArrayList.size();i++){
-            ArrayList<Labelling> labellingArrayList =datasetArrayList.get(i).getLabellingArrayList();
-            ArrayList<Instance> instanceArrayList=datasetArrayList.get(i).getInstanceArrayList();
-            for(int j=0;j<instanceArrayList.size();j++){//aramak üzere bir instance seçiyor
-                Instance instanceToSearch= instanceArrayList.get(j);
-                boolean found=false;
-                for(int k = 0; k< labellingArrayList.size(); k++){//labelinglere bakacak ki var mı
-                    if(labellingArrayList.get(k).getInstance()==instanceToSearch){//instancea bakıyor aradığımız mı
-                        if(labellingArrayList.get(k).getUser().getUserID()==userID){
-                            found=true;
-                        }
-                        else{
-                            break;
-                        }
-                    }
-                    if(found&&k== labellingArrayList.size()-1)
-                        unqLabeledInstances++;
+
+    public void calculateDatasetCompletenessPercentage(ArrayList<Dataset> datasetArrayList) {//List of all datasets with their completeness percentage
+        for (User user : this.allUsers) {
+            Map<Dataset, Double> datasetCompletenessPercentage = new LinkedHashMap<>();
+            for (Dataset dataset : datasetArrayList) {
+                ArrayList<User> assignedUsers = dataset.getAssignedUsersArrayList();
+                if (assignedUsers.contains(user))
+                    datasetCompletenessPercentage.put(dataset, dataset.getEvaluationMatrix().getCompletenessPercentage());
+            }
+            user.getEvaluationMatrix().setDatasetCompletenessPercentage(datasetCompletenessPercentage);
+        }
+
+    }
+
+    public void calculateLabeledInstances(ArrayList<Dataset> datasetArrayList) {//Total number of instances labeled
+        for (User user : this.allUsers) {
+            int labeledInstances = 0;
+            for (Dataset dataset : datasetArrayList) {
+                ArrayList<Labelling> labellingArrayList = dataset.getLabellingArrayList();
+                for (Labelling labelling : labellingArrayList)
+                    if (labelling.getUser() == user)
+                        labeledInstances++;
+            }
+            user.getEvaluationMatrix().setLabeledInstances(labeledInstances);
+
+        }
+    }
+
+    public void calculateUnqLabeledInstances(ArrayList<Dataset> datasetArrayList) {//Total number of unique instances labeled
+        for (User user : this.allUsers) {
+            ArrayList<Integer> labellingIds = new ArrayList<>();
+            for (Dataset dataset : datasetArrayList) {
+                ArrayList<Labelling> labellingArrayList = dataset.getLabellingArrayList();
+                for (Labelling labelling : labellingArrayList) {
+                    if (!labellingIds.contains(labelling.getInstance().getInstanceID()))
+                        labellingIds.add(labelling.getInstance().getInstanceID());
                 }
             }
+            user.getEvaluationMatrix().setUnqLabeledInstances(labellingIds.size());
         }
-        this.setUnqLabeledInstances(unqLabeledInstances);
     }
-    public void calculateConsistencyPercentage(ArrayList<Dataset> datasetArrayList){//Consistency percentage/////anlamadım-----------------soram takım arkilerime
-        int totalFound=0;
-        int totalLabeledInstances=0;
-        for(int i=0;i<datasetArrayList.size();i++){ //datasetlerin içine bakıyor sırasıyla
-            Dataset dataset=datasetArrayList.get(i);
 
-            //instanceları bulacağız ve aynı user buna ne aynı etiketi atamış mi bulacağız
-
-            for (int k = 0; k < dataset.getInstanceArrayList().size(); k++) {//bir instance seçiyor araştırmak üzere
-                for(int j=0;j<dataset.getLabellingArrayList().size();j++) {//labellanmalara bakıyor bulmak için
-                    Labelling labelling = dataset.getLabellingArrayList().get(j);
-                    if(labelling.getUser().getUserID()==userID){//bizim userın atayıp atamadığını buluyor
-                        totalLabeledInstances++;
-                        Label previousLabel= labelling.getLabelArrayList().get(0);
-                        for(int l = 1; l< labelling.getLabelArrayList().size(); l++){
-                            if(previousLabel== labelling.getLabelArrayList().get(l)){
-
-                            }else if(l== labelling.getLabelArrayList().size()-1){
-                                totalFound++;
-                            }else{
-                                continue;
+    public void calculateConsistencyPercentage(ArrayList<Dataset> datasetArrayList) {//Consistency percentage/////anlamadım-----------------soram takım arkilerime
+        double consistencyPercentage = 0;
+        int total = 0;
+        int same = 0;
+        for (User user : this.allUsers) {
+            for (Dataset dataset : datasetArrayList) {
+                ArrayList<Labelling> labellingArrayList = dataset.getLabellingArrayList();
+                for (Labelling labelling : labellingArrayList) {
+                    if (user == labelling.getUser()) {
+                        for (Labelling labelling1 : labellingArrayList)
+                            if (labelling.getInstance() == labelling1.getInstance()) {
+                                total++;
+                                if (labelling.getLabelArrayList().equals(labelling1.getLabelArrayList()))
+                                    same++;
                             }
-                        }
+                    }
+
+                }
+            }
+            consistencyPercentage = (double) same / (double) total;
+            user.getEvaluationMatrix().setConsistencyPercentage(consistencyPercentage);
+        }
+
+    }
+
+    public void calculateAvgTime(ArrayList<Dataset> datasetArrayList) {//Average time spent in labeling an instance in seconds
+        double counter = 0;
+        double total = 0;
+        double avgTime;
+        for (User user : this.allUsers) {
+            for (Dataset dataset : datasetArrayList) {
+                ArrayList<Labelling> labellingArrayList = dataset.getLabellingArrayList();
+                for (Labelling labelling : labellingArrayList) {
+                    if (user == labelling.getUser()) {
+                        counter++;
+                        total += labelling.getTimeSpent();
                     }
                 }
             }
-
+            avgTime = total / counter;
+            user.getEvaluationMatrix().setAvgTime(avgTime);
         }
-        double consistencyPercentage=(double)totalFound/(double)totalLabeledInstances;
-        this.consistencyPercentage="%"+consistencyPercentage*100;
     }
-    public void calculateAvgTime(ArrayList<Dataset> datasetArrayList){//Average time spent in labeling an instance in seconds
-        double counter=0;
-        double total=0;
-        for(int i=0;i<datasetArrayList.size();i++){
-            for(int j=0;j<datasetArrayList.get(i).getLabellingArrayList().size();j++){
-                if(datasetArrayList.get(i).getLabellingArrayList().get(j).getUser().getUserID()==userID){
-                    counter++;
-                    total+=datasetArrayList.get(i).getLabellingArrayList().get(j).getTimeSpent();
+
+    public void calculateStd(ArrayList<Dataset> datasetArrayList) {//Std. dev. of  time spent in labeling an instance in seconds--- takes mean from field6 and field3
+        double total = 0;
+        for (User user : this.allUsers) {
+            for (Dataset dataset : datasetArrayList) {
+                ArrayList<Labelling> labellingArrayList = dataset.getLabellingArrayList();
+                for (Labelling labelling : labellingArrayList) {
+                    total += Math.pow(user.getEvaluationMatrix().getAvgTime() - labelling.getTimeSpent(), 2);
                 }
             }
+            user.getEvaluationMatrix().setStd(Math.sqrt(total));
         }
-        double avgTime=total/counter;
-        this.setAvgTime(avgTime);
     }
-    public void calculateStd(ArrayList<Dataset> datasetArrayList){//Std. dev. of  time spent in labeling an instance in seconds--- takes mean from field6 and field3
-        double total=0;
-        for(int i=0;i<datasetArrayList.size();i++){
-            for(int j=0;j<datasetArrayList.get(i).getLabellingArrayList().size();j++){
-                if(datasetArrayList.get(i).getLabellingArrayList().get(j).getUser().getUserID()==userID){
-                    double timeSpent=datasetArrayList.get(i).getLabellingArrayList().get(j).getTimeSpent();
-                    total+= Math.pow(avgTime-timeSpent, 2);
-                }
+
+    private ArrayList<User> allUsers(ArrayList<Dataset> datasetArrayList) {
+        ArrayList<User> users = new ArrayList<>();
+        for (Dataset dataset : datasetArrayList) {
+            ArrayList<User> assignedUsers = dataset.getAssignedUsersArrayList();
+            for (User user : assignedUsers) {
+                if (!users.contains(user))
+                    users.add(user);
             }
         }
-        total=total/labeledInstances;
-        double std=Math.sqrt(total);
-        this.setStd(std);
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
+        return users;
     }
 
     public int getNumOfDatasets() {
@@ -162,11 +160,11 @@ public class UserMetrics{
         this.numOfDatasets = numOfDatasets;
     }
 
-    public Map<Integer ,String> getDatasetCompletenessPercentage() {
+    public Map<Dataset, Double> getDatasetCompletenessPercentage() {
         return datasetCompletenessPercentage;
     }
 
-    public void setDatasetCompletenessPercentage(Map<Integer ,String> datasetCompletenessPercentage) {
+    public void setDatasetCompletenessPercentage(Map<Dataset, Double> datasetCompletenessPercentage) {
         this.datasetCompletenessPercentage = datasetCompletenessPercentage;
     }
 
@@ -186,11 +184,11 @@ public class UserMetrics{
         this.unqLabeledInstances = unqLabeledInstances;
     }
 
-    public String getConsistencyPercentage() {
+    public double getConsistencyPercentage() {
         return consistencyPercentage;
     }
 
-    public void setConsistencyPercentage(String consistencyPercentage) {
+    public void setConsistencyPercentage(double consistencyPercentage) {
         this.consistencyPercentage = consistencyPercentage;
     }
 
