@@ -6,8 +6,8 @@ import java.util.Map;
 
 public class UserMetrics {
 
-    private ArrayList<User> allUsers;
-    private int numOfDatasets;
+    private ArrayList<User> allUsers;   //bu bir user olacak diye düşünyüorum ve muhtemelen öyle ama kodu fazla karıştırmayalım değilse de
+    private int numOfDatasets;      //bunu arraylist olarak tutabiliriz bence ama gerek yok sanırım
     private Map<Dataset, Double> datasetCompletenessPercentage;
     private int labeledInstances;
     private int unqLabeledInstances;

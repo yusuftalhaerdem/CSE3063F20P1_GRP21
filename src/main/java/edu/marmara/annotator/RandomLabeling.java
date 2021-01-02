@@ -6,41 +6,32 @@ import java.util.ArrayList;
 
 public class RandomLabeling{
 
-    private ArrayList<User> userArrayList;
-    private ArrayList<Label> labelArrayList;
-    private ArrayList<Instance> instanceArrayList;
-    private ArrayList<Labelling> labellingArrayList;
-    private ArrayList<Dataset> datasetArrayList;
-    private Dataset currentDataset;
+    RandomLabeling() {    }
 
-    RandomLabeling(Dataset dataset, ArrayList<User> userArrayList, ArrayList<Labelling> labellingArrayList, ArrayList<Dataset> datasetArrayList) {
-
-        this.currentDataset = dataset;
-        this.instanceArrayList = dataset.getInstanceArrayList();
-        this.labelArrayList = dataset.getLabelArrayList();
-        this.userArrayList = userArrayList;
-        this.labellingArrayList = dataset.getLabellingArrayList();    ///bunlar muhtemelen başlatılmamış olacak inputa söyle halletsin
-        this.datasetArrayList = datasetArrayList;//not sure if needed but it will be needed probably for output things.
-
-        ArrayList<User> userAssignedToDataset = new ArrayList<>();
-
-        for (int i = 0; i < userArrayList.size(); i++) {
-            for (int j = 0; j < userArrayList.get(i).getAssignedDataset().size(); j++) {
-                if (userArrayList.get(i).getAssignedDataset().get(j) == dataset.getDatasetID())
-                    userAssignedToDataset.add(userArrayList.get(i));
+    public void retrieveData(ArrayList<Labelling> labellingArrayList,ArrayList<Dataset> datasetArrayList) {  //this will do some things in randomlabeling
+        for(int i=0;i<datasetArrayList.size();i++){
+            for(int j=0;j<labellingArrayList.size();j++){
+                if(labellingArrayList.get(j).getDataset()==datasetArrayList.get(i).getDatasetID()) {  //burada neden getDataset int döndürüyo ya
+                    datasetArrayList.get(i).getLabellingArrayList().add(labellingArrayList.get(j));
+                    for(int k=0;k<datasetArrayList.get(i).getInstanceArrayList().size();k++) {
+                        Instance instance= datasetArrayList.get(i).getInstanceArrayList().get(k);
+                        if(instance==labellingArrayList.get(j).getInstance()){//instance'a labelları ekliyor
+                            instance.getLabels().addAll(labellingArrayList.get(j).getLabelArrayList());
+                        }
+                    }
+                }
             }
         }
-        // sadece assigned userlar gönderiliyor programa
-        this.userArrayList = userAssignedToDataset;
 
     }
 
-    public void retrieveData() {  //this will do some things in randomlabeling
+    public void labelByUser(Dataset currentDataset,ArrayList<User> userArrayList1,ArrayList<Labelling> labellingArrayList,ArrayList<Dataset> datasetArrayList) throws InterruptedException {
 
-    }
+        //labellingArrayList input is probably wrong so im gonna do that in here
 
-    public void labelByUser() throws InterruptedException {
-
+        ArrayList<User> userArrayList=getUserArrayList(userArrayList1,currentDataset);
+        ArrayList<Label> labelArrayList= currentDataset.getLabelArrayList();
+        ArrayList<Instance> instanceArrayList= currentDataset.getInstanceArrayList();
         //etiketleri ata ve labellinge oluştur productı, user-label-instance olarak
 
         ArrayList<Instance> instancesWithoutLabel = new ArrayList<>(instanceArrayList);
@@ -82,21 +73,27 @@ public class RandomLabeling{
                 //create labeling with user-label-instance remove instance from instancesWithoutLabel
                 //fix it with more than one labelling and same users shouldnt label same instance again
                 Thread.sleep(500);
+
+                //bunların sırası değişecek ve bişitik hiza ne ya
+
                 double timeSpentInLabeling = (System.currentTimeMillis() - start) / 1000F; //calculates the time elapsed from start of labeling-----not sure-----
                 String timeString= String.valueOf(LocalTime.now());
                 timeString= timeString.substring(0,8);
-                Labelling labelling = new Labelling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", timeSpentInLabeling, findFinalLabel(labelsToAssign));
+                Labelling labelling = new Labelling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", 0, findFinalLabel(labelsToAssign));
                 labelling.setDateTime(LocalDate.now()+", "+timeString);
                 labellingArrayList.add(labelling);
+                currentDataset.getLabellingArrayList().add(labelling);
+
                 currentDataset.getEvaluationMatrix().calculateAll(datasetArrayList);
                 labelling.getInstance().getEvaluationMatrix().calculateAll(datasetArrayList);
                 chosenUser.getEvaluationMatrix().calculateAll(datasetArrayList);
+                /*
                 out.outputDataset("output.json", datasetArrayList);
                 out.outputMetrics("metrics.json", datasetArrayList, userArrayList);
                 log.log(String.format("user id:%s %s tagged instance id:%s with class label %s instance:\"%s\"",
                         chosenUser.getUserID(), chosenUser.getUserType(), instanceToLabel.getInstanceID(),
                         labelsToAssign, instanceToLabel.getInstanceText()));
-
+*/
             } else { //if instance is already labeled by already, make sure same user does not label it again!!
 
                 if (instancesWithLabel.size() != 0) {
@@ -126,27 +123,40 @@ public class RandomLabeling{
                         Labelling labelling = new Labelling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", timeSpentInLabeling, findFinalLabel(labelsToAssign));
                         labelling.setDateTime(LocalDate.now()+", "+timeString);
                         labellingArrayList.add(labelling);
+                        currentDataset.getLabellingArrayList().add(labelling);
+
                         currentDataset.getEvaluationMatrix().calculateAll(datasetArrayList);
                         labelling.getInstance().getEvaluationMatrix().calculateAll(datasetArrayList);
                         chosenUser.getEvaluationMatrix().calculateAll(datasetArrayList);
+                        /*
                         out.outputDataset("output.json", datasetArrayList);
                         out.outputMetrics("metrics.json", datasetArrayList, userArrayList);
                         log.log(String.format("user id:%s %s tagged instance id:%s with class label %s instance:\"%s\"",
                                 chosenUser.getUserID(), chosenUser.getUserType(), instanceToLabel.getInstanceID(),
                                 labelsToAssign, instanceToLabel.getInstanceText()));
-                        //sendItToOutput here, labellingArrayList, updateMatrix
+                        //sendItToOutput here, labellingArrayList, updateMatrix*/
                     } else {
                         System.err.println("there is no suitable place to assign another label to instance");
                     }
-
                 }
-
                 System.out.println("end of a while loop, one user is labelled");
             }
         }
 
         System.out.println("end of userLabeling");
 
+    }
+
+    private ArrayList<User> getUserArrayList(ArrayList<User> userArrayList1,Dataset dataset) {
+        ArrayList<User> userAssignedToDataset = new ArrayList<>();
+
+        for (int i = 0; i < userArrayList1.size(); i++) {
+            for (int j = 0; j < userArrayList1.get(i).getAssignedDataset().size(); j++) {
+                if (userArrayList1.get(i).getAssignedDataset().get(j) == dataset.getDatasetID())
+                    userAssignedToDataset.add(userArrayList1.get(i));
+            }
+        }
+        return userAssignedToDataset;
     }
 
     private Instance getRandomInstance(ArrayList<Instance> instanceArrayList) {

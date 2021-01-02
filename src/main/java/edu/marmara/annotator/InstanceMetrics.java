@@ -7,12 +7,12 @@ import java.util.Map;
 
 public class InstanceMetrics{
 
-    private int totalNumberOfLabels;
+    private int totalNumberOfLabels;    //bunlar dediğim bu 3ü
     private int uniqueNumberOfLabels;
-    private int uniqueUsers;
+    private int uniqueUsers;        //bunları int değil de başka bir türde ifade edebiliyor muyuz bakılacak
     private Map<Label,Double> labelPercentage = new LinkedHashMap<>();
     private Map<Label,Double> MostFrequentLbl = new LinkedHashMap<>();
-    private double entropy;
+    private double entropy;         //ben hala bu ne bilmiyorum bile
 
 
     InstanceMetrics(){}

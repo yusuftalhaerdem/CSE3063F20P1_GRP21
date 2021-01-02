@@ -6,8 +6,8 @@ public class Instance {
 
     private String instanceText;
     private int instanceID;
-    private int datasetID;
-    private String datasetName;
+    private int datasetID;      //gidecekkkkk
+    private String datasetName;         //bu gidecek ve dataset olacak
     private int maxLabelPerInstance;
     private ArrayList<Label> labels;
     private InstanceMetrics evaluationMatrix = new InstanceMetrics();

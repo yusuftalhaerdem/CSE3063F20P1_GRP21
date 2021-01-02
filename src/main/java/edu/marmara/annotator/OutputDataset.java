@@ -3,9 +3,9 @@ package edu.marmara.annotator;
 import java.util.ArrayList;
 
 public class OutputDataset {
-    private int datasetId;
-    private String datasetName;
-    private int lblPerIns;
+    private int datasetId;          //bu gidecek
+    private String datasetName;     //ve bu da eşlik edecek
+    private int lblPerIns;          //buna gerek var mı bilmiyorum bile
     private ArrayList<Object> classLabels;
     private ArrayList<Object> instances;
     private ArrayList<Object> labelAssignments;

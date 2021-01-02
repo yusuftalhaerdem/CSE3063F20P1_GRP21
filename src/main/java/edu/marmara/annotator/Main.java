@@ -14,10 +14,8 @@ public class Main {
         ArrayList<Instance> instanceArrayList = new ArrayList<>();
 
         ArrayList<Labelling> labellingArrayList = new ArrayList<>();
-        ArrayList<User> lastUsers = new ArrayList<>();
-        ArrayList<Instance> lastInstance = new ArrayList<>();
 
-        //hasancan input alıyor ama yanlış biraz bakacaz şuna konuşcaz mümkünse bugün
+        //bazı sorunları inputta hallettsek iyi olur ama oraya da ben girmek istemiyorum ./
         Input input = new Input(datasetArrayList, userArrayList, labelArrayList, instanceArrayList, labellingArrayList);
         int currentDataset = input.getInputs();
 
@@ -27,10 +25,32 @@ public class Main {
             System.out.println(labellingArrayList.get(i).toString());
         }
 
-        Dataset dataset = datasetArrayList.get(currentDataset - 1);//hata alıyon mu bak hasancan öyle bişeyler diyordu
-        RandomLabeling rl = new RandomLabeling(dataset, userArrayList, labellingArrayList, datasetArrayList);
-        rl.retrieveData();
-        rl.labelByUser();
+        Dataset dataset = findDataset(datasetArrayList,currentDataset);//hata alıyon mu bak hasancan öyle bişeyler diyordu
+        RandomLabeling rl = new RandomLabeling();
+        rl.retrieveData(labellingArrayList,datasetArrayList);
+
+
+        //GUIDE ME YOU ____ BOI
+        //this part will have a user panel addition, if user panel is passed we will go to random labelling.
+        UserLabelling uL = new UserLabelling();
+        boolean isRandomLabelling=uL.userLabellingOrRandomLabelling(userArrayList,datasetArrayList,currentDataset);
+
+
+        //usera bir şekilde sormuş olmamız lazım random labelling yapacak mıyız, bunu birileri okusun
+        rl.labelByUser(dataset,userArrayList,labellingArrayList,datasetArrayList);
+        System.out.println(" "); //THE DEBUGGER
     }
+
+    private static Dataset findDataset(ArrayList<Dataset> datasetArrayList, int currentDataset) {
+        Dataset dataset=new Dataset();
+        for(int i=0;i<datasetArrayList.size();i++){
+            if(datasetArrayList.get(i).getDatasetID()==currentDataset){
+                dataset=datasetArrayList.get(i);
+                return dataset;
+            }
+        }
+        return dataset;
+    }
+
 
 }

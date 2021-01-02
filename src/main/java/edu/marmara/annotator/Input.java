@@ -14,10 +14,10 @@ public class Input {
     private ArrayList<Label> labelArrayList;
     private ArrayList<Instance> instanceArrayList;
     private ArrayList<Labelling> labellingArrayList;
-    private String filePath;
-    private String datasetPath;
-    private String datasetName;
-    private int datasetId;
+    private String filePath;    //bu da gerekli mi bilmiyorum hiç
+    private String datasetPath; //bunlar gereksiz
+    private String datasetName; //bu gereksiz
+    private int datasetId;      //bu kalabilir belki hatta bu ne işe yarıyor silinsin bu
 
     public Input(ArrayList<Dataset> datasetArrayList, ArrayList<User> userArrayList, ArrayList<Label> labelArrayList, ArrayList<Instance> instanceArrayList, ArrayList<Labelling> labellingArrayList) {
         this.datasetArrayList = datasetArrayList;

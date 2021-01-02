@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 class Labelling {
 
-    private int datasetID;
+    private int datasetID;      //bunu dataset objesi yapacağız
     private Instance instance;
     private ArrayList<Label> labelArrayList;
     private Label finalLabel;
     private User user;
-    private String dateTime;
+    private String dateTime;    //bunu date ya da datetime objesi yapacağız
     private double timeSpent;
 
 

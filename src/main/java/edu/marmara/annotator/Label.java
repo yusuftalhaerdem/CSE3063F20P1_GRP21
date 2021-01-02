@@ -4,9 +4,9 @@ public class Label {
 
     private String labelText;
     private int labelID;
-    private String datasetName;
-    private int datasetID;
-    private int lblPerIns;
+    private String datasetName; //buna da gerek kalmayacak
+    private int datasetID;      //bu gidecek dataset gelecek
+    private int lblPerIns;      //bunu hiç kullanmıyoruz sanırım sorulup silinsin
     private int numberOfTimes;
 
     Label(int labelID, String labelText, String datasetName, int datesetID, int lblPerIns) {
