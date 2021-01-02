@@ -92,12 +92,12 @@ public class UserLabelling {
         Log log = Log.getInstance();
 
 
-        if(!dataset.getAssignedUsersArrayList().contains(user)){
+        if (!dataset.getAssignedUsersArrayList().contains(user)) {
             System.out.println("This user is not assigned to this dataset. Please log in with another user or select another dataset.");
             return;
         }
 
-        if(user.getUserType().equals("RandomBot")){
+        if (user.getUserType().equals("RandomBot")) {
             System.out.println("User type is not suitable for manual labelling.");
             return;
         }
@@ -110,7 +110,8 @@ public class UserLabelling {
             }
         }
 
-        int lastLabeledInstanceID = user.getLastLabeled().getInstanceID()>0 ? user.getLastLabeled().getInstanceID() : 0;
+        int lastLabeledInstanceID = user.getLastLabeled().getInstanceID() > 0 ? user.getLastLabeled().getInstanceID() : 0;
+        Instance instance = findInstance(lastLabeledInstanceID, unlabeledInstances);
         //labelling part
         while (unlabeledInstances.size() != 0) {    //array bitene kadar labellamaya devam edecek
 
@@ -123,7 +124,10 @@ public class UserLabelling {
             if (Math.random() > user.getConsistencyCheckProbability()) {
                 //mevcut part
                 chosedNew = true;
-                instanceToLabel = unlabeledInstances.get(lastLabeledInstanceID);
+                if (lastLabeledInstanceID != 0)
+                    instanceToLabel = instance;
+                else
+                    instanceToLabel = unlabeledInstances.get(0);
 
                 labeledInstances.add(instanceToLabel);//listeleri düzenliyor şimdiden
                 unlabeledInstances.remove(instanceToLabel);
@@ -135,7 +139,10 @@ public class UserLabelling {
                 //şunu methoda al lütfen zel
                 if (listToFindRandomInstance.size() == 0) {
                     chosedNew = true;
-                    instanceToLabel = unlabeledInstances.get(lastLabeledInstanceID);
+                    if (lastLabeledInstanceID != 0)
+                        instanceToLabel = instance;
+                    else
+                        instanceToLabel = unlabeledInstances.get(0);
 
                     labeledInstances.add(instanceToLabel);//listeleri düzenliyor şimdiden
                     unlabeledInstances.remove(instanceToLabel);
@@ -148,7 +155,10 @@ public class UserLabelling {
                     // eğer bulamazsa etiketlenmemişlerden seçecek
                     if (listToFindRandomInstance.size() == 0) {
                         chosedNew = true;
-                        instanceToLabel = unlabeledInstances.get(lastLabeledInstanceID);
+                        if (lastLabeledInstanceID != 0)
+                            instanceToLabel = instance;
+                        else
+                            instanceToLabel = unlabeledInstances.get(0);
 
                         labeledInstances.add(instanceToLabel);//listeleri düzenliyor şimdiden
                         unlabeledInstances.remove(instanceToLabel);
@@ -204,7 +214,7 @@ public class UserLabelling {
             out.outputMetrics("metrics.json", datasetArrayList, userArrayList);
 
             ArrayList<String> labels = new ArrayList<>();
-            for(Label label : labelsToAssign)
+            for (Label label : labelsToAssign)
                 labels.add(label.getLabelText());
             log.log(String.format("user id:%s %s tagged instance id:%s with class label %s instance:\"%s\"",
                     user.getUserID(), user.getUserType(), instanceToLabel.getInstanceID(),
@@ -250,6 +260,14 @@ public class UserLabelling {
         else    //prints the last element
             System.out.println(labelArrayList.get(size - 1).getLabelText());
 
+    }
+
+    private Instance findInstance(int instanceID, ArrayList<Instance> instanceArrayList) {
+        for (int i = 0; i < instanceArrayList.size(); i++)
+            if (instanceArrayList.get(i).getInstanceID() == instanceID)
+                return instanceArrayList.get(i);
+
+        return new Instance();
     }
 
 }
