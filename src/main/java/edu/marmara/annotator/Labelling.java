@@ -7,7 +7,6 @@ class Labelling {
     private int datasetID;      //bunu dataset objesi yapacağız
     private Instance instance;
     private ArrayList<Label> labelArrayList;
-    private Label finalLabel;
     private User user;
     private String dateTime;    //bunu date ya da datetime objesi yapacağız
     private double timeSpent;
@@ -20,7 +19,6 @@ class Labelling {
         this.user = user;
         this.dateTime = dateTime;
         this.timeSpent = timeSpent;
-        this.finalLabel = finalLabel;
     }
 
     Labelling(Dataset dataset, Instance instance, ArrayList<Label> labelArrayList, User user, String dateTime) {

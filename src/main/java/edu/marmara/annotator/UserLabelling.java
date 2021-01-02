@@ -72,7 +72,7 @@ public class UserLabelling {
 
         //bir şekilde userın son etiketlediği databasei ve instance getirmen lazım ki wtf hoca yeter aq ya
         //bunu şey yapacam datasetin içine girecek hangi elemana kadar etiketlemiş bakacak ve oradan devam edecek
-
+        Output out = new Output();
         ArrayList<Instance> unlabeledInstances=new ArrayList<>();
         ArrayList<Instance> labeledInstances=new ArrayList<>();
 
@@ -168,6 +168,9 @@ public class UserLabelling {
             dataset.getLabellingArrayList().add(labelling);
             instanceToLabel.getLabels().addAll(labelsToAssign);
             System.out.println("given labels are assigned to instance succesfully.\n\n");
+
+            out.outputDataset("output.json", datasetArrayList);
+            out.outputMetrics("metrics.json", datasetArrayList, userArrayList);
 
             double timeSpentInLabeling = (System.currentTimeMillis() - start) / 1000F; //calculates the time elapsed from start of labeling-----not sure-----
             labelling.setTimeSpent(timeSpentInLabeling);
