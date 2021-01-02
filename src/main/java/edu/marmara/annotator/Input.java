@@ -13,27 +13,24 @@ public class Input {
     private ArrayList<User> userArrayList;
     private ArrayList<Label> labelArrayList;
     private ArrayList<Instance> instanceArrayList;
-    private ArrayList<Labelling> labellingArrayList;
-    private String filePath;    //bu da gerekli mi bilmiyorum hiç
-    private String datasetPath; //bunlar gereksiz
-    private String datasetName; //bu gereksiz
-    private int datasetId;      //bu kalabilir belki hatta bu ne işe yarıyor silinsin bu
 
-    public Input(ArrayList<Dataset> datasetArrayList, ArrayList<User> userArrayList, ArrayList<Label> labelArrayList, ArrayList<Instance> instanceArrayList, ArrayList<Labelling> labellingArrayList) {
-        this.datasetArrayList = datasetArrayList;
-        this.userArrayList = userArrayList;
-        this.filePath = "config.json";
-        this.instanceArrayList = instanceArrayList;
-        this.labelArrayList = labelArrayList;
-        this.labellingArrayList = labellingArrayList;
-    }
+
 
     public Input() {
     }
 
-    public int getInputs() {
-        Log log = Log.getInstance();
+    public int getInputs(ArrayList<Dataset> datasetArrayList, ArrayList<User> userArrayList, ArrayList<Label> labelArrayList, ArrayList<Instance> instanceArrayList, ArrayList<Labelling> labellingArrayList) {
+        this.datasetArrayList = datasetArrayList;
+        this.userArrayList = userArrayList;
+        this.instanceArrayList = instanceArrayList;
+        this.labelArrayList = labelArrayList;
 
+        Log log = Log.getInstance();
+        String datasetPath;
+        int datasetId;
+        String datasetName;
+        String filePath;
+        //filePath = "config.json";
         int current_dataset_id = -1;
         try {
             JSONParser parser = new JSONParser();
@@ -42,7 +39,7 @@ public class Input {
             Object obj = parser.parse(fileReader);
             JSONObject jsonObject = (JSONObject) obj;
 
-            current_dataset_id = ((Long)jsonObject.get("current dataset")).intValue();
+            current_dataset_id = ((Long) jsonObject.get("current dataset")).intValue();
 
             // config dosyasından user değerleri alınan for döngüsü
             JSONArray users = (JSONArray) jsonObject.get("users");
@@ -50,17 +47,12 @@ public class Input {
                 JSONObject address = (JSONObject) users.get(i);
 
                 String userName = (String) address.get("user name");
-                int userId = ((Long)address.get("user id")).intValue();
+                int userId = ((Long) address.get("user id")).intValue();
                 String userType = (String) address.get("user type");
+                String userPassword = (String) address.get("password");
                 double checkProbability = (double) address.get("consistency check probability");
 
-                JSONArray assigned = (JSONArray) address.get("assigned databases");
-                ArrayList<Integer> assignedArray = new ArrayList<>();
-                for (int j = 0; j < assigned.size(); j++) {
-                    assignedArray.add(((Long) assigned.get(j)).intValue());
-                }
-
-                User user = new User(userId, userName, userType, assignedArray, checkProbability);
+                User user = new User(userId, userName, userPassword, userType, checkProbability);
                 userArrayList.add(user);
             }
 
@@ -76,8 +68,8 @@ public class Input {
 
                 JSONArray assigned = (JSONArray) address.get("assigned users");
                 for (int j = 0; j < assigned.size(); j++) {
-                    for(User user : userArrayList){
-                        if(user.getUserID() == ((Long)assigned.get(j)).intValue()){
+                    for (User user : userArrayList) {
+                        if (user.getUserID() == ((Long) assigned.get(j)).intValue()) {
                             assignedUsers.add(user);
                         }
                     }
@@ -136,10 +128,10 @@ public class Input {
                 JSONObject jo = (JSONObject) object;
 
                 if (!jo.isEmpty()) {
-                    JSONArray dataset_json_array = (JSONArray)jo.get("Datasets");
-                    for (int i=0; i<dataset_json_array.size(); i++){
-                        JSONObject adres = (JSONObject)dataset_json_array.get(i);
-                        int dataset_id =  ((Long) adres.get("datasetId")).intValue();
+                    JSONArray dataset_json_array = (JSONArray) jo.get("Datasets");
+                    for (int i = 0; i < dataset_json_array.size(); i++) {
+                        JSONObject adres = (JSONObject) dataset_json_array.get(i);
+                        int dataset_id = ((Long) adres.get("datasetId")).intValue();
 
                         JSONArray labelassigment = (JSONArray) adres.get("labelAssignments");
                         for (int j = 0; j < labelassigment.size(); j++) {
@@ -185,6 +177,7 @@ public class Input {
 
         return current_dataset_id;
     }
+
     private void assignInstanceAndLabelsIntoDatasets() {
         for (int di = 0; datasetArrayList.size() > di; di++) { //teker teker datasetleri geziyor
 
@@ -208,11 +201,12 @@ public class Input {
     }
 
     private User findUser(int userID) {
+        User user = null;
         for (int i = 0; i < userArrayList.size(); i++)
             if (userArrayList.get(i).getUserID() == userID)
-                return userArrayList.get(i);
+                user = userArrayList.get(i);
 
-        return new User();
+        return user;
     }
 
     private Label findLabel(int labelID) {

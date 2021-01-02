@@ -11,70 +11,58 @@
     "Number of Users" : 3,
     "User completeness Percentage" : [ { } ],
     "User consistency percentage" : [ {
-      "me" : 1.0,
-      "you" : 1.0,
-      "we" : 1.0
-    } ]
-  }, {
-    "Dataset id" : 3,
-    "Completeness percentage" : 81.81818181818183,
-    "Label distributions" : [ {
-      "perfect" : "%22.22222222222222",
-      "not bad" : "%44.44444444444444",
-      "good" : "%22.22222222222222",
-      "awful" : "%11.11111111111111"
-    } ],
-    "Number of unique instances" : [ {
-      "perfect" : 3,
-      "good" : 5,
-      "not bad" : 4,
-      "awful" : 6
-    } ],
-    "Number of Users" : 3,
-    "User completeness Percentage" : [ {
-      "X" : 0.2222222222222222,
-      "they" : 0.4444444444444444,
-      "we" : 0.3333333333333333
-    } ],
-    "User consistency percentage" : [ {
-      "me" : 1.0,
-      "they" : 1.0,
-      "X" : 1.0
+      "me" : "NaN",
+      "you" : "NaN",
+      "we" : 0.23809523809523808
     } ]
   }, {
     "Dataset id" : 2,
     "Completeness percentage" : 100.0,
-    "Label distributions" : [ {
-      "cihaz" : "%40.0",
-      "hat" : "%20.0",
-      "borç" : "%20.0",
-      "paket" : "%20.0"
-    } ],
+    "Label distributions" : [ { } ],
     "Number of unique instances" : [ {
-      "bayi" : 0,
-      "numara" : 0,
-      "hat" : 0,
-      "işlem" : 0,
-      "müşteri" : 0,
-      "bilgi" : 0,
-      "telefon" : 0,
-      "konu" : 0,
-      "firma" : 0,
-      "cihaz" : 2,
-      "borç" : 1,
-      "fatura" : 0,
-      "taraf" : 0,
-      "borç " : 0,
-      "paket" : 1
+      "bayi" : 1,
+      "numara" : 1,
+      "hat" : 3,
+      "işlem" : 3,
+      "müşteri" : 4,
+      "bilgi" : 4,
+      "telefon" : 4,
+      "konu" : 3,
+      "firma" : 4,
+      "cihaz" : 3,
+      "borç" : 4,
+      "fatura" : 5,
+      "taraf" : 3,
+      "borç " : 4,
+      "paket" : 2
     } ],
     "Number of Users" : 3,
     "User completeness Percentage" : [ {
-      "me" : 1.0
+      "we" : 0.38461538461538464,
+      "they" : 0.3076923076923077,
+      "X" : 0.3076923076923077
     } ],
     "User consistency percentage" : [ {
-      "we" : 1.0,
-      "they" : 1.0,
-      "X" : 1.0
+      "we" : 0.23809523809523808,
+      "they" : 0.225,
+      "X" : 0.21367521367521367
+    } ]
+  }, {
+    "Dataset id" : 3,
+    "Completeness percentage" : 0.0,
+    "Label distributions" : [ { } ],
+    "Number of unique instances" : [ {
+      "perfect" : 0,
+      "good" : 0,
+      "not bad" : 0,
+      "awful" : 0
+    } ],
+    "Number of Users" : 3,
+    "User completeness Percentage" : [ { } ],
+    "User consistency percentage" : [ {
+      "me" : "NaN",
+      "they" : 0.225,
+      "X" : 0.21367521367521367
     } ]
   }, {
     "Dataset id" : 4,
@@ -90,8 +78,8 @@
     "Number of Users" : 2,
     "User completeness Percentage" : [ { } ],
     "User consistency percentage" : [ {
-      "you" : 1.0,
-      "X" : 1.0
+      "you" : "NaN",
+      "X" : 0.21367521367521367
     } ]
   }, {
     "Dataset id" : 5,
@@ -144,8 +132,8 @@
     "Number of Users" : 2,
     "User completeness Percentage" : [ { } ],
     "User consistency percentage" : [ {
-      "you" : 1.0,
-      "X" : 1.0
+      "you" : "NaN",
+      "X" : 0.21367521367521367
     } ]
   }, {
     "Dataset id" : 6,
@@ -155,8 +143,8 @@
     "Number of Users" : 2,
     "User completeness Percentage" : [ { } ],
     "User consistency percentage" : [ {
-      "you" : 1.0,
-      "X" : 1.0
+      "you" : "NaN",
+      "X" : 0.21367521367521367
     } ]
   }, {
     "Dataset id" : 7,
@@ -166,55 +154,189 @@
     "Number of Users" : 2,
     "User completeness Percentage" : [ { } ],
     "User consistency percentage" : [ {
-      "you" : 1.0,
-      "X" : 1.0
+      "you" : "NaN",
+      "X" : 0.21367521367521367
     } ]
   } ],
   "instanceMetrics" : [ {
     "Instance id" : 1,
     "Dataset id" : 1,
-    "Total number of assignments" : 0,
-    "Number of unique labels" : 0,
-    "Number of unique users" : 0,
-    "Most frequent label" : { },
-    "Class labels" : [ ],
-    "Entropy" : 0.0
+    "Total number of assignments" : 13,
+    "Number of unique labels" : 9,
+    "Number of unique users" : 1,
+    "Most frequent label" : {
+      "fatura" : 0.07692307692307693,
+      "cihaz" : 0.15384615384615385,
+      "telefon" : 0.15384615384615385,
+      "müşteri" : 0.15384615384615385,
+      "borç " : 0.07692307692307693,
+      "konu" : 0.07692307692307693,
+      "borç" : 0.07692307692307693,
+      "firma" : 0.15384615384615385,
+      "işlem" : 0.07692307692307693
+    },
+    "Class labels" : [ {
+      "edu.marmara.annotator.Label@5cb0d902" : 0.07692307692307693
+    }, {
+      "edu.marmara.annotator.Label@46fbb2c1" : 0.15384615384615385
+    }, {
+      "edu.marmara.annotator.Label@1698c449" : 0.15384615384615385
+    }, {
+      "edu.marmara.annotator.Label@5ef04b5" : 0.15384615384615385
+    }, {
+      "edu.marmara.annotator.Label@5f4da5c3" : 0.07692307692307693
+    }, {
+      "edu.marmara.annotator.Label@5b37e0d2" : 0.07692307692307693
+    }, {
+      "edu.marmara.annotator.Label@45ff54e6" : 0.07692307692307693
+    }, {
+      "edu.marmara.annotator.Label@69663380" : 0.15384615384615385
+    }, {
+      "edu.marmara.annotator.Label@4459eb14" : 0.07692307692307693
+    } ],
+    "Entropy" : 0.9732265278682555
   }, {
     "Instance id" : 2,
     "Dataset id" : 1,
-    "Total number of assignments" : 0,
-    "Number of unique labels" : 0,
-    "Number of unique users" : 0,
-    "Most frequent label" : { },
-    "Class labels" : [ ],
-    "Entropy" : 0.0
+    "Total number of assignments" : 10,
+    "Number of unique labels" : 8,
+    "Number of unique users" : 2,
+    "Most frequent label" : {
+      "hat" : 0.1,
+      "bilgi" : 0.2,
+      "firma" : 0.2,
+      "konu" : 0.1,
+      "borç" : 0.1,
+      "telefon" : 0.1,
+      "Positive" : 0.1,
+      "cihaz" : 0.1
+    },
+    "Class labels" : [ {
+      "edu.marmara.annotator.Label@443b7951" : 0.1
+    }, {
+      "edu.marmara.annotator.Label@14514713" : 0.2
+    }, {
+      "edu.marmara.annotator.Label@69663380" : 0.2
+    }, {
+      "edu.marmara.annotator.Label@5b37e0d2" : 0.1
+    }, {
+      "edu.marmara.annotator.Label@45ff54e6" : 0.1
+    }, {
+      "edu.marmara.annotator.Label@1698c449" : 0.1
+    }, {
+      "edu.marmara.annotator.Label@2328c243" : 0.1
+    }, {
+      "edu.marmara.annotator.Label@46fbb2c1" : 0.1
+    } ],
+    "Entropy" : 0.9739760316291209
   }, {
     "Instance id" : 3,
     "Dataset id" : 1,
-    "Total number of assignments" : 0,
-    "Number of unique labels" : 0,
-    "Number of unique users" : 0,
-    "Most frequent label" : { },
-    "Class labels" : [ ],
-    "Entropy" : 0.0
+    "Total number of assignments" : 40,
+    "Number of unique labels" : 15,
+    "Number of unique users" : 3,
+    "Most frequent label" : {
+      "işlem" : 0.075,
+      "bilgi" : 0.05,
+      "hat" : 0.075,
+      "müşteri" : 0.075,
+      "Negative" : 0.075,
+      "Notr" : 0.025,
+      "borç " : 0.075,
+      "taraf" : 0.1,
+      "telefon" : 0.075,
+      "paket" : 0.1,
+      "fatura" : 0.05,
+      "konu" : 0.075,
+      "borç" : 0.05,
+      "firma" : 0.075,
+      "Positive" : 0.025
+    },
+    "Class labels" : [ {
+      "edu.marmara.annotator.Label@4459eb14" : 0.075
+    }, {
+      "edu.marmara.annotator.Label@14514713" : 0.05
+    }, {
+      "edu.marmara.annotator.Label@443b7951" : 0.075
+    }, {
+      "edu.marmara.annotator.Label@5ef04b5" : 0.075
+    }, {
+      "edu.marmara.annotator.Label@5a2e4553" : 0.075
+    }, {
+      "edu.marmara.annotator.Label@28c97a5" : 0.025
+    }, {
+      "edu.marmara.annotator.Label@5f4da5c3" : 0.075
+    }, {
+      "edu.marmara.annotator.Label@6659c656" : 0.1
+    }, {
+      "edu.marmara.annotator.Label@1698c449" : 0.075
+    }, {
+      "edu.marmara.annotator.Label@6d5380c2" : 0.1
+    }, {
+      "edu.marmara.annotator.Label@5cb0d902" : 0.05
+    }, {
+      "edu.marmara.annotator.Label@5b37e0d2" : 0.075
+    }, {
+      "edu.marmara.annotator.Label@45ff54e6" : 0.05
+    }, {
+      "edu.marmara.annotator.Label@69663380" : 0.075
+    }, {
+      "edu.marmara.annotator.Label@2328c243" : 0.025
+    } ],
+    "Entropy" : 0.9780029670525073
   }, {
     "Instance id" : 4,
     "Dataset id" : 1,
-    "Total number of assignments" : 0,
-    "Number of unique labels" : 0,
-    "Number of unique users" : 0,
-    "Most frequent label" : { },
-    "Class labels" : [ ],
-    "Entropy" : 0.0
+    "Total number of assignments" : 8,
+    "Number of unique labels" : 5,
+    "Number of unique users" : 3,
+    "Most frequent label" : {
+      "taraf" : 0.125,
+      "Notr" : 0.25,
+      "cihaz" : 0.375,
+      "firma" : 0.125,
+      "borç " : 0.125
+    },
+    "Class labels" : [ {
+      "edu.marmara.annotator.Label@6659c656" : 0.125
+    }, {
+      "edu.marmara.annotator.Label@28c97a5" : 0.25
+    }, {
+      "edu.marmara.annotator.Label@46fbb2c1" : 0.375
+    }, {
+      "edu.marmara.annotator.Label@69663380" : 0.125
+    }, {
+      "edu.marmara.annotator.Label@5f4da5c3" : 0.125
+    } ],
+    "Entropy" : 0.9283832117695865
   }, {
     "Instance id" : 5,
     "Dataset id" : 1,
-    "Total number of assignments" : 0,
-    "Number of unique labels" : 0,
-    "Number of unique users" : 0,
-    "Most frequent label" : { },
-    "Class labels" : [ ],
-    "Entropy" : 0.0
+    "Total number of assignments" : 9,
+    "Number of unique labels" : 6,
+    "Number of unique users" : 2,
+    "Most frequent label" : {
+      "Notr" : 0.2222222222222222,
+      "paket" : 0.1111111111111111,
+      "Positive" : 0.1111111111111111,
+      "işlem" : 0.3333333333333333,
+      "müşteri" : 0.1111111111111111,
+      "bilgi" : 0.1111111111111111
+    },
+    "Class labels" : [ {
+      "edu.marmara.annotator.Label@28c97a5" : 0.2222222222222222
+    }, {
+      "edu.marmara.annotator.Label@6d5380c2" : 0.1111111111111111
+    }, {
+      "edu.marmara.annotator.Label@2328c243" : 0.1111111111111111
+    }, {
+      "edu.marmara.annotator.Label@4459eb14" : 0.3333333333333333
+    }, {
+      "edu.marmara.annotator.Label@5ef04b5" : 0.1111111111111111
+    }, {
+      "edu.marmara.annotator.Label@14514713" : 0.1111111111111111
+    } ],
+    "Entropy" : 0.9359446974458658
   }, {
     "Instance id" : 6,
     "Dataset id" : 1,
@@ -262,49 +384,155 @@
     "Entropy" : 0.0
   }, {
     "Instance id" : 1,
-    "Dataset id" : 3,
+    "Dataset id" : 2,
+    "Total number of assignments" : 9,
+    "Number of unique labels" : 7,
+    "Number of unique users" : 1,
+    "Most frequent label" : {
+      "hat" : 0.2222222222222222,
+      "müşteri" : 0.1111111111111111,
+      "cihaz" : 0.1111111111111111,
+      "konu" : 0.1111111111111111,
+      "borç" : 0.2222222222222222,
+      "bilgi" : 0.1111111111111111
+    },
+    "Class labels" : [ {
+      "edu.marmara.annotator.Label@3d82c5f3" : 0.1111111111111111
+    }, {
+      "edu.marmara.annotator.Label@5ef04b5" : 0.1111111111111111
+    }, {
+      "edu.marmara.annotator.Label@46fbb2c1" : 0.1111111111111111
+    }, {
+      "edu.marmara.annotator.Label@5b37e0d2" : 0.1111111111111111
+    }, {
+      "edu.marmara.annotator.Label@45ff54e6" : 0.2222222222222222
+    }, {
+      "edu.marmara.annotator.Label@443b7951" : 0.2222222222222222
+    }, {
+      "edu.marmara.annotator.Label@14514713" : 0.1111111111111111
+    } ],
+    "Entropy" : 0.9708357627258161
+  }, {
+    "Instance id" : 2,
+    "Dataset id" : 2,
+    "Total number of assignments" : 8,
+    "Number of unique labels" : 7,
+    "Number of unique users" : 1,
+    "Most frequent label" : {
+      "müşteri" : 0.25,
+      "borç " : 0.125,
+      "fatura" : 0.125,
+      "taraf" : 0.125,
+      "numara" : 0.125,
+      "bilgi" : 0.125,
+      "hat" : 0.125
+    },
+    "Class labels" : [ {
+      "edu.marmara.annotator.Label@5ef04b5" : 0.25
+    }, {
+      "edu.marmara.annotator.Label@5f4da5c3" : 0.125
+    }, {
+      "edu.marmara.annotator.Label@5cb0d902" : 0.125
+    }, {
+      "edu.marmara.annotator.Label@6659c656" : 0.125
+    }, {
+      "edu.marmara.annotator.Label@1a93a7ca" : 0.125
+    }, {
+      "edu.marmara.annotator.Label@14514713" : 0.125
+    }, {
+      "edu.marmara.annotator.Label@443b7951" : 0.125
+    } ],
+    "Entropy" : 0.979569764547061
+  }, {
+    "Instance id" : 3,
+    "Dataset id" : 2,
+    "Total number of assignments" : 6,
+    "Number of unique labels" : 4,
+    "Number of unique users" : 1,
+    "Most frequent label" : {
+      "borç " : 0.3333333333333333,
+      "müşteri" : 0.3333333333333333,
+      "konu" : 0.16666666666666666,
+      "bayi" : 0.16666666666666666
+    },
+    "Class labels" : [ {
+      "edu.marmara.annotator.Label@5f4da5c3" : 0.3333333333333333
+    }, {
+      "edu.marmara.annotator.Label@5ef04b5" : 0.3333333333333333
+    }, {
+      "edu.marmara.annotator.Label@5b37e0d2" : 0.16666666666666666
+    }, {
+      "edu.marmara.annotator.Label@6ae40994" : 0.16666666666666666
+    } ],
+    "Entropy" : 0.9591479170272447
+  }, {
+    "Instance id" : 4,
+    "Dataset id" : 2,
     "Total number of assignments" : 1,
     "Number of unique labels" : 1,
     "Number of unique users" : 1,
     "Most frequent label" : {
-      "good" : 1.0
+      "fatura" : 1.0
     },
     "Class labels" : [ {
-      "edu.marmara.annotator.Label@4f2410ac" : 1.0
+      "edu.marmara.annotator.Label@5cb0d902" : 1.0
     } ],
+    "Entropy" : 0.0
+  }, {
+    "Instance id" : 5,
+    "Dataset id" : 2,
+    "Total number of assignments" : 7,
+    "Number of unique labels" : 6,
+    "Number of unique users" : 2,
+    "Most frequent label" : {
+      "telefon" : 0.14285714285714285,
+      "hat" : 0.14285714285714285,
+      "paket" : 0.14285714285714285,
+      "fatura" : 0.2857142857142857,
+      "bilgi" : 0.14285714285714285,
+      "borç" : 0.14285714285714285
+    },
+    "Class labels" : [ {
+      "edu.marmara.annotator.Label@1698c449" : 0.14285714285714285
+    }, {
+      "edu.marmara.annotator.Label@3d82c5f3" : 0.14285714285714285
+    }, {
+      "edu.marmara.annotator.Label@6d5380c2" : 0.14285714285714285
+    }, {
+      "edu.marmara.annotator.Label@5cb0d902" : 0.2857142857142857
+    }, {
+      "edu.marmara.annotator.Label@14514713" : 0.14285714285714285
+    }, {
+      "edu.marmara.annotator.Label@45ff54e6" : 0.14285714285714285
+    } ],
+    "Entropy" : 0.9755037590061085
+  }, {
+    "Instance id" : 1,
+    "Dataset id" : 3,
+    "Total number of assignments" : 0,
+    "Number of unique labels" : 0,
+    "Number of unique users" : 0,
+    "Most frequent label" : { },
+    "Class labels" : [ ],
     "Entropy" : 0.0
   }, {
     "Instance id" : 2,
     "Dataset id" : 3,
-    "Total number of assignments" : 4,
-    "Number of unique labels" : 2,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "perfect" : 0.25,
-      "not bad" : 0.75
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@15327b79" : 0.25
-    }, {
-      "edu.marmara.annotator.Label@722c41f4" : 0.75
-    } ],
-    "Entropy" : 0.8112781244591328
+    "Total number of assignments" : 0,
+    "Number of unique labels" : 0,
+    "Number of unique users" : 0,
+    "Most frequent label" : { },
+    "Class labels" : [ ],
+    "Entropy" : 0.0
   }, {
     "Instance id" : 3,
     "Dataset id" : 3,
-    "Total number of assignments" : 4,
-    "Number of unique labels" : 2,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "awful" : 0.5,
-      "good" : 0.5
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@5b80350b" : 0.5
-    }, {
-      "edu.marmara.annotator.Label@4f2410ac" : 0.5
-    } ],
-    "Entropy" : 1.0
+    "Total number of assignments" : 0,
+    "Number of unique labels" : 0,
+    "Number of unique users" : 0,
+    "Most frequent label" : { },
+    "Class labels" : [ ],
+    "Entropy" : 0.0
   }, {
     "Instance id" : 4,
     "Dataset id" : 3,
@@ -317,41 +545,21 @@
   }, {
     "Instance id" : 5,
     "Dataset id" : 3,
-    "Total number of assignments" : 4,
-    "Number of unique labels" : 3,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "perfect" : 0.5,
-      "good" : 0.25,
-      "awful" : 0.25
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@15327b79" : 0.5
-    }, {
-      "edu.marmara.annotator.Label@4f2410ac" : 0.25
-    }, {
-      "edu.marmara.annotator.Label@5b80350b" : 0.25
-    } ],
-    "Entropy" : 0.9463946303571862
+    "Total number of assignments" : 0,
+    "Number of unique labels" : 0,
+    "Number of unique users" : 0,
+    "Most frequent label" : { },
+    "Class labels" : [ ],
+    "Entropy" : 0.0
   }, {
     "Instance id" : 6,
     "Dataset id" : 3,
-    "Total number of assignments" : 3,
-    "Number of unique labels" : 3,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "not bad" : 0.3333333333333333,
-      "awful" : 0.3333333333333333,
-      "good" : 0.3333333333333333
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@722c41f4" : 0.3333333333333333
-    }, {
-      "edu.marmara.annotator.Label@5b80350b" : 0.3333333333333333
-    }, {
-      "edu.marmara.annotator.Label@4f2410ac" : 0.3333333333333333
-    } ],
-    "Entropy" : 1.0
+    "Total number of assignments" : 0,
+    "Number of unique labels" : 0,
+    "Number of unique users" : 0,
+    "Most frequent label" : { },
+    "Class labels" : [ ],
+    "Entropy" : 0.0
   }, {
     "Instance id" : 7,
     "Dataset id" : 3,
@@ -364,128 +572,38 @@
   }, {
     "Instance id" : 8,
     "Dataset id" : 3,
-    "Total number of assignments" : 4,
-    "Number of unique labels" : 2,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "not bad" : 0.5,
-      "awful" : 0.5
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@722c41f4" : 0.5
-    }, {
-      "edu.marmara.annotator.Label@5b80350b" : 0.5
-    } ],
-    "Entropy" : 1.0
+    "Total number of assignments" : 0,
+    "Number of unique labels" : 0,
+    "Number of unique users" : 0,
+    "Most frequent label" : { },
+    "Class labels" : [ ],
+    "Entropy" : 0.0
   }, {
     "Instance id" : 9,
     "Dataset id" : 3,
-    "Total number of assignments" : 2,
-    "Number of unique labels" : 2,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "perfect" : 0.5,
-      "awful" : 0.5
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@15327b79" : 0.5
-    }, {
-      "edu.marmara.annotator.Label@5b80350b" : 0.5
-    } ],
-    "Entropy" : 1.0
+    "Total number of assignments" : 0,
+    "Number of unique labels" : 0,
+    "Number of unique users" : 0,
+    "Most frequent label" : { },
+    "Class labels" : [ ],
+    "Entropy" : 0.0
   }, {
     "Instance id" : 10,
     "Dataset id" : 3,
-    "Total number of assignments" : 2,
-    "Number of unique labels" : 2,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "not bad" : 0.5,
-      "awful" : 0.5
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@722c41f4" : 0.5
-    }, {
-      "edu.marmara.annotator.Label@5b80350b" : 0.5
-    } ],
-    "Entropy" : 1.0
+    "Total number of assignments" : 0,
+    "Number of unique labels" : 0,
+    "Number of unique users" : 0,
+    "Most frequent label" : { },
+    "Class labels" : [ ],
+    "Entropy" : 0.0
   }, {
     "Instance id" : 11,
     "Dataset id" : 3,
-    "Total number of assignments" : 1,
-    "Number of unique labels" : 1,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "good" : 1.0
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@4f2410ac" : 1.0
-    } ],
-    "Entropy" : 0.0
-  }, {
-    "Instance id" : 1,
-    "Dataset id" : 2,
-    "Total number of assignments" : 1,
-    "Number of unique labels" : 1,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "cihaz" : 1.0
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@5d6f64b1" : 1.0
-    } ],
-    "Entropy" : 0.0
-  }, {
-    "Instance id" : 2,
-    "Dataset id" : 2,
-    "Total number of assignments" : 1,
-    "Number of unique labels" : 1,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "cihaz" : 1.0
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@5d6f64b1" : 1.0
-    } ],
-    "Entropy" : 0.0
-  }, {
-    "Instance id" : 3,
-    "Dataset id" : 2,
-    "Total number of assignments" : 1,
-    "Number of unique labels" : 1,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "hat" : 1.0
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@32a1bec0" : 1.0
-    } ],
-    "Entropy" : 0.0
-  }, {
-    "Instance id" : 4,
-    "Dataset id" : 2,
-    "Total number of assignments" : 1,
-    "Number of unique labels" : 1,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "borç" : 1.0
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@22927a81" : 1.0
-    } ],
-    "Entropy" : 0.0
-  }, {
-    "Instance id" : 5,
-    "Dataset id" : 2,
-    "Total number of assignments" : 1,
-    "Number of unique labels" : 1,
-    "Number of unique users" : 1,
-    "Most frequent label" : {
-      "paket" : 1.0
-    },
-    "Class labels" : [ {
-      "edu.marmara.annotator.Label@78e03bb5" : 1.0
-    } ],
+    "Total number of assignments" : 0,
+    "Number of unique labels" : 0,
+    "Number of unique users" : 0,
+    "Most frequent label" : { },
+    "Class labels" : [ ],
     "Entropy" : 0.0
   }, {
     "Instance id" : 1,
@@ -10216,36 +10334,36 @@
       "1" : "%0.0",
       "2" : "%100.0"
     } ],
-    "Total labeled instances" : 3,
-    "Total unique labeled instances" : 10,
-    "Consistency percentage" : "%100.0",
-    "Average time spend in labeling" : 2.5188750326633453,
-    "Std of time spent in labeling" : 19.53556341471105
+    "Total labeled instances" : 10,
+    "Total unique labeled instances" : 5,
+    "Consistency percentage" : "%23.809523809523807",
+    "Average time spend in labeling" : 0.10200000405311585,
+    "Std of time spent in labeling" : "NaN"
   }, {
     "User id" : 4,
     "User Name" : "they",
     "Number of datasets" : 2,
     "Dataset completeness percentages" : [ {
-      "3" : "%81.81818181818183",
-      "2" : "%100.0"
+      "2" : "%100.0",
+      "3" : "%0.0"
     } ],
-    "Total labeled instances" : 4,
-    "Total unique labeled instances" : 10,
-    "Consistency percentage" : "%100.0",
-    "Average time spend in labeling" : 1.6792500217755635,
-    "Std of time spent in labeling" : 21.01353449424252
+    "Total labeled instances" : 8,
+    "Total unique labeled instances" : 5,
+    "Consistency percentage" : "%22.22222222222222",
+    "Average time spend in labeling" : 0.11327777968512641,
+    "Std of time spent in labeling" : "NaN"
   }, {
     "User id" : 5,
     "User Name" : "X",
     "Number of datasets" : 2,
     "Dataset completeness percentages" : [ {
-      "3" : "%81.81818181818183",
-      "2" : "%100.0"
+      "2" : "%100.0",
+      "3" : "%0.0"
     } ],
-    "Total labeled instances" : 2,
-    "Total unique labeled instances" : 10,
-    "Consistency percentage" : "%100.0",
-    "Average time spend in labeling" : 1.4393571615219116,
-    "Std of time spent in labeling" : 22.37617808674292
+    "Total labeled instances" : 8,
+    "Total unique labeled instances" : 5,
+    "Consistency percentage" : "%21.666666666666668",
+    "Average time spend in labeling" : 0.1171153852572808,
+    "Std of time spent in labeling" : "NaN"
   } ]
 }

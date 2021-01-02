@@ -9,7 +9,7 @@ public class Instance {
     private int datasetID;      //gidecekkkkk
     private String datasetName;         //bu gidecek ve dataset olacak
     private int maxLabelPerInstance;
-    private ArrayList<Label> labels;
+    private ArrayList<Label> labels = new ArrayList<>();
     private Label finalLabel;
     private InstanceMetrics evaluationMatrix = new InstanceMetrics();
 
@@ -25,9 +25,10 @@ public class Instance {
 
         this.instanceText = instanceText;
         this.instanceID = instanceID;
-        this.datasetID =  datasetID;
+        this.datasetID = datasetID;
         this.datasetName = datasetName;
         this.maxLabelPerInstance = lblPerIns;
+        this.finalLabel = findFinalLabel(labels);
         labels = new ArrayList<>();
 
     }
@@ -94,5 +95,25 @@ public class Instance {
 
     public void setFinalLabel(Label finalLabel) {
         this.finalLabel = finalLabel;
+    }
+
+    private Label findFinalLabel(ArrayList<Label> labelArrayList) {
+        Label finalLabel = null;
+        int max = 0;
+        for (Label label : labelArrayList) {
+            int current = 0;
+            if (finalLabel != label) {
+                for (Label label1 : labelArrayList) {
+                    if (label1 == label) {
+                        current++;
+                    }
+                }
+            }
+            if (max < current) {
+                finalLabel = label;
+                max = current;
+            }
+        }
+        return finalLabel;
     }
 }

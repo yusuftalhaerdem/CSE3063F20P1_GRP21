@@ -7,24 +7,21 @@ public class User {
     private int userID;
     private String userName;
     private String userType;
-    private ArrayList<Integer> assignedDataset;
+    private String userPassword;
     private double consistencyCheckProbability;
     private UserMetrics evaluationMatrix = new UserMetrics();
 
 
-    public User(int userID, String userName, String userType, ArrayList<Integer> assignedDataset, double consistencyCheckProbability) {
+    public User(int userID, String userName,String userPassword,String userType, double consistencyCheckProbability) {
         Log log = Log.getInstance();
 
         this.userID = userID;
         this.userName = userName;
+        this.userPassword=userPassword;
         this.userType = userType;
-        this.assignedDataset = assignedDataset;
         this.consistencyCheckProbability = consistencyCheckProbability;
 
         log.log(String.format("User %s created as %s.", this.userName, this.userType));
-    }
-
-    User() {
     }
 
     public String getUserType() {
@@ -47,14 +44,6 @@ public class User {
         return userName;
     }
 
-    public ArrayList<Integer> getAssignedDataset() {
-        return assignedDataset;
-    }
-
-    public void setAssignedDataset(ArrayList<Integer> assignedDataset) {
-        this.assignedDataset = assignedDataset;
-    }
-
     public double getConsistencyCheckProbability() {
         return consistencyCheckProbability;
     }
@@ -72,4 +61,11 @@ public class User {
     }
 
 
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
 }

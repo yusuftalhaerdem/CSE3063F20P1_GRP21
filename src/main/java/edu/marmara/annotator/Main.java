@@ -16,8 +16,8 @@ public class Main {
         ArrayList<Labelling> labellingArrayList = new ArrayList<>();
 
         //bazı sorunları inputta hallettsek iyi olur ama oraya da ben girmek istemiyorum ./
-        Input input = new Input(datasetArrayList, userArrayList, labelArrayList, instanceArrayList, labellingArrayList);
-        int currentDataset = input.getInputs();
+        Input input = new Input();
+        int currentDataset = input.getInputs(datasetArrayList, userArrayList, labelArrayList, instanceArrayList, labellingArrayList);
 
         //bunun böyle çıkmaması gerekiyor
         System.out.println("---printing the labeling objects------------------------------------------------------------");
@@ -37,7 +37,9 @@ public class Main {
 
 
         //usera bir şekilde sormuş olmamız lazım random labelling yapacak mıyız, bunu birileri okusun
-        rl.labelByUser(dataset,userArrayList,labellingArrayList,datasetArrayList);
+        if(isRandomLabelling)
+            rl.labelByUser(dataset,userArrayList,labellingArrayList,datasetArrayList);
+
         System.out.println(" "); //THE DEBUGGER
     }
 
