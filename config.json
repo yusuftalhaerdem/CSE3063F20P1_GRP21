@@ -12,7 +12,7 @@
   "users": [
     {"user ide":1, "user name":"me","password":"1234","consistency check probability":0.3,"user type":"User"},
     {"user ide":2, "user name":"you","password":"1254","consistency check probability":0.3,"user type":"User"},
-    {"user ide":3, "user name":"we","password":"1241", "consistency check probability":0.3,"user type":"RandomBot"},
+    {"user ide":3, "user name":"we","password":"1241", "consistency check probability":0.3,"user type":"User"},
     {"user ide":4, "user name":"they","password":"1134", "consistency check probability":0.3,"user type":"RandomBot"},
     {"user ide":5, "user name":"X","password":"1231", "consistency check probability":0.3,"user type":"RandomBot"},
     {"user ide":6, "user name":"X","password":"1214","consistency check probability":0.3,"user type":"RandomBot"}
