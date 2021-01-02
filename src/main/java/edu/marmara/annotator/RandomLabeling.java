@@ -54,7 +54,6 @@ public class RandomLabeling{
 
                 Instance instanceToLabel = getRandomInstance(instancesWithoutLabel);
 
-
                 //Label labelsToAssign= getRandomLabel(labelArrayList);
                 ArrayList<Label> labelsToAssign = new ArrayList<>();
                 labelsToAssign.add(getRandomLabel(labelArrayList)); //
@@ -79,7 +78,10 @@ public class RandomLabeling{
                 double timeSpentInLabeling = (System.currentTimeMillis() - start) / 1000F; //calculates the time elapsed from start of labeling-----not sure-----
                 String timeString= String.valueOf(LocalTime.now());
                 timeString= timeString.substring(0,8);
-                Labelling labelling = new Labelling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", 0, findFinalLabel(labelsToAssign));
+                instanceToLabel.setFinalLabel(findFinalLabel(instanceToLabel.getLabels()));
+                instanceToLabel.getLabels().addAll(labelsToAssign);
+
+                Labelling labelling = new Labelling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", 0);
                 labelling.setDateTime(LocalDate.now()+", "+timeString);
                 labellingArrayList.add(labelling);
                 currentDataset.getLabellingArrayList().add(labelling);
@@ -87,13 +89,13 @@ public class RandomLabeling{
                 currentDataset.getEvaluationMatrix().calculateAll(datasetArrayList);
                 labelling.getInstance().getEvaluationMatrix().calculateAll(datasetArrayList);
                 chosenUser.getEvaluationMatrix().calculateAll(datasetArrayList);
-                /*
+
                 out.outputDataset("output.json", datasetArrayList);
                 out.outputMetrics("metrics.json", datasetArrayList, userArrayList);
                 log.log(String.format("user id:%s %s tagged instance id:%s with class label %s instance:\"%s\"",
                         chosenUser.getUserID(), chosenUser.getUserType(), instanceToLabel.getInstanceID(),
                         labelsToAssign, instanceToLabel.getInstanceText()));
-*/
+
             } else { //if instance is already labeled by already, make sure same user does not label it again!!
 
                 if (instancesWithLabel.size() != 0) {
@@ -120,7 +122,11 @@ public class RandomLabeling{
                         //fix it with more than one labelling and same users shouldnt label same instance again
                         String timeString= String.valueOf(LocalTime.now());
                         timeString= timeString.substring(0,8);
-                        Labelling labelling = new Labelling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", timeSpentInLabeling, findFinalLabel(labelsToAssign));
+                        instanceToLabel.setFinalLabel(findFinalLabel(instanceToLabel.getLabels()));
+                        instanceToLabel.setLabels(labelsToAssign);
+                        instanceToLabel.getLabels().addAll(labelsToAssign);
+
+                        Labelling labelling = new Labelling(currentDataset, instanceToLabel, labelsToAssign, chosenUser, "", timeSpentInLabeling);
                         labelling.setDateTime(LocalDate.now()+", "+timeString);
                         labellingArrayList.add(labelling);
                         currentDataset.getLabellingArrayList().add(labelling);
@@ -128,13 +134,13 @@ public class RandomLabeling{
                         currentDataset.getEvaluationMatrix().calculateAll(datasetArrayList);
                         labelling.getInstance().getEvaluationMatrix().calculateAll(datasetArrayList);
                         chosenUser.getEvaluationMatrix().calculateAll(datasetArrayList);
-                        /*
+
                         out.outputDataset("output.json", datasetArrayList);
                         out.outputMetrics("metrics.json", datasetArrayList, userArrayList);
                         log.log(String.format("user id:%s %s tagged instance id:%s with class label %s instance:\"%s\"",
                                 chosenUser.getUserID(), chosenUser.getUserType(), instanceToLabel.getInstanceID(),
                                 labelsToAssign, instanceToLabel.getInstanceText()));
-                        //sendItToOutput here, labellingArrayList, updateMatrix*/
+
                     } else {
                         System.err.println("there is no suitable place to assign another label to instance");
                     }

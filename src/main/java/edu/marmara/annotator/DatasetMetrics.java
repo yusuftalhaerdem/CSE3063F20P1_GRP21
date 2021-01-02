@@ -45,11 +45,11 @@ public class DatasetMetrics {
         int labeledInstances = dataset.getLabellingArrayList().size();
         Map<Label, Double> distributionMap;
         Map<Label, Double> temp = new LinkedHashMap<>();
-        for (Labelling labelling : dataset.getLabellingArrayList()) {
-            Label finalLabel = labelling.getFinalLabel();
-            if (!temp.containsKey(finalLabel)) {
-                for (Labelling labelling1 : dataset.getLabellingArrayList()) {
-                    if (labelling1.getFinalLabel() == finalLabel) {
+        for (Instance instance : dataset.getInstanceArrayList()) {
+            Label finalLabel = instance.getFinalLabel();
+            if (finalLabel != null && !temp.containsKey(finalLabel)) {
+                for (Instance instance1 : dataset.getInstanceArrayList()) {
+                    if (instance1.getFinalLabel() == finalLabel) {
                         if (temp.containsKey(finalLabel)) {
                             temp.put(finalLabel, temp.get(finalLabel) + 1.0);
                         } else {
@@ -59,9 +59,8 @@ public class DatasetMetrics {
                 }
             }
         }
-        double finalLabelNumber = labeledInstances;
         distributionMap = new LinkedHashMap<>(temp);
-        distributionMap.replaceAll((k, v) -> v / finalLabelNumber);
+        distributionMap.replaceAll((k, v) -> v / (double) labeledInstances);
         dataset.getEvaluationMatrix().setDistribution(distributionMap);
     }
 

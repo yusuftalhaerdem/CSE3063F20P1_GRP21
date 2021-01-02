@@ -13,7 +13,7 @@ class Labelling {
     private double timeSpent;
 
 
-    Labelling(Dataset dataset, Instance instance, ArrayList<Label> labelArrayList, User user, String dateTime, double timeSpent, Label finalLabel) {
+    Labelling(Dataset dataset, Instance instance, ArrayList<Label> labelArrayList, User user, String dateTime, double timeSpent) {
         this.datasetID = dataset.getDatasetID();
         this.instance = instance;
         this.labelArrayList = labelArrayList;
@@ -79,11 +79,4 @@ class Labelling {
         this.timeSpent = timeSpent;
     }
 
-    public Label getFinalLabel() {
-        return finalLabel;
-    }
-
-    public void setFinalLabel(Label finalLabel) {
-        this.finalLabel = finalLabel;
-    }
 }

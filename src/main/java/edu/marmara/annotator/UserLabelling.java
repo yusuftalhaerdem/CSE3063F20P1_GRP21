@@ -12,19 +12,21 @@ public class UserLabelling {
 
         boolean isUserLabelling=false;
         System.out.println("\n\n\n\n\n\n");
-        System.out.println("----------------------Welcome to the system--------------------------\n\n\n\n\n\n");   //where the heck that kindness came from
+        System.out.println("----------------------Welcome to the system--------------------------\n" +
+                "----------you can press \"q\" to quit in string parts-------------\n\n\n\n\n");   //where the heck that kindness came from
         Scanner in = new Scanner(System.in);
         boolean isItDone=false;
 
         while(true) {
             //asks for user input and output
             System.out.print("enter the user id: ");
-            int userID = in.nextInt();
+            String idStr = in.nextLine();
             System.out.print("enter the user name: ");
-            String userName = in.next();
-            if(userName.equals("")){    //a trick left from my sleeves
+            String userName = in.nextLine();
+            if(userName.equals(" ")||userName.equals("q")||idStr.equals("q")||idStr.equals(" ")||userName.equals("")||idStr.equals("")){    //a trick left from my sleeves
                 return false;
             }
+            int userID=Integer.parseInt(idStr);
 
             //checks if that user exist in the database
             for (int i = 0; i < userArrayList.size(); i++) {
@@ -158,7 +160,10 @@ public class UserLabelling {
             //moladan sonra baktım buna hata olması muhtemel
             String timeString= String.valueOf(LocalTime.now());
             timeString= timeString.substring(0,8);
-            Labelling labelling = new Labelling(dataset, instanceToLabel, labelsToAssign, user, "", 0, findFinalLabel(labelsToAssign));
+            instanceToLabel.setFinalLabel(findFinalLabel(instanceToLabel.getLabels()));
+            instanceToLabel.getLabels().addAll(labelsToAssign);
+
+            Labelling labelling = new Labelling(dataset, instanceToLabel, labelsToAssign, user, "", 0);
             labelling.setDateTime(LocalDate.now()+", "+timeString);
             dataset.getLabellingArrayList().add(labelling);
             instanceToLabel.getLabels().addAll(labelsToAssign);
@@ -166,7 +171,6 @@ public class UserLabelling {
 
             double timeSpentInLabeling = (System.currentTimeMillis() - start) / 1000F; //calculates the time elapsed from start of labeling-----not sure-----
             labelling.setTimeSpent(timeSpentInLabeling);
-
 
 
             //call the metrics calculations and output printing here.
@@ -181,8 +185,9 @@ public class UserLabelling {
     private boolean readLabels(ArrayList<Label> labelsToAssign, Dataset dataset) {//reads the labels user entered
         Scanner in=new Scanner(System.in);
         String line= in.nextLine();
-        if(line.equals("")) //if user denys to enter any label we will quit from user labelling part
+        if(line.equals("")||line.equals("q")||line.equals(" ")) //if user denys to enter any label we will quit from user labelling part
             return true;
+
         String labels[]=line.split(",");
         for(int i=0;i<labels.length;i++){
             labels[i]=labels[i].trim();//boşluklarını alıyor
@@ -212,7 +217,6 @@ public class UserLabelling {
 
     }
 
-    //fatihin yaptığı, labellinge eklemiş bunu ama bu instanceda olacaktı silincek de idare etsin şuanlık yorgunum dostlar
     private Label findFinalLabel(ArrayList<Label> labelArrayList) {
         Label finalLabel = null;
         int max = 0;

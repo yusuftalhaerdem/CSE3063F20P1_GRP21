@@ -10,6 +10,7 @@ public class Instance {
     private String datasetName;         //bu gidecek ve dataset olacak
     private int maxLabelPerInstance;
     private ArrayList<Label> labels;
+    private Label finalLabel;
     private InstanceMetrics evaluationMatrix = new InstanceMetrics();
 
     Instance() {
@@ -87,4 +88,11 @@ public class Instance {
         return labels.get(LocationID);
     }
 
+    public Label getFinalLabel() {
+        return finalLabel;
+    }
+
+    public void setFinalLabel(Label finalLabel) {
+        this.finalLabel = finalLabel;
+    }
 }

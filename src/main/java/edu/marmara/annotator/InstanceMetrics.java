@@ -96,8 +96,8 @@ public class InstanceMetrics{
                 }
             }
             Map<Label,Double> max = new LinkedHashMap<>();
-            assert entryWithMaxValue != null;
-            max.put(entryWithMaxValue.getKey(),entryWithMaxValue.getValue()/allLabels);
+            if(entryWithMaxValue != null)
+                max.put(entryWithMaxValue.getKey(),entryWithMaxValue.getValue()/allLabels);
             currentInstance.getEvaluationMatrix().setMostFrequent(max);
         }
     }
