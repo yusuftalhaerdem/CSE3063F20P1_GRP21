@@ -10,14 +10,15 @@ public class User {
     private String userPassword;
     private double consistencyCheckProbability;
     private UserMetrics evaluationMatrix = new UserMetrics();
+    private Instance lastLabeled = new Instance();
 
 
-    public User(int userID, String userName,String userPassword,String userType, double consistencyCheckProbability) {
+    public User(int userID, String userName, String userPassword, String userType, double consistencyCheckProbability) {
         Log log = Log.getInstance();
 
         this.userID = userID;
         this.userName = userName;
-        this.userPassword=userPassword;
+        this.userPassword = userPassword;
         this.userType = userType;
         this.consistencyCheckProbability = consistencyCheckProbability;
 
@@ -26,6 +27,14 @@ public class User {
 
     public String getUserType() {
         return userType;
+    }
+
+    public Instance getLastLabeled() {
+        return lastLabeled;
+    }
+
+    public void setLastLabeled(Instance lastLabeled) {
+        this.lastLabeled = lastLabeled;
     }
 
     public void setUserID(int id) {

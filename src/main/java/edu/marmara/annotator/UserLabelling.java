@@ -1,5 +1,7 @@
 package edu.marmara.annotator;
 
+import com.fasterxml.jackson.databind.type.ClassStack;
+
 import java.io.Console;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -19,6 +21,7 @@ public class UserLabelling {
         System.out.println("----------------------Welcome to the system--------------------------\n" +
                 "----------you can press \"q\" to quit in string parts-------------\n\n\n\n\n");
 
+        int startingInstance;
         while (true) {
             //asks for user input and output
             System.out.print("enter the user name: ");
@@ -35,6 +38,7 @@ public class UserLabelling {
                     if (userArrayList.get(i).getUserName().equals(userName)) {
                         //isUserLabelling = true; //we run the program for the user to label
                         System.out.println("-----user succesfully entered to system.------\n\n");
+
                         userLabelling(userArrayList.get(i), findDataset(currentDataset, datasetArrayList), userArrayList, datasetArrayList);
                         break;
                     }
@@ -87,6 +91,16 @@ public class UserLabelling {
         ArrayList<Instance> labeledInstances = new ArrayList<>();
         Log log = Log.getInstance();
 
+
+        if(!dataset.getAssignedUsersArrayList().contains(user)){
+            System.out.println("This user is not assigned to this dataset. Please log in with another user or select another dataset.");
+            return;
+        }
+
+        if(user.getUserType().equals("RandomBot")){
+            System.out.println("User type is not suitable for manual labelling.");
+            return;
+        }
         //retrieving data of where we left
         for (int i = 0; i < dataset.getInstanceArrayList().size(); i++) {
             if (dataset.getInstanceArrayList().get(i).getLabels().size() > 0) {
@@ -96,6 +110,7 @@ public class UserLabelling {
             }
         }
 
+        int lastLabeledInstanceID = user.getLastLabeled().getInstanceID()>0 ? user.getLastLabeled().getInstanceID() : 0;
         //labelling part
         while (unlabeledInstances.size() != 0) {    //array bitene kadar labellamaya devam edecek
 
@@ -108,7 +123,7 @@ public class UserLabelling {
             if (Math.random() > user.getConsistencyCheckProbability()) {
                 //mevcut part
                 chosedNew = true;
-                instanceToLabel = unlabeledInstances.get(0);
+                instanceToLabel = unlabeledInstances.get(lastLabeledInstanceID);
 
                 labeledInstances.add(instanceToLabel);//listeleri düzenliyor şimdiden
                 unlabeledInstances.remove(instanceToLabel);
@@ -120,7 +135,7 @@ public class UserLabelling {
                 //şunu methoda al lütfen zel
                 if (listToFindRandomInstance.size() == 0) {
                     chosedNew = true;
-                    instanceToLabel = unlabeledInstances.get(0);
+                    instanceToLabel = unlabeledInstances.get(lastLabeledInstanceID);
 
                     labeledInstances.add(instanceToLabel);//listeleri düzenliyor şimdiden
                     unlabeledInstances.remove(instanceToLabel);
@@ -133,7 +148,7 @@ public class UserLabelling {
                     // eğer bulamazsa etiketlenmemişlerden seçecek
                     if (listToFindRandomInstance.size() == 0) {
                         chosedNew = true;
-                        instanceToLabel = unlabeledInstances.get(0);
+                        instanceToLabel = unlabeledInstances.get(lastLabeledInstanceID);
 
                         labeledInstances.add(instanceToLabel);//listeleri düzenliyor şimdiden
                         unlabeledInstances.remove(instanceToLabel);
@@ -184,6 +199,7 @@ public class UserLabelling {
             dataset.getEvaluationMatrix().calculateAll(datasetArrayList);
             labelling.getInstance().getEvaluationMatrix().calculateAll(datasetArrayList);
             user.getEvaluationMatrix().calculateAll(datasetArrayList);
+            user.setLastLabeled(instanceToLabel);
             out.outputDataset("output.json", datasetArrayList);
             out.outputMetrics("metrics.json", datasetArrayList, userArrayList);
 

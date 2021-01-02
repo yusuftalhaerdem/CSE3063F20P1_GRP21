@@ -6,6 +6,8 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Input {
 
@@ -47,7 +49,7 @@ public class Input {
                 JSONObject address = (JSONObject) users.get(i);
 
                 String userName = (String) address.get("user name");
-                int userId = ((Long) address.get("user id")).intValue();
+                int userId = ((Long) address.get("user ide")).intValue();
                 String userType = (String) address.get("user type");
                 String userPassword = (String) address.get("password");
                 double checkProbability = (double) address.get("consistency check probability");
@@ -133,6 +135,15 @@ public class Input {
                         JSONObject adres = (JSONObject) dataset_json_array.get(i);
                         int dataset_id = ((Long) adres.get("datasetId")).intValue();
 
+                        Map<Integer, Integer> lastLabeled = new LinkedHashMap<>();
+                        JSONArray usersFromOutput = (JSONArray) adres.get("users");
+                        for(int x = 0; x<usersFromOutput.size(); x++){
+                            JSONObject temp = (JSONObject) usersFromOutput.get(x);
+                            int userID = ((Long)temp.get("user id")).intValue();
+                            int lastLabeledId = ((Long)temp.get("last labeled instance id")).intValue();
+                            lastLabeled.put(userID,lastLabeledId);
+                        }
+
                         JSONArray labelassigment = (JSONArray) adres.get("labelAssignments");
                         for (int j = 0; j < labelassigment.size(); j++) {
                             JSONObject adress = (JSONObject) labelassigment.get(j);
@@ -146,7 +157,11 @@ public class Input {
                                 Long temp = (Long) label_Id.get(k);
                                 labelId.add(temp.intValue());
                             }
+
                             int userId = ((Long) adress.get("user id")).intValue();
+                            if (lastLabeled.containsKey(userId))
+                                findUser(userId).setLastLabeled(findInstance(lastLabeled.get(userId)));
+
                             String dateTime = (String) adress.get("datetime");
 
                             Labelling labelling = new Labelling(findDataset(dataset_id), findInstance(instanceId), translateLabelArray(labelId), findUser(userId), dateTime);

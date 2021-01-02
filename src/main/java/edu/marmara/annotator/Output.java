@@ -79,6 +79,7 @@ public class Output {
                 elements.put("user id", user.getUserID());
                 elements.put("user name", user.getUserName());
                 elements.put("user type", user.getUserType());
+                elements.put("last labeled instance id", user.getLastLabeled().getInstanceID());
                 list4.add(elements);
             }
 
