@@ -1,9 +1,9 @@
 class Answer:
-    def __init__(self, poll, student, date, questions, answers, isCorrect):
+    def __init__(self, poll, student, date, answers, isCorrect):
         self.poll = poll
         self.student = student
         self.date = date
-        self.questions = questions
+        # self.questions = questions
         self.answers = answers
         self.isCorrect = isCorrect
 

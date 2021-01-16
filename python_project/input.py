@@ -1,10 +1,12 @@
 import pandas as pd
 from student import Student
-from poll import Poll
+from question_poll import QuestionPoll
+from utils import *
+import collections
 import os
 import csv
 
-def read_students(path):
+def read_student_file(path):
     # read all student objects and add them into students array
     ## No ayarlanıcak
     path = path.replace("\\", "/")
@@ -21,9 +23,9 @@ def read_students(path):
 
     return student_list
 
-student_list = read_students('python_project/inputs/CES3063_Fall2020_rptSinifListesi.XLS')
+student_list = read_student_file('python_project/inputs/CES3063_Fall2020_rptSinifListesi.xls')
 
-def read_answers(path):
+def read_answer_file(path):
     # read all answer objects and add them into answer array
     paths = []
     if not os.path.isfile(path):
@@ -31,7 +33,7 @@ def read_answers(path):
     else:
         paths.append(path)    
     
-    poll_type = ''
+    poll_type = 'poll'
     poll_list = []
     for p in paths:
         p = p.replace("\\", "/")
@@ -52,7 +54,6 @@ def read_answers(path):
         unique_name_indexes = [x for x in df.loc[pd.isna(df[df.columns[1]]), :].index]
         unique_names = df.loc[unique_name_indexes][df.columns[0]].values
         df_iter = df.copy()
-        poll_type = 'poll' if ('are you attending' not in df[df.columns[0]].values) else 'attendence' 
 
         for idx,name in enumerate(unique_names):
             first_index = unique_name_indexes[idx]
@@ -61,23 +62,70 @@ def read_answers(path):
             temp_dict['index'] = [x for x in range(len(temp_dict['index']) -1)]
             temp_dict['columns'] = [temp_dict['data'][0][0],temp_dict['data'][0][0] + ' answers']
             temp_dict['data'].pop(0)
-            df_temp = pd.DataFrame(temp_dict['data'],index=temp_dict['index'], columns=temp_dict['columns'])
-            poll = Poll(df_temp.columns[0],poll_type,[{a[0]:[choice.replace('"','').strip() for choice in a[1].split(';')]} for a in df_temp.to_numpy()])
+            df_temp = pd.DataFrame(temp_dict['data'],index=temp_dict['index'], columns=temp_dict['columns']).replace('\n','',regex=True)
+            poll = QuestionPoll(df_temp.columns[0],poll_type,[{a[0].replace('  ',' '):[choice.replace('"','').strip() for choice in a[1].split(';')]} for a in df_temp.to_numpy()])
             poll_list.append(poll)
-    
-    return poll_list
+        
+        return poll_list
 
-poll_list = read_answers('python_project/inputs/answer-key1.csv')
+poll_list = read_answer_file('python_project/inputs/answer_monday.xlsx')
 
-def matching(polls, students, answers, unassigned_answers):
+def find_poll(poll_list,student_questions):
+    ## check all questions of a students and return true if it matches with a poll
+    for poll in poll_list:
+        if len(poll.questions) == len(student_questions):
+            valid = [a[student_questions[idx]] for idx,a in enumerate(poll.questions)]
+            if len(valid) == len(student_poll):
+                return poll
+            else:
+                return None
+        else:
+            return None
+
+
+def matching(df, student_list, poll_list, question_columns):
     # connect answers.poll with one poll, if date does not match, create a new poll object and add it into polls
     # CAUTION!! only bind poll and answer when all the questions are matched.
+    for row in df.itertuples():
+        student = find_student(student_list,row.name)
+        if student:
+            if not student.email:
+                student.email = row.email
+            type_of_poll = check_poll_type(getattr(row, question_columns[0]))
+            if type_of_poll == 'poll':
+                poll = find_poll(poll_list,[getattr(row, column) for column in question_columns if 'question' in column])
+                
+            else:
+                pass
+        else:
+            pass
+
+
+def read_report_file(path):
+    df = pd.read_csv(path,skiprows=1, header=None, sep=",",index_col=0).dropna(thresh=0.8, axis=1)
+    question_columns = [
+        "question_" + str(x // 2 + 1) if x % 2 == 0 else "answer_" + str(x // 2 + 1)
+        for x in range(len(df.iloc[0])- 3)
+    ]
+    columns = ["name", "email", "date"] + question_columns
+    df.columns = columns
+    df = df.replace('\n','',regex=True).replace('  ',' ',regex=True)
+    matching(df,student_list,poll_list,question_columns)
+
+
+dictionary = read_report_file('python_project/inputs/CSE3063_20201123_Mon_zoom_PollReport.csv')
+
+
+
 
     # try to match answers with student objects
 
     # if there is some unmatched students add them into unassigned_answers.
 
-    pass
+
+
+
+
 
 def extreme_matching(polls, students, answers, unassigned_answers):
     """  low priority  """
