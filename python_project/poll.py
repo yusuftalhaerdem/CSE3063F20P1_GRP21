@@ -1,13 +1,14 @@
 import json
 
-
 class Poll:
-    def __init__(self, poll_name, poll_type, date, questions, answers):
+    choice = []
+    date = None
+
+    def __init__(self, poll_name, poll_type, questions):
         self.poll_name = poll_name
         self.poll_type = poll_type  # attendance or quiz
-        self.date = date            # we need this kind of variable to check whatever we are using a pole again or not.
         self.questions = questions  # questions in poll will be kept here
-        self.answers = answers      # right answers of questions will be kept here
+
 
     @classmethod
     def attendence_from_json(cls, json_string):
@@ -18,3 +19,34 @@ class Poll:
     def questions_from_json(cls, json_string):
         json_dict = json.loads(json_string)
         return cls(**json_dict)
+
+
+'''
+Student
+    name
+    surname
+    email
+    student_no
+    no
+    answers (kesin değil)
+
+Poll
+    name
+    type
+    date (reporttan gelicek)
+    soru cevaplar
+
+cevaplamış öğrenciler
+doğru cevaplamışlar(optional)
+eşlenmemişler
+şıklar = (unique answers)
+şık_işaretleme_sayısı
+
+birden çok şık olabilir
+
+Output
+    student bilgiler, attendence %, sorular doğru mu yanlış mı ile beraber,doğrı soru %
+    chartlar
+    her poll için output
+
+'''

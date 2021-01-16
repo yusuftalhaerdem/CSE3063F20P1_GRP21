@@ -8,8 +8,9 @@ from student import Student
 from answer import Answer
 from poll import Poll
 
-from input import Input
+from input import *
 from output import Output
+
 
 students = []
 polls = []
