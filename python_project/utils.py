@@ -1,5 +1,36 @@
 from question_poll import QuestionPoll
 import math
+import difflib
+
+def poll_find_absence(student_list,poll_list):
+    for poll in poll_list:
+        for student in student_list:
+            for answer in student.answers:
+                if poll is not answer.poll:
+                    poll.absences.append(student)
+
+def unmatched_students(student_list, student):
+    # name = ''.join([a if a.isalnum() else break for a in student])
+    if '@' in student:
+        student = student.split('@')[0]
+# [i for i in datalist if any(j for j in filterList if j in i) ]
+    name_list = [a.full_name for a in student_list]
+    name_list_first = [a.first_name for a in student_list]
+    name_list_last = [a.last_name for a in student_list]
+
+    closest = difflib.get_close_matches(student.upper(), name_list,cutoff=0.5)
+    closest_first_name = difflib.get_close_matches(student.upper(), name_list_first,cutoff=0.5)
+    closest_last_name = difflib.get_close_matches(student.upper(), name_list_last,cutoff=0.5)
+
+    if not closest:
+        if len(closest_first_name) == 1:
+            return [a for a in student_list if a.first_name == closest_first_name[0]][0]
+        elif len(closest_last_name) == 1:
+            return [a for a in student_list if a.last_name == closest_last_name[0]][0]
+        else:
+            return student
+    if closest:
+        return [a for a in student_list if a.full_name == closest[0]][0]
 
 def check_poll_type(question):
     if 'are you attending' in question.lower():

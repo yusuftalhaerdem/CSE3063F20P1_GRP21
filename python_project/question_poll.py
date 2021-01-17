@@ -8,7 +8,8 @@ class QuestionPoll(Poll):
         self.poll_type = poll_type  # attendance or quiz
         self.questions = questions  # questions in poll will be kept here
         self.date = None
-
+        self.absences = []
+        self.anomalies = {}
 
 '''
 Student

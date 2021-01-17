@@ -1,13 +1,26 @@
-from utils import * 
+import difflib
+from utils import *
 from answer import Answer
+from student import Student
 from output import *
 from datetime import datetime
+
 
 def matching(df, student_list, poll_list, question_columns,attendence):
     # connect answers.poll with one poll, if date does not match, create a new poll object and add it into polls
     # CAUTION!! only bind poll and answer when all the questions are matched.
     for row in df.itertuples():
         student = find_student(student_list, row.name)
+        if not student:
+            temp_s = unmatched_students(student_list,row.name)
+            # Anomali burda bakılabilir
+            if not isinstance(temp_s,Student):
+                print(temp_s)
+                student_questions = [getattr(row, column) for column in question_columns if 'question' in column]
+                poll = find_poll(poll_list, student_questions)
+                if row.name not in poll.anomalies:
+                    poll.anomalies[row.name] =  row.email
+                
         if student:
             if not student.email:
                 student.email = row.email
@@ -40,12 +53,10 @@ def matching(df, student_list, poll_list, question_columns,attendence):
 
                 student.attendence += 1
                 attendence.last_date = date
-        else:
-            #######TRY TO MATCH
-            pass
-    
+
+    poll_find_absence(student_list,poll_list)
     create_results(student_list,poll_list,attendence)
-        
+
 
 
 
