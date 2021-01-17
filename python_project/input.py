@@ -7,6 +7,24 @@ from utils import *
 from matching import *
 import os
 import csv
+import json
+
+student_list = []
+
+
+def read_glob(path):
+    with open(path, 'r') as jsonfile:
+        jsonContent = jsonfile.read()
+    alist = json.loads(jsonContent)
+    for l in alist.values():
+        df = pd.read_json(l)
+    student_cols = ['no', 'student no', 'first name', 'last name', 'attendence',
+                    'number of attendence polls', 'attendance rate',
+                    'attendence percentage']
+    print(df.columns)
+    df_students = df[student_cols]
+    df_questionns = df.drop(student_cols,axis=1)
+    print(df_students)
 
 def read_student_file(path):
     # read all student objects and add them into students array
@@ -21,8 +39,10 @@ def read_student_file(path):
     df = df.set_index("No")
     df = df.reset_index().reset_index().drop(['No'], axis=1)
     df.columns = ["no", "student_no", "first_name", "last_name"]
-    student_list = [Student(**kwargs)
-                    for kwargs in df.to_dict(orient='records')]
+    global student_list
+    if(not student_list):
+        student_list = [Student(**kwargs)
+                        for kwargs in df.to_dict(orient='records')]
 
     return student_list
 
@@ -87,6 +107,7 @@ poll_list = read_answer_file('python_project/inputs/answer_monday.xlsx')
 
 attendence = AttendencePoll('attendence')
 
+
 def read_report_file(path):
     paths = []
     if not os.path.isfile(path):
@@ -95,7 +116,7 @@ def read_report_file(path):
         paths.append(path)
     for path in paths:
         df = pd.read_csv(path, skiprows=1, header=None, sep=",",
-                        index_col=0).dropna(thresh=0.8, axis=1)
+                         index_col=0).dropna(thresh=0.8, axis=1)
         question_columns = [
             "question_" +
             str(x // 2 + 1) if x % 2 == 0 else "answer_" + str(x // 2 + 1)
@@ -104,7 +125,7 @@ def read_report_file(path):
         columns = ["name", "email", "date"] + question_columns
         df.columns = columns
         df = df.replace('\n', '', regex=True).replace('  ', ' ', regex=True)
-        matching(df, student_list, poll_list, question_columns,attendence)
+        matching(df, student_list, poll_list, question_columns, attendence)
 
 
 dictionary = read_report_file(

@@ -15,7 +15,6 @@ def matching(df, student_list, poll_list, question_columns,attendence):
             temp_s = unmatched_students(student_list,row.name)
             # Anomali burda bakılabilir
             if not isinstance(temp_s,Student):
-                print(temp_s)
                 student_questions = [getattr(row, column) for column in question_columns if 'question' in column]
                 poll = find_poll(poll_list, student_questions)
                 if row.name not in poll.anomalies:
@@ -41,8 +40,9 @@ def matching(df, student_list, poll_list, question_columns,attendence):
                     check_choices(poll,student_questions,student_answers)
 
                     corrects = correct_answers(poll, student_answers)
-                    answer = Answer(poll, date, student_answers, corrects)
+                    answer = Answer(poll,date, student_answers, corrects)
                     student.answers.append(answer)
+                    poll.attended_students.append(student)
                 else:
                     pass
 

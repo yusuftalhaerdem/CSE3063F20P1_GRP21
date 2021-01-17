@@ -5,9 +5,8 @@ import difflib
 def poll_find_absence(student_list,poll_list):
     for poll in poll_list:
         for student in student_list:
-            for answer in student.answers:
-                if poll is not answer.poll:
-                    poll.absences.append(student)
+            if student not in poll.attended_students:
+                poll.absences.append(student)
 
 def unmatched_students(student_list, student):
     # name = ''.join([a if a.isalnum() else break for a in student])

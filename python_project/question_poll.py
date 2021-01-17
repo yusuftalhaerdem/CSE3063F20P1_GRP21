@@ -9,7 +9,15 @@ class QuestionPoll(Poll):
         self.questions = questions  # questions in poll will be kept here
         self.date = None
         self.absences = []
+        self.attended_students = []
         self.anomalies = {}
+
+    def to_dict(self):
+        return {
+            'poll name': self.poll_name,
+            'self.questions': self.questions,
+            'attended students': self.attended_students
+        }
 
 '''
 Student
