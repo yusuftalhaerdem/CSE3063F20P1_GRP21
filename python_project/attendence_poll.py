@@ -1,12 +1,13 @@
 import json
 from poll import Poll
+from datetime import datetime
 
 class AttendencePoll(Poll):
-
-    def __init__(self, poll_name, poll_type, questions):
-        super().__init__(poll_name,poll_type)
+    total_number = 0
+    def __init__(self, poll_name):
+        super().__init__(poll_name,'attendence')
         self.poll_name = poll_name
-        self.poll_type = poll_type  # attendance or quiz
+        self.last_date = datetime(1900,5,5,00,00,00)
 
 
 '''

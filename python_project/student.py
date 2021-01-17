@@ -1,14 +1,15 @@
 import json
 
 class Student:
-    attendence = 0
-    answers = []
-    email = ''
+
     def __init__(self, no, student_no, first_name, last_name):
         self.no = no
         self.student_no = student_no
         self.first_name = first_name
         self.last_name = last_name
+        self.attendence = 0
+        self.answers = []
+        self.email = ''
         
     @classmethod
     def from_json(cls, json_str):

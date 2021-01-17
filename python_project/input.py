@@ -1,14 +1,16 @@
 import pandas as pd
 from student import Student
+from attendence_poll import AttendencePoll
 from question_poll import QuestionPoll
+from question import Question
 from utils import *
-import collections
+from matching import *
 import os
 import csv
 
 def read_student_file(path):
     # read all student objects and add them into students array
-    ## No ayarlanıcak
+    # No ayarlanıcak
     path = path.replace("\\", "/")
     df = pd.read_excel(path, index_col=0)
     thresh = len(df) * 0.7
@@ -17,13 +19,17 @@ def read_student_file(path):
     df.columns = df.iloc[0]
     df = df[df["Öğrenci No"] != "Öğrenci No"]
     df = df.set_index("No")
-    df = df.reset_index().reset_index().drop(['No'],axis=1)
-    df.columns = ["no","student_no", "first_name", "last_name"]
-    student_list = [Student(**kwargs) for kwargs in df.to_dict(orient='records')]
+    df = df.reset_index().reset_index().drop(['No'], axis=1)
+    df.columns = ["no", "student_no", "first_name", "last_name"]
+    student_list = [Student(**kwargs)
+                    for kwargs in df.to_dict(orient='records')]
 
     return student_list
 
-student_list = read_student_file('python_project/inputs/CES3063_Fall2020_rptSinifListesi.xls')
+
+student_list = read_student_file(
+    'python_project/inputs/CES3063_Fall2020_rptSinifListesi.xls')
+
 
 def read_answer_file(path):
     # read all answer objects and add them into answer array
@@ -31,100 +37,82 @@ def read_answer_file(path):
     if not os.path.isfile(path):
         paths = os.listdir(path)
     else:
-        paths.append(path)    
-    
+        paths.append(path)
+
     poll_type = 'poll'
     poll_list = []
     for p in paths:
         p = p.replace("\\", "/")
         ext = os.path.splitext(p)[-1].lower()
         if '.xls' in ext:
-            df = pd.read_excel(p,header=None)
+            df = pd.read_excel(p, header=None)
         elif ext == '.csv':
             with open(p) as csvfile:
-                delimeter = csv.Sniffer().sniff(csvfile.read(), delimiters = ";,")
+                delimeter = csv.Sniffer().sniff(csvfile.read(), delimiters=";,")
                 csvfile.seek(0)
                 delimeter = delimeter.delimiter
-            df = pd.read_csv(p,sep='^([^;]+);',engine='python',names=['names','values'])
+            df = pd.read_csv(
+                p, sep='^([^;]+);', engine='python', names=['names', 'values'])
             df = df.reset_index()
             df.loc[0]['names'] = df['index'][0]
-            df = df.drop(['index'],axis=1)
+            df = df.drop(['index'], axis=1)
         else:
             print("invalid file format!!!!!!!!!!!!!!")
-        unique_name_indexes = [x for x in df.loc[pd.isna(df[df.columns[1]]), :].index]
+        unique_name_indexes = [
+            x for x in df.loc[pd.isna(df[df.columns[1]]), :].index]
         unique_names = df.loc[unique_name_indexes][df.columns[0]].values
         df_iter = df.copy()
 
-        for idx,name in enumerate(unique_names):
+        for idx, name in enumerate(unique_names):
             first_index = unique_name_indexes[idx]
-            last_index = unique_name_indexes[idx+1] if idx < len(unique_name_indexes)-1 else len(df)
+            last_index = unique_name_indexes[idx +
+                                             1] if idx < len(unique_name_indexes)-1 else len(df)
             temp_dict = df_iter[first_index:last_index].to_dict(orient='split')
-            temp_dict['index'] = [x for x in range(len(temp_dict['index']) -1)]
-            temp_dict['columns'] = [temp_dict['data'][0][0],temp_dict['data'][0][0] + ' answers']
+            temp_dict['index'] = [x for x in range(
+                len(temp_dict['index']) - 1)]
+            temp_dict['columns'] = [temp_dict['data'][0]
+                                    [0], temp_dict['data'][0][0] + ' answers']
             temp_dict['data'].pop(0)
-            df_temp = pd.DataFrame(temp_dict['data'],index=temp_dict['index'], columns=temp_dict['columns']).replace('\n','',regex=True)
-            poll = QuestionPoll(df_temp.columns[0],poll_type,[{a[0].replace('  ',' '):[choice.replace('"','').strip() for choice in a[1].split(';')]} for a in df_temp.to_numpy()])
+            df_temp = pd.DataFrame(temp_dict['data'], index=temp_dict['index'],
+                                   columns=temp_dict['columns']).replace('\n', '', regex=True)
+            question_list = [Question(a[0].replace('  ', ' '), [choice.replace(
+                '"', '').strip() for choice in a[1].split(';')]) for a in df_temp.to_numpy()]
+            poll = QuestionPoll(df_temp.columns[0], poll_type, question_list)
             poll_list.append(poll)
-        
+
         return poll_list
+
 
 poll_list = read_answer_file('python_project/inputs/answer_monday.xlsx')
 
-def find_poll(poll_list,student_questions):
-    ## check all questions of a students and return true if it matches with a poll
-    for poll in poll_list:
-        if len(poll.questions) == len(student_questions):
-            valid = [a[student_questions[idx]] for idx,a in enumerate(poll.questions)]
-            if len(valid) == len(student_poll):
-                return poll
-            else:
-                return None
-        else:
-            return None
-
-
-def matching(df, student_list, poll_list, question_columns):
-    # connect answers.poll with one poll, if date does not match, create a new poll object and add it into polls
-    # CAUTION!! only bind poll and answer when all the questions are matched.
-    for row in df.itertuples():
-        student = find_student(student_list,row.name)
-        if student:
-            if not student.email:
-                student.email = row.email
-            type_of_poll = check_poll_type(getattr(row, question_columns[0]))
-            if type_of_poll == 'poll':
-                poll = find_poll(poll_list,[getattr(row, column) for column in question_columns if 'question' in column])
-                
-            else:
-                pass
-        else:
-            pass
-
+attendence = AttendencePoll('attendence')
 
 def read_report_file(path):
-    df = pd.read_csv(path,skiprows=1, header=None, sep=",",index_col=0).dropna(thresh=0.8, axis=1)
-    question_columns = [
-        "question_" + str(x // 2 + 1) if x % 2 == 0 else "answer_" + str(x // 2 + 1)
-        for x in range(len(df.iloc[0])- 3)
-    ]
-    columns = ["name", "email", "date"] + question_columns
-    df.columns = columns
-    df = df.replace('\n','',regex=True).replace('  ',' ',regex=True)
-    matching(df,student_list,poll_list,question_columns)
+    paths = []
+    if not os.path.isfile(path):
+        paths = os.listdir(path)
+    else:
+        paths.append(path)
+    for path in paths:
+        df = pd.read_csv(path, skiprows=1, header=None, sep=",",
+                        index_col=0).dropna(thresh=0.8, axis=1)
+        question_columns = [
+            "question_" +
+            str(x // 2 + 1) if x % 2 == 0 else "answer_" + str(x // 2 + 1)
+            for x in range(len(df.iloc[0]) - 3)
+        ]
+        columns = ["name", "email", "date"] + question_columns
+        df.columns = columns
+        df = df.replace('\n', '', regex=True).replace('  ', ' ', regex=True)
+        matching(df, student_list, poll_list, question_columns,attendence)
 
 
-dictionary = read_report_file('python_project/inputs/CSE3063_20201123_Mon_zoom_PollReport.csv')
+dictionary = read_report_file(
+    'python_project/inputs/CSE3063_20201123_Mon_zoom_PollReport.csv')
 
+# try to match answers with student objects
 
-
-
-    # try to match answers with student objects
-
-    # if there is some unmatched students add them into unassigned_answers.
-
-
-
-
+# if there is some unmatched students add them into unassigned_answers.
 
 
 def extreme_matching(polls, students, answers, unassigned_answers):
@@ -132,6 +120,7 @@ def extreme_matching(polls, students, answers, unassigned_answers):
     # try matching in a way which is extreme. we may change its class in latter
 
     pass
+
 
 def read(polls_location, students_location, answers_location, polls, students, answers, unassigned_answers):
     read_polls(polls_location, polls)
