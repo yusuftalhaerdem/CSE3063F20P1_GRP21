@@ -6,7 +6,7 @@ from output import *
 from datetime import datetime
 
 
-def matching(df, student_list, poll_list, question_columns,attendence):
+def matching(df, student_list, poll_list, question_columns, attendence):
     # connect answers.poll with one poll, if date does not match, create a new poll object and add it into polls
     # CAUTION!! only bind poll and answer when all the questions are matched.
     for row in df.itertuples():

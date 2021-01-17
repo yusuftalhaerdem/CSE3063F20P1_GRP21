@@ -21,11 +21,11 @@ def read_glob(path):
         dfs[k] =  pd.read_json(l)
     student_cols = ['no', 'student no', 'first name', 'last name', 'attendence','email']
     attendence_cols = ['number of attendence polls']
-            
+
     for k,df in dfs:
         df_students = df[student_cols]
         df_questions = df.drop(student_cols,axis=1)
-    
+
         attendence.total_number += df[attendence_cols].iloc[0].value
         if not student_list:
             student_list = [Student.from_df(**kwargs)
@@ -59,8 +59,6 @@ def read_student_file(path):
     return student_list
 
 
-student_list = read_student_file(
-    'python_project/inputs/CES3063_Fall2020_rptSinifListesi.xls')
 
 
 def read_answer_file(path):
@@ -115,7 +113,6 @@ def read_answer_file(path):
         return poll_list
 
 
-poll_list = read_answer_file('python_project/inputs/answer_monday.xlsx')
 
 def read_report_file(path):
     paths = []
@@ -137,8 +134,6 @@ def read_report_file(path):
         matching(df, student_list, poll_list, question_columns, attendence)
 
 
-dictionary = read_report_file(
-    'python_project/inputs/CSE3063_20201123_Mon_zoom_PollReport.csv')
 
 # try to match answers with student objects
 
@@ -152,9 +147,21 @@ def extreme_matching(polls, students, answers, unassigned_answers):
     pass
 
 
-def read(polls_location, students_location, answers_location, polls, students, answers, unassigned_answers):
+"""def read(polls_location, students_location, answers_location, polls, students, answers, unassigned_answers):
     read_polls(polls_location, polls)
     read_students(students_location, students)
     read_answers(answers_location, answers)
     matching(polls, students, answers, unassigned_answers)
-    extreme_matching(polls, students, answers, unassigned_answers)
+    extreme_matching(polls, students, answers, unassigned_answers)"""
+
+
+student_list = read_student_file(
+    'inputs/CES3063_Fall2020_rptSinifListesi.xls')
+poll_list = read_answer_file('inputs/answer_monday.xlsx')
+
+
+dictionary = read_report_file(
+    'inputs/CSE3063_20201123_Mon_zoom_PollReport.csv')
+
+
+print("a")

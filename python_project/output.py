@@ -28,6 +28,7 @@ def create_report_file(poll_list):
             dictionary.append({"Students in BYS list but don't exist in this poll report (Absence)": absences,
                                "Students in this poll report but don't exist in BYS Student List (Anomalies)": anomalies})
             jsonStr = json.dumps(dictionary, indent=4)
+            # print(jsonStr)
             with open('outputs/' + poll.poll_name + '.json', 'w') as jsonfile:
                 jsonfile.write(jsonStr)
 
@@ -85,7 +86,7 @@ def create_global_files(student_list, poll_list, attendence):
     for key, df in df_polls.items():
         dfs[key] = pd.merge(df, df_attendence[['no', 'attendence', 'number of attendence polls',
                                                'attendance rate', 'attendence percentage']], on='no').fillna(0).to_json()
-    jsonStr = json.dumps(dfs)
+    jsonStr = json.dumps(dfs, indent=4)
     with open('outputs/global.json', 'w') as jsonfile:
         jsonfile.write(jsonStr)
 
@@ -108,27 +109,6 @@ def create_graphs(poll_list):
             worksheet.insert_chart('D5', chart)
 
         writer.save()
-
-        #     chart = workbook.add_chart({'type': 'column'})
-        #     chart.add_series({
-        #         'values':     ['question-' + str(idx), 1, 1, 7, 1],
-        #         'gap':        2,
-        #     })
-        #     chart.set_legend({'position': 'none'})
-        #     chart.set_y_axis({'major_gridlines': {'visible': False}})
-            
-        #     worksheet.insert_chart('D2', chart)
-        # writer.save()
-            # ax.set(title=question.question)
-            # plt.plot(answers,values)
-            # plt.savefig(os.path.join(check_dir('plots'),question.question)+'.png')
-            # sheet = writer.sheets['question-' + str(idx)]
-            # sheet.insert_image('C2',os.path.join(check_dir('plots'),question.quetion)+'.png')
-            # writer.save()
-
-    # create some visual t,hings to show     a)  b)  c)  d)  e)
-    #                                   Q1  %11 %13 %17 %19 %40     true answer will be highlighted.
-
 
 def create_results(student_list, poll_list, attendence):
     # this will probably will be long, you will need to declare new variables etc.
