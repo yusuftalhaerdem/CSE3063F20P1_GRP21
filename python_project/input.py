@@ -10,21 +10,33 @@ import csv
 import json
 
 student_list = []
-
+attendence = AttendencePoll('attendence')
 
 def read_glob(path):
     with open(path, 'r') as jsonfile:
         jsonContent = jsonfile.read()
     alist = json.loads(jsonContent)
-    for l in alist.values():
-        df = pd.read_json(l)
-    student_cols = ['no', 'student no', 'first name', 'last name', 'attendence',
-                    'number of attendence polls', 'attendance rate',
-                    'attendence percentage']
-    print(df.columns)
-    df_students = df[student_cols]
-    df_questionns = df.drop(student_cols,axis=1)
-    print(df_students)
+    dfs = {}
+    for k,l in alist.items():
+        dfs[k] =  pd.read_json(l)
+    student_cols = ['no', 'student no', 'first name', 'last name', 'attendence','email']
+    attendence_cols = ['number of attendence polls']
+            
+    for k,df in dfs:
+        df_students = df[student_cols]
+        df_questions = df.drop(student_cols,axis=1)
+    
+        attendence.total_number += df[attendence_cols].iloc[0].value
+        if not student_list:
+            student_list = [Student.from_df(**kwargs)
+                        for kwargs in df.to_dict(orient='records')]
+        else:
+            name_list = df['name'].to_list()
+            for name in name_list:
+                student = find_student(student_list,name)
+                student.attendance += df.loc[df['name'] == name]['attendence']
+
+# read_glob('outputs/global.json')
 
 def read_student_file(path):
     # read all student objects and add them into students array
@@ -104,9 +116,6 @@ def read_answer_file(path):
 
 
 poll_list = read_answer_file('python_project/inputs/answer_monday.xlsx')
-
-attendence = AttendencePoll('attendence')
-
 
 def read_report_file(path):
     paths = []

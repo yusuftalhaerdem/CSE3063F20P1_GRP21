@@ -15,12 +15,20 @@ class Student:
     def full_name(self):
         return self.first_name + ' ' + self.last_name
 
+    @classmethod
+    def from_df(cls,no,student_no,first_name,last_name,attendence,email):
+        student = cls(no,student_no,first_name,last_name)
+        student.attendence = attendence
+        student.email = email
+        return student
+
     def to_dict(self):
         return {
             'no':self.no+1,
             'student no':self.student_no,
             'first name':self.first_name,
             'last name':self.last_name,
+            'email':self.email,
             'attendence':self.attendence,
             'answers':self.answers
         }

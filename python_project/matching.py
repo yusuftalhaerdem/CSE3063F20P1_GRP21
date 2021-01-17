@@ -12,16 +12,16 @@ def matching(df, student_list, poll_list, question_columns,attendence):
     for row in df.itertuples():
         student = find_student(student_list, row.name)
         if not student:
-            temp_s = unmatched_students(student_list,row.name)
+            student = unmatched_students(student_list,row.name)
             # Anomali burda bakılabilir
-            if not isinstance(temp_s,Student):
+            if not isinstance(student,Student):
                 student_questions = [getattr(row, column) for column in question_columns if 'question' in column]
                 poll = find_poll(poll_list, student_questions)
                 if row.name not in poll.anomalies:
                     poll.anomalies[row.name] =  row.email
                 
         if student:
-            if not student.email:
+            if student.email == '':
                 student.email = row.email
             type_of_poll = check_poll_type(getattr(row, question_columns[0]))
             if type_of_poll == 'poll':
