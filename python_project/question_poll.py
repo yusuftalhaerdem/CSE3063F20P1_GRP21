@@ -10,7 +10,7 @@ class QuestionPoll(Poll):
         self.date = None
         self.absences = []
         self.attended_students = []
-        self.anomalies = {}
+        self.anomalies = []
 
     def to_dict(self):
         return {

@@ -64,10 +64,10 @@ def read_student_file(path):
 def read_answer_file(path):
     # read all answer objects and add them into answer array
     paths = []
-    if not os.path.isfile(path):
-        paths = os.listdir(path)
+    if not os.path.isfile(path.replace("\\", "/")):
+        paths = os.listdir(path.replace("\\", "/"))
     else:
-        paths.append(path)
+        paths.append(path.replace("\\", "/"))
 
     poll_type = 'poll'
     poll_list = []
@@ -75,21 +75,24 @@ def read_answer_file(path):
         p = p.replace("\\", "/")
         ext = os.path.splitext(p)[-1].lower()
         if '.xls' in ext:
-            df = pd.read_excel(p, header=None)
+            df = pd.read_excel(p, header=None,engine='openpyxl')
         elif ext == '.csv':
             with open(p) as csvfile:
                 delimeter = csv.Sniffer().sniff(csvfile.read(), delimiters=";,")
                 csvfile.seek(0)
                 delimeter = delimeter.delimiter
             df = pd.read_csv(
-                p, sep='^([^;]+);', engine='python', names=['names', 'values'])
+                p, sep='^([^%s]+)%s'%(delimeter,delimeter), engine='python', names=['names', 'values'])
             df = df.reset_index()
+            print(df)
             df.loc[0]['names'] = df['index'][0]
             df = df.drop(['index'], axis=1)
         else:
             print("invalid file format!!!!!!!!!!!!!!")
+        # find if there are more than one poll inside a file
         unique_name_indexes = [
             x for x in df.loc[pd.isna(df[df.columns[1]]), :].index]
+        # find poll names
         unique_names = df.loc[unique_name_indexes][df.columns[0]].values
         df_iter = df.copy()
 
@@ -98,11 +101,13 @@ def read_answer_file(path):
             last_index = unique_name_indexes[idx +
                                              1] if idx < len(unique_name_indexes)-1 else len(df)
             temp_dict = df_iter[first_index:last_index].to_dict(orient='split')
+            ## Sort by indexes
             temp_dict['index'] = [x for x in range(
                 len(temp_dict['index']) - 1)]
             temp_dict['columns'] = [temp_dict['data'][0]
                                     [0], temp_dict['data'][0][0] + ' answers']
             temp_dict['data'].pop(0)
+
             df_temp = pd.DataFrame(temp_dict['data'], index=temp_dict['index'],
                                    columns=temp_dict['columns']).replace('\n', '', regex=True)
             question_list = [Question(a[0].replace('  ', ' '), [choice.replace(
@@ -139,14 +144,6 @@ def read_report_file(path):
 
 # if there is some unmatched students add them into unassigned_answers.
 
-
-def extreme_matching(polls, students, answers, unassigned_answers):
-    """  low priority  """
-    # try matching in a way which is extreme. we may change its class in latter
-
-    pass
-
-
 """def read(polls_location, students_location, answers_location, polls, students, answers, unassigned_answers):
     read_polls(polls_location, polls)
     read_students(students_location, students)
@@ -156,12 +153,14 @@ def extreme_matching(polls, students, answers, unassigned_answers):
 
 
 student_list = read_student_file(
-    'inputs/CES3063_Fall2020_rptSinifListesi.xls')
-poll_list = read_answer_file('inputs/answer_monday.xlsx')
+    '/home/fatih/Desktop/CSE3063F20P1_GRP21/CSE3063F20P2_GRP21_iteration1/python_project/inputs/CES3063_Fall2020_rptSinifListesi.xls')
 
 
-dictionary = read_report_file(
-    'inputs/CSE3063_20201123_Mon_zoom_PollReport.csv')
+a = input("poll list ")    
+poll_list = read_answer_file(a)
 
-
-print("a")
+# 'python_project/inputs/answer_monday.xlsx'
+a = input("poll report ")
+dictionary = read_report_file(a
+    )
+    # 'python_project/inputs/CSE3063_20201116_Mon_zoom_PollReport.csv'

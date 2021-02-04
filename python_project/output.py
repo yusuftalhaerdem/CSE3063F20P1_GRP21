@@ -23,13 +23,14 @@ def create_report_file(poll_list):
             if poll.anomalies:
                 for student in poll.anomalies:
                     anomalies.append(
-                        {'student email': student.email, 'student name': student.full_name})
+                        {'student email': student['email'], 'student name': student['name']})
 
             dictionary.append({"Students in BYS list but don't exist in this poll report (Absence)": absences,
                                "Students in this poll report but don't exist in BYS Student List (Anomalies)": anomalies})
-            jsonStr = json.dumps(dictionary, indent=4)
-            # print(jsonStr)
-            with open('outputs/' + poll.poll_name + '.json', 'w') as jsonfile:
+
+            jsonStr = json.dumps(dictionary, indent=4,
+                                 ensure_ascii=False).encode('utf8')
+            with open('outputs/' + poll.poll_name + '.json', 'wb') as jsonfile:
                 jsonfile.write(jsonStr)
 
 
@@ -94,21 +95,38 @@ def create_global_files(student_list, poll_list, attendence):
 def create_graphs(poll_list):
     # create histogram.
     for poll in poll_list:
-        writer = pd.ExcelWriter(
-            'plots/' + poll.poll_name + '.xlsx', engine='xlsxwriter')
-        for idx, question in enumerate(poll.questions):
-            answers = list(question.choices.keys())
-            values = list(question.choices.values())
-            df = pd.DataFrame({'question-' + str(idx):values})
-            df.to_excel(writer, sheet_name='question-' + str(idx))
+        if poll.attended_students:
+            writer = pd.ExcelWriter(
+                os.path.join(
+                    check_dir('plots'), poll.poll_name + '.xlsx'), engine='xlsxwriter')
+            for idx, question in enumerate(poll.questions):
+                sorted_dict = {k: v for k, v in sorted(
+                    question.choices.items(), key=lambda item: item[1], reverse=True)}
 
-            workbook = writer.book
-            worksheet = writer.sheets['question-' + str(idx)]
-            chart = workbook.add_chart({'type': 'column'})
-            chart.add_series({'values': '=question-%s!$B$2:$B$%s' % (str(idx),str(1 + len(values)))})
-            worksheet.insert_chart('D5', chart)
+                values = list(sorted_dict.values())
+                answer = list(sorted_dict.keys())
+                df = pd.DataFrame(
+                    {'question-' + str(idx+1): values}, index=answer)
+                df.to_excel(writer, sheet_name='question-' + str(idx+1))
 
-        writer.save()
+                workbook = writer.book
+                worksheet = writer.sheets['question-' + str(idx+1)]
+                chart = workbook.add_chart({'type': 'bar'})
+                chart.add_series({'values': '=question-%s!$B$2:$B$%s' % (str(idx+1), str(1 + len(values))),
+                                  'points': [
+                                      {'fill': {'color': 'red'}}
+                ]})
+                chart.set_y_axis(
+                    {'major_gridlines': {'visible': False}, 'text_axis': True})
+                chart.set_x_axis(
+                    {'name': question.question, 'text_axis': True})
+
+                chart.set_legend({'values': answer})
+
+                worksheet.insert_chart('D5', chart)
+
+            writer.save()
+
 
 def create_results(student_list, poll_list, attendence):
     # this will probably will be long, you will need to declare new variables etc.

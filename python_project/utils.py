@@ -10,8 +10,6 @@ def poll_find_absence(student_list,poll_list):
 
 def unmatched_students(student_list, student):
     # name = ''.join([a if a.isalnum() else break for a in student])
-    if '@' in student:
-        student = student.split('@')[0]
 # [i for i in datalist if any(j for j in filterList if j in i) ]
     name_list = [a.full_name for a in student_list]
     name_list_first = [a.first_name for a in student_list]
@@ -27,7 +25,7 @@ def unmatched_students(student_list, student):
         elif len(closest_last_name) == 1:
             return [a for a in student_list if a.last_name == closest_last_name[0]][0]
         else:
-            return student
+            return None
     if closest:
         return [a for a in student_list if a.full_name == closest[0]][0]
 

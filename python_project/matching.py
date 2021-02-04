@@ -8,7 +8,6 @@ from datetime import datetime
 
 def matching(df, student_list, poll_list, question_columns, attendence):
     # connect answers.poll with one poll, if date does not match, create a new poll object and add it into polls
-    # CAUTION!! only bind poll and answer when all the questions are matched.
     for row in df.itertuples():
         student = find_student(student_list, row.name)
         if not student:
@@ -18,7 +17,8 @@ def matching(df, student_list, poll_list, question_columns, attendence):
                 student_questions = [getattr(row, column) for column in question_columns if 'question' in column]
                 poll = find_poll(poll_list, student_questions)
                 if row.name not in poll.anomalies:
-                    poll.anomalies[row.name] =  row.email
+                    poll.anomalies.append({'email':row.email,'name':row.name})  
+                continue
                 
         if student:
             if student.email == '':
@@ -35,7 +35,7 @@ def matching(df, student_list, poll_list, question_columns, attendence):
                     date = datetime.strptime(row.date, '%b %d, %Y %H:%M:%S')
                     if not poll.date:
                         poll.date = date    
-                    poll = check_unique_poll(poll,date,poll_list,student_questions)
+                    # poll = check_unique_poll(poll,date,poll_list,student_questions)
                     
                     check_choices(poll,student_questions,student_answers)
 
@@ -56,18 +56,3 @@ def matching(df, student_list, poll_list, question_columns, attendence):
 
     poll_find_absence(student_list,poll_list)
     create_results(student_list,poll_list,attendence)
-
-
-
-
-
-# try to match answers with student objects
-
-# if there is some unmatched students add them into unassigned_answers.
-
-
-def extreme_matching(polls, students, answers, unassigned_answers):
-    """  low priority  """
-    # try matching in a way which is extreme. we may change its class in latter
-
-    pass
