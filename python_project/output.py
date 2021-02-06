@@ -2,6 +2,7 @@ import json
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
+
 plt.rcdefaults()
 
 
@@ -39,8 +40,8 @@ def create_attendence_file(student_list, attendence, get_df=False):
         [s.to_dict() for s in student_list]).drop(['answers'], axis=1)
     df['number of attendence polls'] = attendence.total_number
     df['attendance rate'] = 'attended ' + \
-        df['attendence'].astype(str) + ' of ' + \
-        str(attendence.total_number) + ' courses'
+                            df['attendence'].astype(str) + ' of ' + \
+                            str(attendence.total_number) + ' courses'
     df['attendence percentage'] = df['attendence'] / attendence.total_number
     if not get_df:
         df.to_excel(os.path.join(check_dir('outputs'),
@@ -56,7 +57,7 @@ def create_poll_files(student_list, poll_list, get_df=False):
         dfs = {}
     for poll in poll_list:
         df_temp = df.copy()
-        indexes = [a.no+1 for a in poll.attended_students]
+        indexes = [a.no + 1 for a in poll.attended_students]
         columns = [a.question for a in poll.questions]
         answers = [[i.isCorrect for i in a.answers][0]
                    for a in poll.attended_students]
@@ -64,9 +65,9 @@ def create_poll_files(student_list, poll_list, get_df=False):
         df_poll['no'] = indexes
         df_poll['number of questions'] = len(poll.questions)
         df_poll['success rate'] = [
-            str(sum(a)) + ' of ' + str(len(poll.questions)) + ' is correct'for a in answers]
+            str(sum(a)) + ' of ' + str(len(poll.questions)) + ' is correct' for a in answers]
         df_poll['success percentage'] = [
-            sum(a)/len(poll.questions) for a in answers]
+            sum(a) / len(poll.questions) for a in answers]
         df_temp = pd.merge(df, df_poll, on='no', how='outer').fillna(0)
         if not get_df:
             df_temp.to_excel(os.path.join(check_dir('outputs'),
@@ -78,18 +79,90 @@ def create_poll_files(student_list, poll_list, get_df=False):
     if get_df:
         return dfs
 
+#def std_list_to_df(list):
+
 
 def create_global_files(student_list, poll_list, attendence):
+
     df_polls = create_poll_files(student_list, poll_list, get_df=True)
     df_attendence = create_attendence_file(
         student_list, attendence, get_df=True)
-    dfs = {}
+    '''dfs = {}         # old part
     for key, df in df_polls.items():
         dfs[key] = pd.merge(df, df_attendence[['no', 'attendence', 'number of attendence polls',
-                                               'attendance rate', 'attendence percentage']], on='no').fillna(0).to_json()
+                                               'attendance rate', 'attendence percentage']], on='no').fillna(
+            0).to_json()
     jsonStr = json.dumps(dfs, indent=4)
     with open('outputs/global.json', 'w') as jsonfile:
-        jsonfile.write(jsonStr)
+        jsonfile.write(jsonStr)'''
+
+
+
+    # part0: read the global file - better to add as last part
+    # df = read_ods(path, sheet_name)
+
+    # part1: turn student_list into df
+
+    l1 = len(student_list)
+    name_list = []
+    no_list = []
+
+    index_list = range(0, l1)
+    for i in range(0, l1):
+        name_list.append(student_list[i].full_name)
+    for i in range(0, l1):
+        no_list.append(student_list[i].student_no)
+
+    df_names = pd.DataFrame(name_list)
+    df_nos = pd.DataFrame(no_list)
+    df_index = pd.DataFrame(index_list)
+
+    # combines the list together. --not sure if index is needed
+    df_stu = pd.concat([df_index, df_names, df_nos], axis=1)
+    df_stu.columns = ['index', 'student name', 'student number']
+
+
+    # part2: choose the column order and collect them in one df
+
+    # first, lets order the polls according to their dates (failed on ordering df_polls)
+    '''dates = []
+    for sample2 in df_polls:
+        sample1 = df_polls[sample2]
+        print("date for "+sample2+" is")
+        date = sample1.date[0]
+
+        if date is None:    # since attendance poll does not have a date, we need a update
+            date = "2020-11-23 10:41:23"
+            date = pd.Timestamp(date)
+
+        dates.append(date)
+
+    # dates.sort(reverse=False)
+    '''
+
+    # then combine it to df
+    for sample2 in df_polls:    # gets the polls inside df_polls one by one
+        sample1 = df_polls[sample2]
+
+        # deletes duplicated rows.
+        sample1 = sample1.drop_duplicates()
+        sample1 = sample1.reset_index()
+        del sample1['index']
+
+        success_rate = sample1[sample1.columns[len(sample1.columns)-3]]
+        lines_to_add = success_rate
+        df_stu = pd.concat([df_stu, lines_to_add], axis=1)      # concat lines to df_stu
+
+
+    # part3: correct the column names accordingly and compute the last columns.
+
+
+    # part4: print the global file.
+    print(df_stu)
+
+    df_stu.to_excel("CSE3063_2020FALL_QuizGrading.xlsx")   # does not work with ods................
+
+
 
 
 def create_graphs(poll_list):
@@ -106,16 +179,16 @@ def create_graphs(poll_list):
                 values = list(sorted_dict.values())
                 answer = list(sorted_dict.keys())
                 df = pd.DataFrame(
-                    {'question-' + str(idx+1): values}, index=answer)
-                df.to_excel(writer, sheet_name='question-' + str(idx+1))
+                    {'question-' + str(idx + 1): values}, index=answer)
+                df.to_excel(writer, sheet_name='question-' + str(idx + 1))
 
                 workbook = writer.book
-                worksheet = writer.sheets['question-' + str(idx+1)]
+                worksheet = writer.sheets['question-' + str(idx + 1)]
                 chart = workbook.add_chart({'type': 'bar'})
-                chart.add_series({'values': '=question-%s!$B$2:$B$%s' % (str(idx+1), str(1 + len(values))),
+                chart.add_series({'values': '=question-%s!$B$2:$B$%s' % (str(idx + 1), str(1 + len(values))),
                                   'points': [
                                       {'fill': {'color': 'red'}}
-                ]})
+                                  ]})
                 chart.set_y_axis(
                     {'major_gridlines': {'visible': False}, 'text_axis': True})
                 chart.set_x_axis(
@@ -141,7 +214,6 @@ def create_results(student_list, poll_list, attendence):
     # such as Q5 Q6 Q7
 
     # then return.
-
 
 # def create_outputs(self, students, answers, polls):
 #     self.create_results(students, answers)
