@@ -8,7 +8,7 @@ class Student:
         self.first_name = first_name
         self.last_name = last_name
         self.attendence = 0
-        self.answers = []
+        # self.answers = []
         self.email = ''
         
     @property
@@ -30,7 +30,13 @@ class Student:
             'last name':self.last_name,
             'email':self.email,
             'attendence':self.attendence,
-            'answers':self.answers
+        }
+    
+    def to_dict_short(self):
+        return {
+            'no':self.no+1,
+            'student no':self.student_no,
+            'full name':self.full_name,
         }
 
     def __repr__(self):

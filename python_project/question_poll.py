@@ -7,6 +7,7 @@ class QuestionPoll(Poll):
         self.poll_name = poll_name
         self.poll_type = poll_type  # attendance or quiz
         self.questions = questions  # questions in poll will be kept here
+        self.student_answers = {}
         self.date = None
         self.absences = []
         self.attended_students = []

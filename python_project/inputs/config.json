@@ -1,0 +1,7 @@
+{
+    "report files" : "inputs/reports",
+    "answer files" : "inputs/answers",
+    "student list" : "inputs/CES3063_Fall2020_rptSinifListesi.xls",
+    "glob file" : "outputs/global.json",
+    "output path" : "outputs"
+}
